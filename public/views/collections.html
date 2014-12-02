@@ -1,0 +1,39 @@
+<div class="row">
+
+	<div class="col-sm-6">
+	
+		<div class="collection" ng-repeat="collection in collections">
+			<h4>{{ collection.title }} <small>{{ collection.description }}</small> <a href="/collections/{{ collection._id }}"class="btn btn-primary btn-sm" ng-click="">Details</a></h4>
+		</div>
+
+	</div><!-- end col-sm-6 -->
+
+	<div class="col-sm-6">
+
+		<form id="createcollection" class="form-horizontal">
+	
+			<div class="form-group">
+				<label for="title" class="col-sm-4 control-label">Title</label>
+				<div class="col-sm-8">
+					<input id="title" type="text" class="form-control" ng-model="formData.title">
+				</div>
+			</div><!-- end form-group -->
+
+			<div class="form-group">
+				<label for="description" class="col-sm-4 control-label">Description</label>
+				<div class="col-sm-8">
+					<input id="description" type="text" class="form-control" ng-model="formData.description">
+				</div>
+			</div><!-- end form-group -->
+
+			<div class="form-group">
+		    	<div class="col-sm-offset-4 col-sm-8">
+		      		<button type="submit" class="btn btn-primary" ng-click="createCollection()">Create collection</button>
+		    	</div>
+		  	</div><!-- end form-groyp -->
+
+		</form><!-- end #createcollection form-horizontal-->
+
+	</div><!-- end col-sm-6 -->
+
+</div><!-- end row -->

@@ -1,0 +1,23 @@
+{
+  "name": "userapp",
+  "version": "0.0.1",
+  "description": "User app",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "~4.3.1",
+    "mongoose": "~3.8.11",
+    "passport": "~0.2.0",
+    "passport-local": "~1.0.0",
+    "passport-facebook": "~1.0.3",
+    "passport-twitter": "~1.0.2",
+    "passport-google-oauth": "~0.1.5",
+    "bcrypt-nodejs": "latest",
+    "morgan": "~1.1.1",
+    "body-parser": "~1.2.0",
+    "cookie-parser": "~1.1.0",
+    "method-override": "~1.0.2",
+    "express-session": "~1.2.1"
+  }
+}

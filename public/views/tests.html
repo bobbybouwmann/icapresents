@@ -1,0 +1,74 @@
+<div class="row">
+
+	<div class="col-sm-6">
+	
+		<div class="test" ng-repeat="test in tests">
+			<h4>{{ test.title }} <span class="label label-default">{{ test.method }}</span> <small>{{ test.url }}</small> <a href="/tests/{{ test._id }}"class="btn btn-primary btn-sm" ng-click="">Details</a></h4>
+		</div>
+
+	</div><!-- end col-sm-6 -->
+
+	<div class="col-sm-6">
+
+		<form id="createtest" class="form-horizontal">
+	
+			<div class="form-group">
+				<label for="title" class="col-sm-4 control-label">Title</label>
+				<div class="col-sm-8">
+					<input id="title" type="text" class="form-control" ng-model="formData.title">
+				</div>
+			</div><!-- end form-group -->
+
+			<div class="form-group">
+				<label for="url" class="col-sm-4 control-label">URL</label>
+				<div class="col-sm-8">
+					<input id="url" type="text" class="form-control" ng-model="formData.url">
+				</div>
+			</div><!-- end form-group -->
+
+			<div class="form-group">
+				<label for="collection" class="col-sm-4 control-label">Collection</label>
+				<div class="col-sm-8">
+					<select id="collection" class="form-control" ng-model="formData.collectionid">
+				   		<option ng-repeat="collection in collections" value="{{ collection._id }}">{{ collection.title }}</option>
+					</select>
+				</div>
+			</div><!-- end form-group -->
+
+			<div class="form-group">
+				<label for="method" class="col-sm-4 control-label">Method</label>
+				<div class="col-sm-8">
+					<select id="method" class="form-control" ng-model="formData.method">
+						<option value="get">GET</option>
+						<option value="post">POST</option>
+						<option value="put">PUT</option>
+						<option value="delete">DELETE</option>
+					</select>
+				</div>
+			</div><!-- end form-group -->
+	
+			<div class="form-group">
+				<label for="param" class="col-sm-4 control-label">Param</label>
+				<div class="col-sm-8">
+					<input id="param" type="text" class="form-control" ng-model="formData.param">
+				</div>
+			</div><!-- end form-group -->
+
+			<div class="form-group">
+				<label for="data" class="col-sm-4 control-label">Data (in json)</label>
+				<div class="col-sm-8">
+					<textarea id="data" class="form-control" rows="10" ng-model="formData.data"></textarea>
+				</div>
+			</div><!-- end form-group -->
+
+			<div class="form-group">
+		    	<div class="col-sm-offset-4 col-sm-8">
+		      		<button type="submit" class="btn btn-primary" ng-click="createTest()">Create test</button>
+		    	</div>
+		  	</div><!-- end form-groyp -->
+
+		</form><!-- end #createtest form-horizontal-->
+
+	</div><!-- end col-sm-6 -->
+
+</div><!-- end row -->

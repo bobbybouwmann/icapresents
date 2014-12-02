@@ -1,0 +1,34 @@
+<!doctype html>
+<html ng-app="app">
+    <head>
+        <title>User Authentication</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+
+	    <script src="/factories/httpInterceptor.js"></script>
+	    <script src="/directives/common.js"></script>
+        <script src="/controllers/collection.js"></script>
+        <script src="/controllers/test.js"></script>
+	    <script src="/controllers/profile.js"></script>
+	    <script src="/controllers/login.js"></script>
+	    <script src="/modules/growl.js"></script>
+	    <script src="/modules/core.js"></script>
+
+    </head>
+    <body>
+
+        <div class="page-header text-center">
+            <h1><span class="fa fa-anchor"></span> TestApp</h1>
+            <a href="/collections" class="btn btn-default btn-sm">Collections</a>
+            <a href="/tests" class="btn btn-default btn-sm">Tests</a>
+            <a logout href="/logout" class="btn btn-default btn-sm">Logout</a>
+        </div><!-- end page-header -->
+
+        <div class="container" ng-view>
+
+        </div>
+    </body>
+</html>

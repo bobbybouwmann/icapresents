@@ -1,0 +1,10 @@
+{
+    "name": "user-app",
+    "version": "0.0.1",
+    "dependencies": {
+        "bootstrap": "latest",
+        "font-awesome": "latest",
+        "angular": "latest",
+        "angular-ui-router": "latest"  
+    }
+}

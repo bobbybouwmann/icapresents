@@ -1,0 +1,79 @@
+<div class="row">
+
+	<div class="col-sm-6">
+
+		<h2 class="col-sm-offset-4">Edit test</h2>
+
+		<form class="form-horizontal">
+	
+			<div class="form-group">
+				<label for="title" class="col-sm-4 control-label">Title</label>
+				<div class="col-sm-8">
+					<input id="title" type="text" class="form-control" ng-model="test.title">
+				</div>
+			</div><!-- end form-group -->
+
+			<div class="form-group">
+				<label for="url" class="col-sm-4 control-label">URL</label>
+				<div class="col-sm-8">
+					<input id="url" type="text" class="form-control" ng-model="test.url">
+				</div>
+			</div><!-- end form-group -->
+
+			<div class="form-group">
+				<label for="collection" class="col-sm-4 control-label">Collection</label>
+				<div class="col-sm-8">
+					<select id="collection" class="form-control" ng-model="test.collectionid">
+				   		<option ng-repeat="collection in collections" value="{{ collection._id }}">{{ collection.title }}</option>
+					</select>
+				</div>
+			</div><!-- end form-group -->
+
+			<div class="form-group">
+				<label for="method" class="col-sm-4 control-label">Method</label>
+				<div class="col-sm-8">
+					<select id="method" class="form-control" ng-model="test.method">
+						<option value="get">GET</option>
+						<option value="post">POST</option>
+						<option value="put">PUT</option>
+						<option value="delete">DELETE</option>
+					</select>
+				</div>
+			</div><!-- end form-group -->
+
+			<div class="form-group">
+				<label for="param" class="col-sm-4 control-label">Param</label>
+				<div class="col-sm-8">
+					<input id="param" type="text" class="form-control" ng-model="test.param">
+				</div>
+			</div><!-- end form-group -->
+
+			<div class="form-group">
+				<label for="data" class="col-sm-4 control-label">Data (in json)</label>
+				<div class="col-sm-8">
+					<textarea id="data" class="form-control" rows="10" ng-model="test.data"></textarea>
+				</div>
+			</div><!-- end form-group -->
+
+			<div class="form-group">
+		    	<div class="col-sm-offset-4 col-sm-8">
+		    		<button type="submit" class="btn btn-primary" ng-click="updateTest()">Save</button>
+					<button type="submit" class="btn btn-primary" ng-click="deleteTest()">Delete</button>
+					<a href="/tests" class="btn btn-default">Cancel</a>
+		    	</div>
+		  	</div><!-- end form-groyp -->
+
+		</form><!-- end form-horizontal-->
+
+	</div><!-- end col-sm-6 -->
+
+	<div class="col-sm-6">
+		
+		<h2>Run test <button type="submit" class="btn btn-info" ng-click="runTest()">Run</button></h2>
+
+		<div>
+			{{ result }}
+		</div>
+	</div>
+
+</div><!-- end row -->
