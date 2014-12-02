@@ -1,3 +1,5 @@
+// public/directives/common.js
+
 (function(){
     angular.module('common-directives', [])
         .directive('redir', ['$http', function($http) {
