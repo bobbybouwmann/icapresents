@@ -1,13 +1,19 @@
-// load the things we need
+// app/models/collection.js
+
+/**
+ * Module dependencies
+ */
 var mongoose = require('mongoose');
 
-// define the schema for our user model
+/**
+ * Collection schema
+ */
 var collectionSchema = mongoose.Schema({
-
     title: String,
     description: String
-
 });
 
-// create the model for users and expose it to our app
+/**
+ * Exspose Collection model
+ */
 module.exports = mongoose.model('Collection', collectionSchema);
