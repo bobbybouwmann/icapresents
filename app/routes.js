@@ -23,25 +23,25 @@ module.exports = function(app, passport) {
      * Log the user in based on their input (email and password) using Passport.
      * Return an error message when something went wrong. 
      */
-	app.post('/login', function(req, res, next) {
-	    if (!req.body.email || !req.body.password) {
-	        return res.json({ error: 'Email and Password required' });
-	    }
-	    passport.authenticate('local-login', function(err, user, info) {
-	        if (err) { 
-	            return res.json(err);
-	        }
-	        if (user.error) {
-	            return res.json({ error: user.error });
-	        }
-	        req.logIn(user, function(err) {
-	            if (err) {
-	                return res.json(err);
-	            }
-	            return res.json({ redirect: '/profile' });
-	        });
-	    })(req, res);
-	});
+    app.post('/login', function(req, res, next) {
+        if (!req.body.email || !req.body.password) {
+            return res.json({ error: 'Email and Password required' });
+        }
+        passport.authenticate('local-login', function(err, user, info) {
+            if (err) { 
+                return res.json(err);
+            }
+            if (user.error) {
+                return res.json({ error: user.error });
+            }
+            req.logIn(user, function(err) {
+                if (err) {
+                    return res.json(err);
+                }
+                return res.json({ redirect: '/profile' });
+            });
+        })(req, res);
+    });
 		
     /**
      * Sign the user up based on their input using Passport.
