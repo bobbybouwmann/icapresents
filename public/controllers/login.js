@@ -1,3 +1,8 @@
+// public/controllers/login.js
+
+/**
+ * Expose login controllers and routes
+ */
 (function() {
     angular.module('login', [])
         .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {

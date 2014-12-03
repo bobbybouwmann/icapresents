@@ -1,17 +1,23 @@
-// load the things we need
+// app/models/test.js
+
+/**
+ * Module dependencies
+ */
 var mongoose = require('mongoose');
 
-// define the schema for our user model
+/**
+ * Test schema
+ */
 var testSchema = mongoose.Schema({
-
     title: String,
     url: String,
     method: String,
     param: String,
     data: String,
     collectionid: String
-
 });
 
-// create the model for users and expose it to our app
+/**
+ * Expose Test model
+ */
 module.exports = mongoose.model('Test', testSchema);
