@@ -282,13 +282,6 @@ module.exports = function(app, passport) {
             res.json(tests);
         });
     });
-
-    /**
-     * Default route.
-     */
-	app.get('*', function(req, res) {
-		res.sendfile('./public/views/index.html');
-	});
 	
 };
 
