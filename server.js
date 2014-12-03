@@ -32,6 +32,14 @@ app.use(passport.session()); // persistent login sessions
 app.use(express.static(__dirname + '/public'))
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./app/routes/project.js')(app, passport); // Load the routes for projects.
+
+/**
+ * Default route.
+ */
+app.get('*', function(req, res) {
+    res.sendfile('./public/views/index.html');
+});
 
 // launch ======================================================================
 app.listen(port);
