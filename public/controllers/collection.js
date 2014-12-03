@@ -1,3 +1,8 @@
+// public/controllers/collection.js
+
+/**
+ * Expose collection controllers and routes
+ */
 (function() {
 
 	angular.module('collection', [])

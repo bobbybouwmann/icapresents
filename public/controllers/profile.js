@@ -1,3 +1,8 @@
+// public/controllers/profile.js
+
+/**
+ * Expose profile controllers and routes
+ */
 (function() {
     
     angular.module('profile', [])

@@ -1,3 +1,8 @@
+// public/controllers/test.js
+
+/**
+ * Expose test controllers and routes
+ */
 (function() {
 
 	angular.module('test', [])
