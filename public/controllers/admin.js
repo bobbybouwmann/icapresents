@@ -19,6 +19,10 @@
             .success (function (data) {
                 $scope.profiles = data;
             });
+        $http.get('/api/semesters')
+            .success (function (data) {
+                $scope.semesters = data;
+            });    
 
         $scope.addProfile = function () {
             $http.post('/api/profiles', $scope.formDataProfile)
@@ -64,17 +68,6 @@
             var profileNameField = document.getElementById('Profile');
             var profileDescriptionField = document.getElementById('profileDescription');
 
-            // $http.get('/api/profiles/' + id) 
-            //     .success (function (data) {
-            //         $scope.profile=data;
-            //         console.log(data);
-            //     })
-            //     .error (function (data){
-            //         console.log("error: " + data);
-            //     });
-
-            console.log($scope.profile);
-
             $http.put('/api/profiles/' + id, $scope.profile)
                 .success (function (data) {
                     $scope.profile = "";
@@ -83,6 +76,65 @@
                 .error (function (data){
                     console.log("error: " + data);
             });
+        };
+
+        $scope.addSemester = function () {
+            console.log($scope.formDataSemester);
+            $http.post('/api/semesters', $scope.formDataSemester)
+                .success (function (data) {
+                    console.log(data); 
+                    $scope.semesters = data;
+                    $scope.formDataSemester = {};
+                 })
+                .error (function (data) {
+                    console.log("error: " + data);
+                });
+        };
+
+        $scope.getSemesterData = function () {
+            var box = document.getElementById('semesterSelect');
+            var id = box.options[box.selectedIndex].value;
+            var SemesterName = document.getElementById('SemesterName');
+            var SemesterDescription = document.getElementById('SemesterDescription');
+            var SemesterProfile = document.getElementById('SemesterProfile');
+            
+            $http.get('/api/semesters/' + id)
+                .success (function (data) {
+                    $scope.semester = data;
+                    SemesterName.value = data.name;
+                    SemesterDescription.value = data.description;
+                    SemesterProfile.value = data.profile;
+                    console.log(data);
+            })
+            .error (function (data) {
+                    console.log("error: " + data);
+            });
+        };
+
+        $scope.editSemester = function () {
+            var box = document.getElementById('semesterSelect');
+            var id = box.options[box.selectedIndex].value;
+
+            $http.put('/api/semesters/' + id, $scope.semester)
+                .success (function (data) {
+                    $scope.semester = "";
+                    $scope.semesters = data;
+                })
+                .error (function (data){
+                    console.log("error: " + data);
+            });
+        };
+
+        $scope.removeSemester = function () {
+            var box = document.getElementById('semesterSelect');
+            var selected = box.options[box.selectedIndex].value;
+            $http.delete('/api/semesters/' + selected)
+                .success (function (data) {
+                    $scope.semesters = data;
+                })
+                .error (function (data){
+                    console.log("error: " + data);
+                });
         };
     }]);
 })();
