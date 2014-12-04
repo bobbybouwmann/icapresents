@@ -38,7 +38,13 @@ module.exports = function (app, passport) {
                 res.send(err);
             }
 
-            res.json(profile);
+            Profile.find(function(err, profiles) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.json(profiles);
+            });
         });
     });
 
@@ -74,7 +80,13 @@ module.exports = function (app, passport) {
                     res.send(err);
                 }
 
-                res.json(profile);
+                Profile.find(function(err, profiles) {
+                    if (err) {
+                        res.send(err);
+                    }
+
+                    res.json(profiles);
+                });
             });            
         }); 
     });
@@ -91,7 +103,13 @@ module.exports = function (app, passport) {
                 res.send(err);
             }
 
-            res.json(profile);
+            Profile.find(function(err, profiles) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.json(profiles);
+            });
         });
     });
 
@@ -123,7 +141,13 @@ module.exports = function (app, passport) {
                 res.send(err);
             }
 
-            res.json(semester);
+            Semester.find(function(err, semesters) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.json(semesters);
+            });
         });
     });
 
@@ -160,7 +184,13 @@ module.exports = function (app, passport) {
                     res.send(err);
                 }
 
-                res.json(semester);
+                Semester.find(function(err, semesters) {
+                    if (err) {
+                        res.send(err);
+                    }
+
+                    res.json(semesters);
+                });
             });            
         }); 
     });
@@ -177,7 +207,13 @@ module.exports = function (app, passport) {
                 res.send(err);
             }
 
-            res.json(semester);
+            Semester.find(function(err, semesters) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.json(semesters);
+            });
         });
     });
 
