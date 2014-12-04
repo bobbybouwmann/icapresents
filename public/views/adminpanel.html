@@ -1,0 +1,67 @@
+<!-- 
+Add profiel
+- naam
+- beschrijving 
+
+Add semester:
+- profiel
+- naam
+- beschrijving
+-->
+
+<div>
+    <form name="AdminPanelProfile">
+        <h2>Administrator Panel</h2>
+        <div class="form-group">
+            <select id="profileSelect" class="form-control" multiple="multiple" required >
+                <option ng-repeat="profile in profiles" value="{{profile._id}}">{{profile.name}}</option>
+            </select><br>
+            <button type="submit" class="btn btn-default" ng-click="">Add Profile</button>
+            <button type="submit" class="btn btn-default" ng-click="removeProfile()">Remove Profile</button>
+            <button type="submit" class="btn btn-default" ng-click="">Edit Profile</button>
+        </div>
+    </form>
+    <form name="AdminPanelSemester">
+        <div class="form-group">
+            <select class="form-control" multiple="multiple" required >
+                <option value="CRIA">CRIA</option>
+                <option value="ADEB">ADEB</option>
+            </select><br>
+            <button type="submit" class="btn btn-default" ng-click="">Add Semester</button>
+            <button type="submit" class="btn btn-default" ng-click="">Remove Semester</button>
+            <button type="submit" class="btn btn-default" ng-click="">Edit Semester</button>
+        </div>
+    `</form>
+</div>
+
+<div>
+    <form name="Edit profile">
+        <div class="form-group">
+            <label for="Profile">Add the profile name</label>
+            <input type="text" class="form-control" id="Profile" placeholder="Add the profile name" ng-model="formDataProfile.name" required>
+        </div>
+        <div class="form-group">
+            <label for="Profiledescription">Add the profile description</label>
+            <input type="text" class="form-control" id="Profiledescription" placeholder="Add the profile description" ng-model="formDataProfile.description" required>
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="addProfile()">Save</button>
+    </form>
+</div>
+
+<div>
+    <form name="Edit Semester" >
+        <div class="form-group">
+            <label for="Semestername">Add the Semester name</label>
+            <input type="text" class="form-control" id="Semestername" placeholder="Add the semester name" ng-model="fromDataSemester.name" required>
+        </div>
+        <div class="form-group">
+            <label for="Semestername">Add the Semester description</label>
+            <input type="text" class="form-control" id="Semestername" placeholder="Add the semester description" ng-model="fromDataSemester.description" required>
+        </div>
+        <div class="form-group">
+            <label for="Semesterprofile">Add the parent profile</label>
+            <input type="text" class="form-control" id="Semesterprofile" placeholder="Add the parent profile" ng-model="fromDataSemester.profile" required>
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="">Save</button>
+    </form>
+</div>
