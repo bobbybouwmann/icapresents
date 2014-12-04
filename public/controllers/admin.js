@@ -24,6 +24,7 @@
             $http.post('/api/profiles', $scope.formDataProfile)
                 .success (function (data) {
                     console.log(data); 
+                    $scope.profiles = data;
                  })
                 .error (function (data) {
                     console.log("error: " + data);
@@ -32,7 +33,7 @@
         
         $scope.removeProfile = function () {
             var box = document.getElementById('profileSelect');
-            var selected = box.options[box.selectedIndex].text;
+            var selected = box.options[box.selectedIndex].value;
             alert(selected);
             $http.delete('/api/profiles/' + selected)
                 .success (function (data) {
