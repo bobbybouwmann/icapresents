@@ -51,7 +51,7 @@ module.exports = function (app, passport) {
     /**
      * Get a profile based on the id provided in the request url
      */
-    app.get('/api.projects/:_id', function (req, res) {
+    app.get('/api/profiles/:_id', function (req, res) {
         Profile.findById(req.params._id, function (err, profile) {
             if (err) {
                 res.send(err);
@@ -66,7 +66,7 @@ module.exports = function (app, passport) {
      * the data provided in the request.
      * @see isLoggedInAjax()
      */
-    app.put('/api/projects/:_id', isLoggedInAjax, function (req, res) {
+    app.put('/api/profiles/:_id', isLoggedInAjax, function (req, res) {
         Profile.findById(req.params._id, function (err, profile) {
             if (err) {
                 res.send(err);
@@ -95,7 +95,7 @@ module.exports = function (app, passport) {
      * Delete a profile based on the id provided in the request url.
      * @see isLoggedInAjax()
      */
-    app.delete('/api/projects/:_id', isLoggedInAjax, function (req, res) {
+    app.delete('/api/profiles/:_id', isLoggedInAjax, function (req, res) {
         Profile.remove({
             _id: req.params._id
         }, function (err, profile) {
