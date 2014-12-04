@@ -1,7 +1,7 @@
 // app/routes/project.js
 
 /**
- * Modul dependencies
+ * Model dependencies
  */
 var Project = require('./../models/project');
 

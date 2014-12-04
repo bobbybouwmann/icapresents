@@ -33,6 +33,7 @@ app.use(express.static(__dirname + '/public'))
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 require('./app/routes/project.js')(app, passport); // Load the routes for projects.
+require('./app/routes/admin.js')(app, passport); // Load the routes for the admin.
 
 /**
  * Default route.

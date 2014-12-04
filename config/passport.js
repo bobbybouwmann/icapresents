@@ -3,7 +3,7 @@
 /**
  * Module dependencies
  */
-var LocalStrategy    = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 
 /**
  * Model dependencies
