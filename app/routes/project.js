@@ -97,7 +97,13 @@ module.exports = function(app, passport) {
                 res.send(err);
             }
 
-            res.json(project);
+            Project.find(function(err, projects) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.json(projects);
+            });
         });
     });
 
