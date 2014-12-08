@@ -100,6 +100,9 @@ module.exports = function(passport) {
 
                         newUser.local.email    = email;
                         newUser.local.password = newUser.generateHash(password);
+                        if (req.body.role != '' && req.body.role == 'admin') {
+                            newUser.role = req.body.role;
+                        }
 
                         newUser.save(function (err) {
                             if (err) {

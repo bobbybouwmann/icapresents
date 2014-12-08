@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var session = require('express-session');
+var request = require('request');
 
 
 var port = process.env.PORT || 3000;
@@ -40,6 +41,20 @@ require('./app/routes/admin.js')(app, passport); // Load the routes for the admi
  */
 app.get('*', function(req, res) {
     res.sendfile('./public/views/index.html');
+});
+
+request.post('http://localhost:3000/signup', { 
+	form: { 
+		email: "admin@han.nl",
+		password: "admin",
+		role: "admin" 
+	}
+}, function (err, response, body) {
+	if (err) {
+		console.log('Error: ' + err);
+	}
+    
+    console.log(body);
 });
 
 // launch ======================================================================

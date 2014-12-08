@@ -13,7 +13,8 @@ var userSchema = mongoose.Schema({
     local: {
         email: String,
         password: String
-    }
+    },
+    role: { type: String, default: 'normal' }
 });
 
 /**
