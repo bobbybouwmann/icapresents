@@ -49,8 +49,19 @@ module.exports = function(app, passport) {
      */
 	app.post('/signup', function(req, res, next) {
 	    if (!req.body.email || !req.body.password) {
-	        return res.json({ error: 'Email and Password required' });
+	        return res.json({ 
+                error: 'Email and Password required' 
+            });
 	    }
+
+        var email = req.body.email;
+
+        if (email.indexOf('han.nl') < 0) {
+            return res.json({ 
+                error: 'This is not a valid email address'
+            });
+        }
+
 	    passport.authenticate('local-signup', function(err, user, info) {
 	        if (err) { 
 	            return res.json(err);
@@ -62,6 +73,7 @@ module.exports = function(app, passport) {
 	            if (err) {
 	                return res.json(err);
 	            }
+
 	            return res.json({ redirect: '/profile' });
 	        });
 	    })(req, res);
