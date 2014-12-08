@@ -22,7 +22,11 @@
         $http.get('/api/semesters')
             .success (function (data) {
                 $scope.semesters = data;
-            });    
+            });  
+        $http.get('/api/projects')
+            .success (function (data) {
+                $scope.projects = data;
+            });  
 
         $scope.addProfile = function () {
             $http.post('/api/profiles', $scope.formDataProfile)
@@ -124,7 +128,7 @@
                     console.log("error: " + data);
             });
         };
-
+        
         $scope.removeSemester = function () {
             var box = document.getElementById('semesterSelect');
             var selected = box.options[box.selectedIndex].value;
@@ -135,6 +139,51 @@
                 .error (function (data){
                     console.log("error: " + data);
                 });
+        };
+        
+        $scope.getProjectData = function () {
+            var box = document.getElementById('projectSelect');
+            var id = box.options[box.selectedIndex].value;
+            var ProjectTitle = document.getElementById('ProjectTitle');
+            var content = document.getElementById('content');
+            var grade = document.getElementById('grade');
+            
+            $http.get('/api/projects/' + id)
+                .success (function (data) {
+                    $scope.project = data;
+                    ProjectTitle.value = data.title;
+                    content.value = data.content;
+                    grade.value = data.grade;
+                    console.log(data);
+            })
+        };
+        
+        $scope.removeProject = function () {
+            var box = document.getElementById('projectSelect');
+            var selected = box.options[box.selectedIndex].value;
+            
+            $http.delete('/api/projects/' + selected)
+                .success (function (data) {
+                    $scope.projects = data;
+                })
+                .error (function (data){
+                    console.log("error: " + data);
+                });
+        };
+        
+        $scope.updateProject = function () {
+            var box = document.getElementById('projectSelect');
+            var id = box.options[box.selectedIndex].value;
+            alert("Je moeder was hier");
+            $http.put('/api/projects/' + id, $scope.project)
+                .success (function (data) {
+                    $scope.project = "";
+                    $scope.project = data;
+                })
+                .error (function (data){
+                    console.log("error: " + data);
+            });
+            
         };
     }]);
 })();
