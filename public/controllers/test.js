@@ -17,9 +17,6 @@
 					templateUrl: '/views/edittest.html',
 					controller: 'TestEditController',
 					controllerAs: 'test'
-				})
-				.otherwise({ 
-					redirectTo: '/tests' 
 				});
 
 			$locationProvider.html5Mode(true);

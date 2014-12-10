@@ -1,0 +1,21 @@
+.firstPlace {
+    border: 1px solid black;
+    height: 800px!important;
+    background-color: #428bca;
+}
+
+.secondAndThirdPlace {
+    border: 1px solid black;
+    height: 400px!important;
+    background-color: #5cb85c;
+}
+
+.unplaced {
+    border: 1px solid black;
+    height: 200px;  
+    background-color: #d9534f;
+}
+
+.full-row {
+    margin: 0 auto; 
+}

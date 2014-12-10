@@ -1,0 +1,30 @@
+<div class="row full-row">
+
+    <div ng-repeat="project in projects track by $index">
+<!--         <p>{{ $index }}</p> -->
+        <div class="col-xs-12 col-md-7 firstPlace" ng-show="$index == 0">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.content }}</p>
+            <p>{{ project.grade }}</p>
+        </div>
+
+        <div class="col-xs-12 col-md-5 secondAndThirdPlace" ng-show="$index == 1 || $index == 2">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.content }}</p>
+            <p>{{ project.grade }}</p>
+        </div>
+    </div>
+
+</div>
+<div class="row full-row">
+
+    <div ng-repeat="project in projects track by $index">
+<!--         <p>{{ $index }}</p> -->
+        <div class="col-xs-12 col-md-12 unplaced" ng-show="$index > 2">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.content }}</p>
+            <p>{{ project.grade }}</p>
+        </div>
+    </div>
+
+</div>

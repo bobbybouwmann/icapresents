@@ -80,7 +80,13 @@ module.exports = function(app, passport) {
                     res.send(err);
                 }
 
-                res.json(test);
+                Project.find(function(err, projects) {
+                    if (err) {
+                        res.send(err);
+                    }
+
+                    res.json(projects);
+                });
             });
         });
     });

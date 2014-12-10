@@ -4,6 +4,7 @@
         <title>User Authentication</title>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../CSS/mainCustom.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 	    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
 	    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
@@ -12,6 +13,7 @@
 	    <script src="/factories/httpInterceptor.js"></script>
 	    <script src="/directives/common.js"></script>
         <script src="/controllers/collection.js"></script>
+        <script src="/controllers/home.js"></script>
         <script src="/controllers/test.js"></script>
         <script src="/controllers/project.js"></script>
 	    <script src="/controllers/profile.js"></script>
@@ -30,7 +32,7 @@
             <a logout href="/logout" class="btn btn-default btn-sm">Logout</a>
         </div><!-- end page-header -->
 
-        <div class="container" ng-view>
+        <div ng-view>
 
         </div>
     </body>
