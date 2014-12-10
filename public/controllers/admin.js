@@ -15,6 +15,7 @@
         $locationProvider.html5Mode(true);
     }])
     .controller('AdminPanelController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
+       var tab =1;
        $http.get('/api/profiles')
             .success (function (data) {
                 $scope.profiles = data;
@@ -28,6 +29,15 @@
                 $scope.projects = data;
             });  
 
+        $scope.isSet = function(checkTab) {
+            return tab === checkTab;
+            alert("cool");
+        };
+
+        $scope.setTab = function(setTab) {
+            tab = setTab;
+        };
+
         $scope.addProfile = function () {
             $http.post('/api/profiles', $scope.formDataProfile)
                 .success (function (data) {
@@ -38,6 +48,7 @@
                 .error (function (data) {
                     console.log("error: " + data);
                 });
+                this.setTab(1);
         };
         
         $scope.removeProfile = function () {
@@ -55,6 +66,7 @@
         $scope.getProfileData = function () {
             var box = document.getElementById('profileSelect');
             var id = box.options[box.selectedIndex].value;
+            this.setTab(12);
             var profileNameField = document.getElementById('Profile');
             var profileDescriptionField = document.getElementById('profileDescription');
             $http.get('/api/profiles/' + id)
@@ -98,6 +110,7 @@
         $scope.getSemesterData = function () {
             var box = document.getElementById('semesterSelect');
             var id = box.options[box.selectedIndex].value;
+            this.setTab(22);
             var SemesterName = document.getElementById('SemesterName');
             var SemesterDescription = document.getElementById('SemesterDescription');
             var SemesterProfile = document.getElementById('SemesterProfile');
@@ -174,7 +187,6 @@
         $scope.updateProject = function () {
             var box = document.getElementById('projectSelect');
             var id = box.options[box.selectedIndex].value;
-            alert("Je moeder was hier");
             $http.put('/api/projects/' + id, $scope.project)
                 .success (function (data) {
                     $scope.project = "";

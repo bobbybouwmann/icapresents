@@ -10,30 +10,39 @@ Add semester:
 -->
 
 <div>
+<h2>Administrator Panel</h2>
+    <ul class="nav nav-tabs">
+        <li ng-class="{ active:isSet(1) }"><a href ng-click="setTab(1)">Profiles</a></li>
+        <li ng-class="{ active:isSet(2) }"><a href ng-click="setTab(2)">Semesters</a></li>
+        <li ng-class="{ active:isSet(3) }"><a href ng-click="setTab(3)">Projects</a></li>
+    </ul>
+</div>
+<div ng-show="isSet(1)">
     <form name="AdminPanelProfile">
-        <h2>Administrator Panel</h2>
         <div class="form-group">
             <select id="profileSelect" class="form-control" multiple="multiple" required >
                 <option ng-repeat="profile in profiles" value="{{profile._id}}">{{profile.name}}</option>
             </select><br>
-            <button type="submit" class="btn btn-default" ng-click="">Add Profile</button>
+            <button type="submit" class="btn btn-default" ng-click="setTab(1)">Add Profile</button>
             <button type="submit" class="btn btn-default" ng-click="removeProfile()">Remove Profile</button>
             <button type="submit" class="btn btn-default" ng-click="getProfileData()">Edit Profile</button>
         </div>
     </form>
+</div>
+<div ng-show="isSet(2)">
     <form name="AdminPanelSemester">
         <div class="form-group">
             <select id="semesterSelect" class="form-control" multiple="multiple" required >
                 <option ng-repeat="semester in semesters" value="{{semester._id}}">{{semester.name}}</option>
             </select><br>
-            <button type="submit" class="btn btn-default" ng-click="">Add Semester</button>
-            <button type="submit" class="btn btn-default" ng-click="removeSemester()">Remove Semester</button>
+            <button type="submit" class="btn btn-default" ng-click="setTab(2)">Add Semester</button>
+            <button type="submit" class="btn btn-default" ng-click="removeSemester()" >Remove Semester</button>
             <button type="submit" class="btn btn-default" ng-click="getSemesterData()">Edit Semester</button>
         </div>
     `</form>
 </div>
 
-<div style="border:1px solid green;">
+<div ng-show="isSet(1)">
     <form name="Add profile">
         <div class="form-group">
             <label for="addProfile">Add the profile name</label>
@@ -47,7 +56,7 @@ Add semester:
     </form>
 </div>
 
-<div style="border:1px solid green">
+<div ng-show="isSet(1)">
     <form name="Edit profile">
         <div class="form-group">
             <label for="Profile">Edit the profile name</label>
@@ -61,7 +70,7 @@ Add semester:
     </form>
 </div>
 
-<div style="border:1px solid green">
+<div ng-show="isSet(2)">
     <form name="Add Semester" >
         <div class="form-group">
             <label for="addSemesterName">Add the Semester name</label>
@@ -81,7 +90,7 @@ Add semester:
     </form>
 </div>
 
-<div style="border:1px solid green">
+<div ng-show="isSet(2)">
     <form name="Edit Semester" >
         <div class="form-group">
             <label for="SemesterName">Edit the Semester name</label>
@@ -101,7 +110,7 @@ Add semester:
     </form>
 </div>
 
-<div>
+<div ng-show="isSet(3)">
     <form name="Edit Project">
         <div class="form-group">
             <label for="projectSelect">Select the project</label>
