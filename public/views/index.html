@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html ng-app="app">
     <head>
         <title>User Authentication</title>
@@ -6,32 +6,64 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
         <link rel="stylesheet" href="../CSS/mainCustom.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-	    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-	    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-	    <script src="/factories/httpInterceptor.js"></script>
-	    <script src="/directives/common.js"></script>
+        <script src="/factories/httpInterceptor.js"></script>
+        <script src="/directives/common.js"></script>
         <script src="/controllers/collection.js"></script>
         <script src="/controllers/home.js"></script>
         <script src="/controllers/test.js"></script>
         <script src="/controllers/project.js"></script>
-	    <script src="/controllers/profile.js"></script>
-	    <script src="/controllers/login.js"></script>
+        <script src="/controllers/profile.js"></script>
+        <script src="/controllers/projectpage.js"></script>
+        <script src="/controllers/login.js"></script>
         <script src="/controllers/admin.js"></script>
-	    <script src="/modules/growl.js"></script>
-	    <script src="/modules/core.js"></script>
+        <script src="/modules/growl.js"></script>
+        <script src="/modules/core.js"></script>
 
     </head>
     <body>
+        <!--<nav class="navbar navbar-default" role="navigation">
+            <div class="page-header text-center">
+                <h1><span class="fa fa-anchor"></span> ICA Portfolios</h1>
+                <a href="/projects" class="btn btn-default btn-sm">Student Work</a>
+                <a href="/about" class="btn btn-default btn-sm">About</a>
+                <a href="/addproject" class="btn btn-default btn-sm">Upload</a>
+                <a logout href="/logout" class="btn btn-default btn-sm">Login/Logout</a>
+            </div>
+        </nav> -->
 
-        <div class="page-header text-center">
-            <h1><span class="fa fa-anchor"></span> TestApp</h1>
-            <a href="/collections" class="btn btn-default btn-sm">Collections</a>
-            <a href="/tests" class="btn btn-default btn-sm">Tests</a>
-            <a logout href="/logout" class="btn btn-default btn-sm">Logout</a>
-        </div><!-- end page-header -->
-
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="/">ICA Portfolios</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/projects">Student Work</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/admin">Admin Panel</a></li>
+                        <form class="navbar-form navbar-left" role="search">
+                            <button class="btn btn-default" href="/addproject">Upload</button>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <div ng-view>
 
         </div>

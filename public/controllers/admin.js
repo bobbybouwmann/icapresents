@@ -66,7 +66,6 @@
         $scope.getProfileData = function () {
             var box = document.getElementById('profileSelect');
             var id = box.options[box.selectedIndex].value;
-            this.setTab(12);
             var profileNameField = document.getElementById('Profile');
             var profileDescriptionField = document.getElementById('profileDescription');
             $http.get('/api/profiles/' + id)
@@ -110,7 +109,6 @@
         $scope.getSemesterData = function () {
             var box = document.getElementById('semesterSelect');
             var id = box.options[box.selectedIndex].value;
-            this.setTab(22);
             var SemesterName = document.getElementById('SemesterName');
             var SemesterDescription = document.getElementById('SemesterDescription');
             var SemesterProfile = document.getElementById('SemesterProfile');
