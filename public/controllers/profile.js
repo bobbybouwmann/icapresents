@@ -22,6 +22,8 @@
                 .success(function(data) {
                     $scope.user = data; //Expose the user data to your angular scope
                 });
+
+
         }]);
 
 })();

@@ -4,23 +4,25 @@
 </div>
 
 <div class="row">
+    <div class="container text-center">
+        <button class="btn btn-default" ng-mouseover="show = !show" ng-mouseleave="show = !show">Show Local Information</button>
+    </div>
+    <!-- LOCAL INFORMATION -->
+    <div class="col-sm-12" id="sensitiveInfo" ng-show="show">
+    	<div class="well">
+    		<h3><span class="fa fa-user"></span>Local</h3>
 
-	<!-- LOCAL INFORMATION -->
-	<div class="col-sm-12">
-		<div class="well">
-			<h3><span class="fa fa-user"></span> Local</h3>
+    		<container ng-show="user.local.email">
+    			<p>
+    				<strong>id</strong>: {{ user._id }}<br>
+    				<strong>email</strong>: {{ user.local.email }}<br>
+    				<strong>password</strong>: {{ user.local.password }}<br>
+    				<strong>role</strong>: {{ user.role }}
+    			</p>
 
-			<container ng-show="user.local.email">
-				<p>
-					<strong>id</strong>: {{ user._id }}<br>
-					<strong>email</strong>: {{ user.local.email }}<br>
-					<strong>password</strong>: {{ user.local.password }}<br>
-					<strong>role</strong>: {{ user.role }}
-				</p>
+    		</container>
 
-			</container>
-
-		</div>
-	</div>
+    	</div>
+    </div>
 
 </div>
