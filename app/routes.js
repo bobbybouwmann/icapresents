@@ -32,12 +32,15 @@ module.exports = function(app, passport) {
                 return res.json(err);
             }
             if (user.error) {
-                return res.json({ error: user.error });
+                return res.json({ 
+                    error: user.error 
+                });
             }
             req.logIn(user, function(err) {
                 if (err) {
                     return res.json(err);
                 }
+
                 return res.json({ redirect: '/profile' });
             });
         })(req, res);

@@ -4,5 +4,7 @@
  * Expose database configuration
  */
 module.exports = {
-	url : 'mongodb://127.0.0.1:27017/testapp'
+    production: 'mongodb://127.0.0.1:27017/icaportfolio',
+	development: 'mongodb://127.0.0.1:27017/icaportfolio',
+    test: 'mongodb://127.0.0.1:27017/testdatabase'
 };
