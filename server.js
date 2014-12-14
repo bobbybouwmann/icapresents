@@ -9,13 +9,13 @@ var methodOverride = require('method-override');
 var session = require('express-session');
 var request = require('request');
 
-
+var env = process.env.NODE_ENV || 'development';
 var port = process.env.PORT || 3000;
-var database = require('./config/database.js')
+var database = require('./config/database.js');
 
+console.log(env);
 
-// configuration ===============================================================
-mongoose.connect(database.url); // connect to our database
+mongoose.connect(database[env]); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
@@ -60,3 +60,8 @@ request.post('http://localhost:3000/signup', {
 // launch ======================================================================
 app.listen(port);
 console.log('ready captain, on deck ' + port);
+
+/**
+ * Expose application
+ */
+module.exports = app;

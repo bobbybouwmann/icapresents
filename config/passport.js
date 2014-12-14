@@ -44,7 +44,7 @@ module.exports = function(passport) {
 
         process.nextTick(function () {
             User.findOne({ 
-                'local.email': email 
+                'email': email 
             }, function (err, user) {
                 if (err) {
                     return done(err);
@@ -98,8 +98,8 @@ module.exports = function(passport) {
                     } else {
                         var newUser            = new User();
 
-                        newUser.local.email    = email;
-                        newUser.local.password = newUser.generateHash(password);
+                        newUser.email    = email;
+                        newUser.password = newUser.generateHash(password);
                         if (req.body.role != '' && req.body.role == 'admin') {
                             newUser.role = req.body.role;
                         }
