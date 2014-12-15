@@ -1,0 +1,33 @@
+<div class="container">
+    <form name="ProfileForm">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your Name">
+        </div>
+        <div multiple class="form-group">
+            <label for="profileSelect">What Profile have you chosen?</label>
+            <select id="profileSelect" class="form-control" multiple="multiple" >
+                <option ng-repeat="profile in profiles" value="{{profile._id}}">{{profile.name}}</option>
+            </select>
+        </div>
+        <div multiple class="form-group">
+            <label for="semesterSelect">Which semesters have you done?</label>
+            <select id="semesterSelect" class="form-control" multiple="multiple" >
+                <option ng-repeat="semester in semesters" value="{{semester._id}}">{{semester.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="startingYear">Starting Year</label>
+            <input type="text" class="form-control" id="startingYear" placeholder="What year did you start?">
+        </div>
+        <div class="form-group">
+            <label for="content">Tell something about yourself</label>
+            <input type="text" class="form-control" id="content" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="content">What are your skills?</label>
+            <input type="text" class="form-control" id="content" placeholder="">
+        </div>
+        <a href="/profile" class="btn btn-default" >Cancel</a>
+    </form>
+</div>
