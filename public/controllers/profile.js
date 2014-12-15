@@ -19,7 +19,7 @@
                     controllerAs: 'editprofile'
                 });
 
-            $locationProvider.html5Mode(true);
+            $locationProvider.html5Mode({ enabled: true, requireBase: false });
         }])
         .controller('ProfileController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
             //Custom Profile functionality
