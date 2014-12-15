@@ -15,10 +15,15 @@
                 templateUrl: '/views/projects.html',
                 controller: 'ViewProjectsController'
             })
-            .when('/editproject', {
+            .when('/editproject/:_id', {
                 templateUrl: '/views/editproject.html',
                 controller: 'EditProjectController'
+            })
+            .when('/project/:_id', {
+                templateUrl: '/views/project.html',
+                controller: 'ViewProjectController'
             });
+            
 
         $locationProvider.html5Mode(true);
     }])
@@ -42,6 +47,17 @@
         .error (function (data){
             console.log("error: " + data);
         });
+    }])
+    .controller('ViewProjectController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
+        var id = $routeParams._id;
+
+        $http.get ('/api/projects/' + id)
+            .success (function (data) {
+                $scope.project = data;
+            })
+            .error (function (data){
+                console.log("error: " + data);
+            }); 
     }])
     .controller('EditProjectController', ['$http', '$scope', '$routeParams', '$location', function($http, $scope, $routeParams, $location) {
         var id = $routeParams._id;
