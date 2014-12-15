@@ -33,14 +33,29 @@ module.exports = function(app, passport) {
             title: req.body.title,
             content: req.body.content,
             grade: req.body.grade,
-            students: req.body.students,
             semester: req.body.semester
         }, function (err, project) {
             if (err) {
                 res.send(err);
             }
 
-            res.json(project);
+            Project.findByIdAndUpdate(project._id, 
+                { $push: { students: req.body.students } },
+                { safe: true, upsert: true },
+                function (err, updatedProject) {
+                    if (err) {
+                        return res.send(err);
+                    }
+
+                    Project.findById(req.params._id, function (err, project) {
+                        if (err) {
+                            res.send(err);
+                        }
+
+                        res.json(project);
+                    });
+                }
+            );
         });
     });
 

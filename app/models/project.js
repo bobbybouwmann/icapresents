@@ -17,7 +17,7 @@ var projectSchema = mongoose.Schema({
     content: String,
     updated: { type: Date, default: Date.now },
     grade: { type: Number, max: max },
-    students: String,
+    students: { type: Array, default: [] },
     semesterid: String
 });
 
