@@ -11,7 +11,7 @@
                     redirectTo: '/' 
                 });
 
-            $locationProvider.html5Mode(true);
+            $locationProvider.html5Mode({ enabled: true, requireBase: false });
         }])
 
         .controller('HomePageController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {

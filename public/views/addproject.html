@@ -22,7 +22,7 @@ Content (images, videos en text)
         </div>
         <div class="form-group">
             <label for="students">Add the project students</label>
-            <input type="text" class="form-control" id="students" placeholder="Add the project students" ng-model="formData.students" required>
+            <textarea class="form-control" id="students" placeholder="Add the project students" ng-model="formData.students" ng-list="&#10;" ng-trim="false" required></textarea>
         </div>
         <div class="form-group">
             <label for="content">Add your content</label>

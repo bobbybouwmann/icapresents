@@ -19,7 +19,7 @@
 					controllerAs: 'test'
 				});
 
-			$locationProvider.html5Mode(true);
+			$locationProvider.html5Mode({ enabled: true, requireBase: false });
 		}])
 		.controller('TestViewController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
 			$http.get('/api/tests')

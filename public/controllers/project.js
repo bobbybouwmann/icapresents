@@ -24,25 +24,25 @@
                 controller: 'ViewProjectController'
             });
             
-
-        $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode({ enabled: true, requireBase: false });
     }])
     .controller('AddProjectController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
         $scope.addProject = function () {
             $http.post('/api/projects', $scope.formData)
-             .success (function (data) {
-                console.log(data); 
-             })
-             .error (function (data) {
-                console.log("error: " + data);
-             });
+                .success (function (data) {
+                    $scope.formData = {};
+                    console.log(data); 
+                })
+                .error (function (data) {
+                    console.log("error: " + data);
+                });
         };
 
     }])
     .controller('ViewProjectsController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
         $http.get('/api/projects')
         .success (function (data) {
-            $scope.projects=data;
+            $scope.projects = data;
         })
         .error (function (data){
             console.log("error: " + data);
@@ -64,7 +64,7 @@
         
         $http.get('/api/projects/' + id) 
             .success (function (data) {
-                $scope.project=data;
+                $scope.project = data;
             })
             .error (function (data){
                 console.log("error: " + data);
@@ -91,4 +91,3 @@
         };
     }]);
 })();
-

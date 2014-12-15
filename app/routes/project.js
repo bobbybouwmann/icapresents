@@ -1,9 +1,15 @@
 // app/routes/project.js
 
 /**
+ * Global variables
+ */
+var i = 0;
+
+/**
  * Model dependencies
  */
 var Project = require('./../models/project');
+var User = require('./../models/user');
 
 /**
  * Expose project routes
@@ -29,33 +35,21 @@ module.exports = function(app, passport) {
      * @see isLoggedInAjax()
      */
     app.post('/api/projects', isLoggedInAjax, function (req, res) {
+        var students = String(req.body.students).replace(/\n/g, ",");
+        var studentArray = students.split(',');
+
         Project.create({
             title: req.body.title,
             content: req.body.content,
             grade: req.body.grade,
-            semester: req.body.semester
+            students: studentArray,
+            semesterid: req.body.semester,
         }, function (err, project) {
             if (err) {
                 res.send(err);
             }
 
-            Project.findByIdAndUpdate(project._id, 
-                { $push: { students: req.body.students } },
-                { safe: true, upsert: true },
-                function (err, updatedProject) {
-                    if (err) {
-                        return res.send(err);
-                    }
-
-                    Project.findById(req.params._id, function (err, project) {
-                        if (err) {
-                            res.send(err);
-                        }
-
-                        res.json(project);
-                    });
-                }
-            );
+            res.json(project);
         });
     });
 
@@ -68,7 +62,23 @@ module.exports = function(app, passport) {
                 res.send(err);
             }
 
-            res.json(project);
+            var jsonObject = { project: project, users: {} };
+
+            User.find({ 
+                email: { $in: project.students }
+            }, function (err, users) {
+                console.log(users.length);
+
+                if (err) {
+                    res.send(err);
+                }
+
+                users.forEach(function (user) {
+                    jsonObject.users[user.email] = user;
+                });                    
+
+                res.json(jsonObject);
+            }); 
         });
     });
 
@@ -78,19 +88,21 @@ module.exports = function(app, passport) {
      * @see isLoggedInAjax()
      */
     app.put('/api/projects/:_id', isLoggedInAjax, function (req, res) {
-        Project.findById(req.params._id, function (err, test) {
+        Project.findById(req.params._id, function (err, project) {
             if (err) {
                 res.send(err);
             }
-
-            test.title = req.body.title;
-            test.url = req.body.url;
-            test.method = req.body.method;
-            test.param = req.body.param;
-            test.data = req.body.data;
-            test.collectionid = req.body.collectionid;
             
-            test.save(function (err) {
+            var students = String(req.body.students).replace(/\n/g, ",");
+            var studentArray = students.split(',');
+
+            project.title = req.body.title;
+            project.content = req.body.content;
+            project.grade = req.body.grade;
+            project.students = studentArray;
+            project.semesterid = req.body.semester;
+            
+            project.save(function (err) {
                 if (err) {
                     res.send(err);
                 }
@@ -146,4 +158,3 @@ function isLoggedInAjax(req, res, next) {
         next();
     }
 }
-
