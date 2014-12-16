@@ -61,10 +61,16 @@
     height: 100%;
 }
 
-.menu-toggle {
+.menu-toggle{
     position: absolute;
     top: 100px;
     left: 0;
+}
+
+.menu-toggle-right{
+    position: absolute;
+    top: 100px;
+    right: 0;  
 }
 
 /**

@@ -1,5 +1,4 @@
-<div class="container">
-
+<div class="menu-side-right">
     <form name="ProjectForm">
 
         <div class="form-group">
@@ -24,27 +23,30 @@
             <label for="grade">Select your grade</label>
             <input type="range" name="grade" id="grade" value="5" min="0" max="10" step="0.1" ng-model="formData.grade">
         </div>
+
+        <p>
+            <div id="colorSelector"><div style="background-color: #0000ff"></div></div>
+        </p>
+
         <button type="submit" class="btn btn-default" ng-click="addProject()">Save</button>
 
-        <div id="project-content">
-            <div class="header-image row">
-                <img src="http://lorempixel.com/1200/250" alt="">
+    </form>
+</div>
 
-                <div class="project-logo">
-                    <img src="http://lorempixel.com/200/200" alt="">
-                </div>
-            </div>
+<div class="container">
 
-            <div class="project-layouts" id="project-layouts">
-
-            </div>
-
-            <div class="project-students" id="project-students">
-
+    <div id="project-content">
+        <div class="header-image row">
+            <img src="http://lorempixel.com/1200/250" alt="">
+            <div class="project-logo">
+                <img src="http://lorempixel.com/200/200" alt="">
             </div>
         </div>
-
-    </form>
+        <div class="project-layouts" id="project-layouts">
+        </div>
+        <div class="project-students" id="project-students">
+        </div>
+    </div>
     
 </div><!-- end container -->
 
