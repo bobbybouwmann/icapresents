@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html ng-app="app">
     <head>
+        <meta charset="UTF-8">
         <title>ICA Portfolios</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.css">
-        <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
         <link rel="stylesheet" href="../CSS/mainCustom.css">
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> -->
-
-        <script src="//cdn.jsdelivr.net/hammerjs/2.0.4/hammer.min.js"></script>
+        
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-route.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.js"></script>
-
+        
         <script src="/factories/httpInterceptor.js"></script>
         <script src="/directives/common.js"></script>
         <script src="/controllers/collection.js"></script>
@@ -30,7 +24,8 @@
         <script src="/modules/growl.js"></script>
         <script src="/modules/core.js"></script>
     </head>
-    <body>
+
+    <body class="menu menu-right">
         <!--<nav class="navbar navbar-default" role="navigation">
             <div class="page-header text-center">
                 <h1><span class="fa fa-anchor"></span> ICA Portfolios</h1>
@@ -39,9 +34,10 @@
                 <a href="/addproject" class="btn btn-default btn-sm">Upload</a>
                 <a logout href="/logout" class="btn btn-default btn-sm">Login/Logout</a>
             </div>
-        </nav> -->
+        </nav> --> 
 
         <nav class="navbar navbar-default" role="navigation">
+
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -70,8 +66,44 @@
                 </div>
             </div>
         </nav>
+
         <div ng-view>
 
         </div>
+
+        <div class="menu-side">
+            <div class="layout-item add-layout-image">
+                <i class="fa fa-picture-o"></i>
+            </div>
+
+            <hr>
+
+            <div class="layout-item add-layout-text-image">
+                <i class="fa fa-align-left"></i>
+                <i class="fa fa-picture-o"></i>
+            </div>
+
+            <hr>
+
+            <div class="layout-item add-layout-image-text">
+                <i class="fa fa-picture-o"></i>
+                <i class="fa fa-align-left"></i>
+            </div>
+
+            <hr>
+
+            <div class="layout-item add-layout-video">
+                <i class="fa fa-video-camera"></i>
+            </div>
+        </div>
+
+        <div class="menu-side-right">
+            
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="../js/script.js"></script>
+        <script src="../js/fly-out-menu.js"></script>
     </body>
 </html>
