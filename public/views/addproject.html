@@ -1,15 +1,7 @@
-<!--
-Velden required:
-Titel
-Regististerd students/non- registered students
-Semester
-Cijfer
-Votes
-Content (images, videos en text) 
--->
-
 <div class="container">
+
     <form name="ProjectForm">
+
         <div class="form-group">
             <label for="title">Project titel</label>
             <input type="text" class="form-control" id="title" placeholder="Enter your project-titel" ng-model="formData.title" required>
@@ -33,5 +25,55 @@ Content (images, videos en text)
             <input type="range" name="grade" id="grade" value="5" min="0" max="10" step="0.1" ng-model="formData.grade">
         </div>
         <button type="submit" class="btn btn-default" ng-click="addProject()">Save</button>
+
+        <div id="project-content">
+            <div class="header-image row">
+                <img src="http://lorempixel.com/1200/250" alt="">
+
+                <div class="project-logo">
+                    <img src="http://lorempixel.com/200/200" alt="">
+                </div>
+            </div>
+
+            <div class="project-layouts" id="project-layouts">
+
+            </div>
+
+            <div class="project-students" id="project-students">
+
+            </div>
+        </div>
+
     </form>
-</div>
+    
+</div><!-- end container -->
+
+<a menuside href="#" class="menu-toggle pull-left">Toggle Menu</a>
+<a menusideright href="#" class="menu-toggle-right pull-right">Toggle Menu Right</a>
+
+
+<!-- <form name="ProjectForm" class="form">
+    <div class="form-group">
+        <label for="title">Project titel</label>
+        <input type="text" class="form-control" id="title" placeholder="Enter your project-titel" ng-model="formData.title" required>
+    </div>
+    <div multiple class="form-group">
+        <select class="form-control" ng-model="formData.semester" required >
+            <option value="CRIA">CRIA</option>
+            <option value="ADEB">ADEB</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="students">Add the project students</label>
+        <textarea class="form-control" id="students" placeholder="Add the project students" ng-model="formData.students" ng-list="&#10;" ng-trim="false" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="content">Add your content</label>
+        <input type="text" class="form-control" id="content" placeholder="Enter the project description" ng-model="formData.content" required>
+    </div>
+    <div class="form-group">
+        <label for="grade">Select your grade</label>
+        <input type="range" name="grade" id="grade" value="5" min="0" max="10" step="0.1" ng-model="formData.grade">
+    </div>
+    <button type="submit" class="btn btn-default" ng-click="addProject()">Save</button>
+</form> -->

@@ -1,3 +1,188 @@
+/**
+ * Basic styles
+ */
+
+
+/**
+ * Slide out menu
+ */
+.menu, .menu-right {
+    overflow-x: hidden;
+    position: relative;
+    left: 0;
+    right: 0;
+}
+
+.menu-open {
+    right: auto;
+    left: 380px;
+}
+
+.menu-open-right {
+    left: auto;
+    right: 380px;
+}
+
+.menu-open .menu-side {
+    left: 0;
+}
+
+.menu-open-right .menu-side-right {
+    right: 0;
+}
+
+.menu-side-right, .menu-side, .menu {
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+
+.menu-side {
+    background: #333;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: -380px;
+    width: 380px;
+    padding: 10px;
+    height: 100%;
+}
+
+.menu-side-right {
+    background: #333;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    right: -380px;
+    width: 380px;
+    padding: 10px;
+    height: 100%;
+}
+
+.menu-toggle {
+    position: absolute;
+    top: 100px;
+    left: 0;
+}
+
+/**
+ * Layout picks
+ */
+.layout-item {
+    width: 100%;
+    text-align: center;
+}
+
+.layout-item i {
+    font-size: 90px;
+    margin: 0 10px;
+}
+
+.layout {
+    position: relative;
+}
+
+.remove-layout {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+.layout:hover .remove-layout {
+    display: block;
+}
+
+.layout-image {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.layout-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.layout-image-text {
+    padding: 20px 0;
+}
+
+.layout-image-text .image {
+    text-align: center;
+}
+
+.layout-image-text .image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.layout-text-image {
+    padding: 20px 0;
+}
+
+.layout-text-image .image {
+    text-align: center;
+}
+
+.layout-text-image .image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.layout-video {
+    padding: 20px 0;
+}
+
+.layout-video .embed-container { 
+    position: relative; 
+    padding-bottom: 56.25%; 
+    height: 0; 
+    overflow: hidden; 
+    max-width: 100%; 
+    height: auto; 
+} 
+
+.layout-video .embed-container iframe, 
+.layout-video .embed-container object, 
+.layout-video .embed-container embed { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+}
+
+/**
+ * Project page
+ */
+.header-image {
+    position: relative;
+    margin-bottom: 100px;
+}
+
+.header-image > img {
+    width: 100%;
+    height: auto;
+}
+
+.header-image .project-logo {
+    position: absolute;
+    left: calc(50% - 100px);
+    top: calc(100% - 125px);
+}
+
+.header-image .project-logo img {
+    border-radius: 50%;
+}
+
+/**
+ * Other stuff
+ */
 .firstPlace {
     border: 1px solid black;
     height: 800px!important;
