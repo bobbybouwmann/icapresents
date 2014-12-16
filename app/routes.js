@@ -1,6 +1,12 @@
 // app/routes.js
 
 /**
+ * Module dependencies
+ */
+var path = require('path');
+var fs = require('fs');
+
+/**
  * Modul dependencies
  */
 var Test = require('./models/test');
@@ -296,6 +302,10 @@ module.exports = function(app, passport) {
 
             res.json(tests);
         });
+    });
+
+    app.post('/upload', function (req, res) {
+        res.json(req.files.image);
     });
 	
 };

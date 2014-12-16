@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var multer = require('multer');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var morgan = require('morgan');
@@ -20,10 +21,13 @@ mongoose.connect(database[env]); // connect to our database
 require('./config/passport')(passport); // pass passport for configuration
 
 // set up express application
-app.use(morgan('dev'))
-app.use(cookieParser())
-app.use(bodyParser())
-app.use(methodOverride())
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(multer({
+    dest: './images/uploads/'
+}));
+app.use(bodyParser());
+app.use(methodOverride());
 
 // required for passport
 app.use(session({ secret: 'yoursecretsession' })); // session secret
