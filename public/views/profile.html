@@ -1,3 +1,4 @@
+<!-- Change pictures to angular -->
 <div class="page-header text-center">
 	<div class="header-image row">
             <img src="http://lorempixel.com/1200/250" alt="">
@@ -8,13 +9,22 @@
 </div>
 
 <div class="container">  
-    <div class="layout layout-text-image row description">
+    <div class="description trext-center">
         <div class="text col-xs-12 col-sm-6">
-            <h2>Lorem Pixel</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, quae rerum, recusandae fugit incidunt odit vitae non aliquid doloribus sequi pariatur sapiente, ipsa aspernatur unde aperiam quis culpa porro consequatur.</p>
+            <h2>{{user.name}} Admín Azul</h2>
+            <p>{{user.description}}asdxfcnhjkljhdxzsaxdvgbnhjhvfdsafkljhgdsaf;lkdxszaDFKL;KJGFDSADEGTKL;JGDSAqsd;lkjfesdtkl;'kjh edrtjkl;hgfdsaj'jhfdsfgjkl;jfdsaSDEGTEDSWGTKL;'DCSXFJ/,.JHG</p>
         </div>
-        <div class="image col-xs-12 col-sm-6">
-            <img src="http://lorempixel.com/400/250">
+    </div>
+</div>
+
+<div class="row">
+    <div ng-repeat="project in projects">
+        <div class="col-xs-12 col-md-12 unplaced">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.content }}</p>
+            <p>{{ project.grade }}</p>
+            <p>{{ project.students | json }}</p>
+            <p>{{ project.test }}</p>
         </div>
     </div>
 </div>
