@@ -1,5 +1,6 @@
-<form name="imageform" action="/upload" method="post" enctype="multipart/form-data">
-    
+<!-- <form id="imageform" action="/upload" method="post" enctype="multipart/form-data"> -->
+<form id="imageform" enctype="multipart/form-data"> 
+
     <h2>Upload Image</h2>
 
     <div>
@@ -7,11 +8,16 @@
         <input id="inputImage" type="file" accept="image/*" name="image">
 
         <img ng-show="image" ng-src="{{ image.url }}" type="{{ image.file.type }}">
-        <button type="submit">Add</button>
+        <button uploadimageform type="submit">Add</button>
         <button type="reset">Clear</button>
     </div>
 
 </form>
 
-<h3>Uploaded Image / Size: {{ sizeInBytes }} Bytes</h3>
+<div id="imageinfo">
+
+</div>
+
+<!-- <h3>Uploaded Image / Size: {{ sizeInBytes }} Bytes</h3>
 <img ng-src="{{ uploadImgSrc }}">
+ -->
