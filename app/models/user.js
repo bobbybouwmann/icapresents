@@ -12,7 +12,10 @@ var bcrypt   = require('bcrypt-nodejs');
 var userSchema = mongoose.Schema({
     email: String,
     password: String,
-    role: { type: String, default: 'normal' }
+    role: { type: String, default: 'normal' },
+    profileid: String,
+    name: String,
+    description: String
 });
 
 /**

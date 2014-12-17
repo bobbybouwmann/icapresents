@@ -103,6 +103,9 @@ module.exports = function(passport) {
                         if (req.body.role != '' && req.body.role == 'admin') {
                             newUser.role = req.body.role;
                         }
+                        newUser.profileid = req.body.profileid;
+                        newUser.name = req.body.name;
+                        newUser.description = req.body.description;
 
                         newUser.save(function (err) {
                             if (err) {
