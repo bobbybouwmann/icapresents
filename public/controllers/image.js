@@ -12,15 +12,17 @@
                     templateUrl: '/views/images.html',
                     controller: 'ImageController'
                 })
-                .when('/upload', {
-                    templateUrl: '/views/images.html',
-                    controller: 'ImageController'
+                .when('/images/uploads/:_id', {
+                    controller: 'ViewImageController'
                 });
 
             $locationProvider.html5Mode({ enabled: true, requireBase: false });
         }])
         .controller('ImageController', ['$http', '$scope', function ($scope, $http) {
-            console.log($scope);
+            
+        }])
+        .controller('ViewImageController', ['$http', '$scope', function ($scope, $http) {
+            alert('Get Image');
         }]);
 
 })();
