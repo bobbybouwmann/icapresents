@@ -5,6 +5,6 @@
  */
 (function() {
     
-    angular.module('app', ['ngRoute', 'login', 'admin', 'profile', 'imageuploadfile', 'project', 'collection', 'test', 'home', 'httpFactory', 'common-directives', 'angular-growl']);
+    angular.module('app', ['ngRoute', 'login', 'admin', 'profile', 'imageuploadfile', 'project', 'collection', 'test', 'home', 'pages', 'httpFactory', 'common-directives', 'angular-growl']);
 
 })();
