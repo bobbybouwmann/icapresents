@@ -6,52 +6,58 @@
 
     $('.menu-toggle-right').bind('click', function () {
         $('body').toggleClass('menu-open-right');
-    });
-
-    $('.add-layout-image').click(function () {
-        var $newdiv = $('<div class="layout layout-image row"><div class="remove-layout"><i class="fa fa-times"></i></div><img src="http://lorempixel.com/800/250"></div>');
-
-        $('#project-layouts').append($newdiv);
-        $('body').removeClass('menu-open');
-        $('body').removeClass('menu-open-right');
-    });
-
-    $('.add-layout-image-text').click(function () {
-        var $newdiv = $('<div class="layout layout-image-text row">' + 
-                            '<div class="remove-layout"><i class="fa fa-times"></i></div>' + 
-                            '<div><div data-toggle="modal" data-target="#myModal" style="padding: 25px; background: #eee;" class="image select-image col-xs-12 col-sm-6"><i style="font-size: 100px;" class="fa fa-plus-circle"></i></div></div>' + 
-                            '<div class="text col-xs-12 col-sm-6"><h2>Lorem Pixel</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, quae rerum, recusandae fugit incidunt odit vitae non aliquid doloribus sequi pariatur sapiente, ipsa aspernatur unde aperiam quis culpa porro consequatur.</p></div>' + 
-                        '</div>');
-
-        $('#project-layouts').append($newdiv);
-        $('body').removeClass('menu-open');
-        $('body').removeClass('menu-open-right');
-    });
-
-    $('.add-layout-text-image').click(function () {
-        var $newdiv = $('<div class="layout layout-image-text row">' + 
-                            '<div class="remove-layout"><i class="fa fa-times"></i></div>' + 
-                            '<div class="text col-xs-12 col-sm-6"><h2>Lorem Pixel</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, quae rerum, recusandae fugit incidunt odit vitae non aliquid doloribus sequi pariatur sapiente, ipsa aspernatur unde aperiam quis culpa porro consequatur.</p></div>' + 
-                            '<div><div data-toggle="modal" data-target="#myModal" style="padding: 25px; background: #eee;" class="image select-image col-xs-12 col-sm-6"><i style="font-size: 100px;" class="fa fa-plus-circle"></i></div></div>' + 
-                        '</div>');
-
-        $('#project-layouts').append($newdiv);
-        $('body').removeClass('menu-open');
-        $('body').removeClass('menu-open-right');
-    });
-
-    $('.add-layout-video').click(function () {
-        var $newdiv = $('<div class="layout layout-video row"><div class="remove-layout"><i class="fa fa-times"></i></div><div class="embed-container"><iframe src="http://www.youtube.com/embed/WmVXJ3hQrPo" frameborder="0" allowfullscreen></iframe></div></div>');
-
-        $('#project-layouts').append($newdiv);
-        $('body').removeClass('menu-open');
-        $('body').removeClass('menu-open-right');
-    });
+    });    
 
 });
 
+$(document).on('click', '.add-layout-image', function () {
+    var $newdiv = $('<div class="layout layout-image row">' + 
+                        '<div class="remove-layout"><i class="fa fa-times"></i></div>' + 
+                        '<div class="col-xs-12"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><i class="fa fa-plus-circle"></i><i class="fa fa-plus-circle"></i> image</div></div>' + 
+                    '</div>');
+
+    $('#project-layouts').append($newdiv);
+    $('body').removeClass('menu-open');
+    $('body').removeClass('menu-open-right');
+});
+
+$(document).on('click', '.add-layout-image-text', function () {
+    var $newdiv = $('<div class="layout layout-image-text row">' + 
+                        '<div class="remove-layout"><i class="fa fa-times"></i></div>' + 
+                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><i class="fa fa-plus-circle"></i> image</div></div>' + 
+                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#textModal" class="text select-text"><i class="fa fa-plus-circle"></i> text</div></div>' + 
+                    '</div>');
+
+    $('#project-layouts').append($newdiv);
+    $('body').removeClass('menu-open');
+    $('body').removeClass('menu-open-right');
+});
+
+$(document).on('click', '.add-layout-text-image', function () {
+    var $newdiv = $('<div class="layout layout-image-text row">' + 
+                        '<div class="remove-layout"><i class="fa fa-times"></i></div>' + 
+                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#textModal" class="text select-text"><i class="fa fa-plus-circle"></i> text</div></div>' + 
+                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><i class="fa fa-plus-circle"></i> image</div></div>' + 
+                    '</div>');
+
+    $('#project-layouts').append($newdiv);
+    $('body').removeClass('menu-open');
+    $('body').removeClass('menu-open-right');
+});
+
+$(document).on('click', '.add-layout-video', function () {
+    var $newdiv = $('<div class="layout layout-video row"><div class="remove-layout"><i class="fa fa-times"></i></div><div class="embed-container"><iframe src="http://www.youtube.com/embed/WmVXJ3hQrPo" frameborder="0" allowfullscreen></iframe></div></div>');
+
+    $('#project-layouts').append($newdiv);
+    $('body').removeClass('menu-open');
+    $('body').removeClass('menu-open-right');
+});
+
+/**
+ * @todo Remove images if layout is removed
+ */
 $(document).on('click', '.remove-layout', function () {
-    $(this).parent().remove();
+    $(this).parent().remove(); 
 });
 
 $(document).on('click', '.select-image', function () {
@@ -59,3 +65,13 @@ $(document).on('click', '.select-image', function () {
     $(this).parent().addClass('update-to-picture'); 
     $(this).parent().attr('id', 'update-to-picture');
 });
+
+$(document).on('click', '.select-text', function () {
+    $('.update-to-text').removeAttr('id');
+    $(this).parent().addClass('update-to-text');
+    $(this).parent().attr('id', 'update-to-text');
+});
+
+// $(document).on('click', '#save-project', function () {
+//     $('#content').attr('ng-value', $('#project-content').html());    
+// });

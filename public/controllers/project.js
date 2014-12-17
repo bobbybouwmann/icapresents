@@ -31,7 +31,6 @@
             $http.post('/api/projects', $scope.formData)
                 .success (function (data) {
                     $scope.formData = {};
-                    console.log(data); 
                 })
                 .error (function (data) {
                     console.log("error: " + data);
@@ -41,19 +40,20 @@
     }])
     .controller('ViewProjectsController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
         $http.get('/api/projects')
-        .success (function (data) {
-            $scope.projects = data;
-        })
-        .error (function (data){
-            console.log("error: " + data);
-        });
+            .success (function (data) {
+                $scope.projects = data;
+            })
+            .error (function (data){
+                console.log("error: " + data);
+            });
     }])
     .controller('ViewProjectController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
         var id = $routeParams._id;
 
         $http.get ('/api/projects/' + id)
             .success (function (data) {
-                $scope.project = data;
+                $scope.project = data.project;
+                $scope.content = data.project.content;
             })
             .error (function (data){
                 console.log("error: " + data);
