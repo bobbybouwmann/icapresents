@@ -24,7 +24,7 @@ require('./config/passport')(passport); // pass passport for configuration
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(multer({
-    dest: './images/uploads/'
+    dest: './public/images/uploads/'
 }));
 app.use(bodyParser());
 app.use(methodOverride());

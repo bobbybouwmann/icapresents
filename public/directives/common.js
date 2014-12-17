@@ -64,7 +64,15 @@
                             data: formData,
                             async: false,
                             success: function (data) {
-                                $('#imageinfo').html(data.path);
+                                var div = document.createElement('div');
+                                div.className = 'image col-xs-12 col-sm-6';
+
+                                var img = document.createElement('img');
+                                img.setAttribute('src', data.path.substring(7));
+
+                                div.appendChild(img);
+
+                                $('#update-to-picture').html(div);
                             },
                             cache: false,
                             contentType: false,
