@@ -1,7 +1,10 @@
 /**
  * Basic styles
  */
-
+img {
+    max-width: 100%;
+    height: auto;
+}
 
 /**
  * Slide out menu
@@ -61,15 +64,20 @@
     height: 100%;
 }
 
+.project-actions {
+    position: relative;
+    text-align: center;
+}
+
 .menu-toggle{
     position: absolute;
-    top: 100px;
+    top: 0;
     left: 0;
 }
 
 .menu-toggle-right{
     position: absolute;
-    top: 100px;
+    top: 0;
     right: 0;  
 }
 
@@ -161,6 +169,25 @@
     left: 0; 
     width: 100%; 
     height: 100%; 
+}
+
+.modal-lg {
+    width: 900px;
+}
+
+.froala-editor.f-basic.f-scroll-abs {
+    position: initial;
+}
+
+.select-text,
+.select-image {
+    text-align: center;
+}
+
+.select-text i,
+.select-image i {
+    font-size: 90px;
+    margin-right: 10px;
 }
 
 /**
