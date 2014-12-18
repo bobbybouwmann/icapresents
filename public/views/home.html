@@ -1,32 +1,24 @@
-<!-- <div class="row full-row">
 
     <div ng-repeat="project in projects track by $index">
-        <div class="col-xs-12 col-md-12 winner" ng-show="$index == 0 || $index == 1 || $index == 2">
-                <div class="text-page-silder">
-                <h3>{{ project.title }}</h3>
-                <p>{{ project.content }}</p>
-                <p>{{ project.grade }}</p>
-                <p>{{ project.students | json }}</p>
-                <p>{{ project.test }}</p>
+        <div class="full-page-carousel" ng-show="$index == 0">
+            <div class="text-page-silder">
+                <img class="winner-page-image" src="http://www.lorempixel.com/1920/1080/" alt="banner">
+                <div class="winner-page-info">
+                   <h3>{{ project.title }} </h3> 
                 </div>
-            
+            </div>
         </div>
     </div>
 
-</div> -->
 
 <div class="row full-row">
     <div ng-repeat="project in projects track by $index">
-<!--         <p>{{ $index }}</p> -->
         <div class="col-xs-12 col-md-4" ng-show="$index == 0 || $index > 0">
             <div class="unplaced">
+                <img src="http://www.lorempixel.com/800/400/" alt="banner">
                 <div class="page-info">
                    <h3>{{ project.title }}</h3> 
-                </div>
-                <!-- <p>{{ project.content }}</p>
-                <p>{{ project.grade }}</p>
-                <p>{{ project.students | json }}</p>
-                <p>{{ project.test }}</p> -->
+                </div
             </div>
         </div>
     </div>
