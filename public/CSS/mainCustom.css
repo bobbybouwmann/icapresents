@@ -7,6 +7,16 @@ img {
 }
 
 /**
+ * Navigation
+ */
+
+.navbar-brand img {
+    height: 40px;
+    margin-top: -15px;
+    margin-bottom: -15px;
+}
+
+/**
  * Slide out menu
  */
 .menu, .menu-right {
@@ -204,26 +214,32 @@ img {
 }
 
 .header-image .project-logo {
-    position: absolute;
-    left: calc(50% - 100px);
-    top: calc(100% - 125px);
+    border-radius: 50%;
+    border: 5px solid white;
+    position: relative;
+    overflow: hidden;
 }
 
 .header-image .project-logo img {
-    border-radius: 50%;
-    border: 5px solid white;
+    position: absolute;
 }
 
 /*About page
 */
+.round-logo-background {
+    position: absolute;
+    left: calc(50% - 100px);
+    margin-top: -120px;
+    background-image: url(http://lorempixel.com/500/300);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
 .title {
     margin-top:60px; 
-}
-.round-logo img {
-    position: absolute;
-    border-radius: 50%;
-    left: calc(50% - 100px);
-    margin-top: -120px
 }
 
 .inner-image img {
@@ -245,6 +261,11 @@ img {
 /**
  * Other stuff
  */
+
+.margin-view {
+    margin-top: 70px;
+}
+
 .firstPlace {
     border: 1px solid black;
     height: 800px!important;
