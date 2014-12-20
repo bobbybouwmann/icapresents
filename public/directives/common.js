@@ -127,6 +127,33 @@
                 }
             };
         }])
+        .directive('uploadyoutubeform', ['$http', function ($http) {
+            return {
+                restrict: 'A',
+                link: function ($scope, element, attrs) {
+                    $('#submityoutubeform').click(function (e) {
+                        e.preventDefault();
+
+                        var youtubeLink, linkByUser = $('#youtubeinput').val();
+
+                        if (linkByUser.indexOf('watch?v=') > -1) {
+                            youtubeLink = '//www.youtube.com/embed/' + linkByUser.substr(linkByUser.indexOf('watch?v=') + 8);
+                        } else {
+                            youtubeLink = linkByUser;
+                        }
+
+                        console.log(youtubeLink);
+
+                        var html = '<div class="embed-container"><iframe src="' + youtubeLink + '" frameborder="0" allowfullscreen></iframe></div>';
+                        
+                        $('#update-to-youtube').html(html);
+                        $('#youtubeModal').modal('hide');
+
+                        return false;
+                    });
+                }
+            };
+        }])
         .directive('updatecontent', ['$http', function ($http) {
             return {
                 restrict: 'A',
