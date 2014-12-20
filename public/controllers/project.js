@@ -27,6 +27,11 @@
         $locationProvider.html5Mode({ enabled: true, requireBase: false });
     }])
     .controller('AddProjectController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
+        $scope.formData = { 
+            content: '',
+            grade: 5
+        };
+
         $scope.addProject = function () {
             $http.post('/api/projects', $scope.formData)
                 .success (function (data) {

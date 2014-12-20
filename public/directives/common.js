@@ -101,6 +101,17 @@
                 }
             };
         }])
+        .directive('simpletextform', ['$http', function ($http) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    $('#simpleedit').editable({
+                        inlineMode: true,
+                        buttons: ['bold', 'italic', 'underline', 'fontFamily']
+                    });
+                }
+            };
+        }])
         .directive('uploadtextform', ['$http', function ($http) {
             return {
                 restrict: 'AEC',
