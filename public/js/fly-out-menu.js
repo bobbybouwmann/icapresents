@@ -46,7 +46,10 @@ $(document).on('click', '.add-layout-text-image', function () {
 });
 
 $(document).on('click', '.add-layout-video', function () {
-    var $newdiv = $('<div class="layout layout-video row"><div class="remove-layout"><i class="fa fa-times"></i></div><div class="embed-container"><iframe src="http://www.youtube.com/embed/WmVXJ3hQrPo" frameborder="0" allowfullscreen></iframe></div></div>');
+    var $newdiv = $('<div class="layout layout-video row">' + 
+                        '<div class="remove-layout"><i class="fa fa-times"></i></div>' + 
+                        '<div class="col-xs-12"><div data-toggle="modal" data-target="#youtubeModal" class="youtube select-youtube"><i class="fa fa-plus-circle"></i> youtube</div></div>' +
+                    '</div>');
 
     $('#project-layouts').append($newdiv);
     $('body').removeClass('menu-open');
@@ -72,6 +75,10 @@ $(document).on('click', '.select-text', function () {
     $(this).parent().attr('id', 'update-to-text');
 });
 
-// $(document).on('click', '#save-project', function () {
-//     $('#content').attr('ng-value', $('#project-content').html());    
-// });
+$(document).on('click', '.select-youtube', function () {
+    $('.update-to-youtube').removeAttr('id');
+    $(this).parent().addClass('update-to-youtube');
+    $(this).parent().attr('id', 'update-to-youtube');
+}); 
+
+
