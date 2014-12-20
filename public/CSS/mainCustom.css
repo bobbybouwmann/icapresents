@@ -298,30 +298,3 @@ img {
 .page-header {
     border: none;
 }
-
-.header-image {
-    min-height: 250px;
-    margin-bottom: 0;
-}
-
-.select-text,
-.select-simple-text,
-.select-image {
-    text-align: center;
-}
-
-.select-text i,
-.select-simple-text i,
-.select-image i {
-    font-size: 90px;
-    margin-right: 10px;
-}
-
-.project-title-edit {
-    text-align: center;
-    font-size: 32px;
-}
-
-.page-header {
-    margin: 40px auto 100px auto;
-}
