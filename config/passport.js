@@ -3,7 +3,7 @@
 /**
  * Module dependencies
  */
-var LocalStrategy    = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 
 /**
  * Model dependencies
@@ -44,7 +44,7 @@ module.exports = function(passport) {
 
         process.nextTick(function () {
             User.findOne({ 
-                'local.email': email 
+                'email': email 
             }, function (err, user) {
                 if (err) {
                     return done(err);
@@ -98,8 +98,14 @@ module.exports = function(passport) {
                     } else {
                         var newUser            = new User();
 
-                        newUser.local.email    = email;
-                        newUser.local.password = newUser.generateHash(password);
+                        newUser.email    = email;
+                        newUser.password = newUser.generateHash(password);
+                        if (req.body.role != '' && req.body.role == 'admin') {
+                            newUser.role = req.body.role;
+                        }
+                        newUser.profileid = req.body.profileid;
+                        newUser.name = req.body.name;
+                        newUser.description = req.body.description;
 
                         newUser.save(function (err) {
                             if (err) {

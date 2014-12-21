@@ -1,0 +1,67 @@
+.unplaced {
+    height:calc(903px/3);
+    margin-bottom: 30px;
+}
+
+.unplaced > img {
+    height:100%!important;
+    width:100%;
+}
+
+.text-page-silder{
+    position: relative;
+    margin-top: -20px;
+    width:100%;
+    height:1050px;
+}
+
+.text-page-silder > img{
+    width:100%;
+    height:903px;
+
+}
+
+.page-info{
+    position: absolute;
+    height:200px;
+    width:200px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.5);
+    border: 1px solid black;
+    left:calc(50% - 100px);
+    top:calc(50% - 110px);
+    padding-top: 80px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.winner-page-info {
+    position: absolute;
+    padding-top:50px;
+    font-size: 2em;
+    right:0;
+    margin-top:-450px;
+    height:280px;
+    width:610px;
+    z-index:20;
+    text-align: center;
+    border:1px solid #252525;
+    color:white;
+}
+
+
+.page-info > h3 {
+    color:#252525;
+    text-align: center;
+}
+
+.view-more {
+    display: table;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+#slider1_container, #slides {
+    height:903px;
+    width:1080px;
+}

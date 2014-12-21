@@ -1,6 +1,12 @@
 // app/routes.js
 
 /**
+ * Module dependencies
+ */
+var path = require('path');
+var fs = require('fs');
+
+/**
  * Modul dependencies
  */
 var Test = require('./models/test');
@@ -32,12 +38,15 @@ module.exports = function(app, passport) {
                 return res.json(err);
             }
             if (user.error) {
-                return res.json({ error: user.error });
+                return res.json({ 
+                    error: user.error 
+                });
             }
             req.logIn(user, function(err) {
                 if (err) {
                     return res.json(err);
                 }
+
                 return res.json({ redirect: '/profile' });
             });
         })(req, res);
@@ -49,8 +58,19 @@ module.exports = function(app, passport) {
      */
 	app.post('/signup', function(req, res, next) {
 	    if (!req.body.email || !req.body.password) {
-	        return res.json({ error: 'Email and Password required' });
+	        return res.json({ 
+                error: 'Email and Password required' 
+            });
 	    }
+
+        var email = req.body.email;
+
+        if (email.indexOf('han.nl') < 0) {
+            return res.json({ 
+                error: 'This is not a valid email address'
+            });
+        }
+
 	    passport.authenticate('local-signup', function(err, user, info) {
 	        if (err) { 
 	            return res.json(err);
@@ -62,6 +82,7 @@ module.exports = function(app, passport) {
 	            if (err) {
 	                return res.json(err);
 	            }
+
 	            return res.json({ redirect: '/profile' });
 	        });
 	    })(req, res);
@@ -283,12 +304,9 @@ module.exports = function(app, passport) {
         });
     });
 
-    /**
-     * Default route.
-     */
-	app.get('*', function(req, res) {
-		res.sendfile('./public/views/index.html');
-	});
+    app.post('/upload', function (req, res) {
+        res.json(req.files.image);
+    });
 	
 };
 

@@ -25,7 +25,7 @@
                     controllerAs: 'index'
                 });
 
-            $locationProvider.html5Mode(true); //Use html5Mode so your angular routes don't have #/route
+            $locationProvider.html5Mode({ enabled: true, requireBase: false });
         }])
         .controller('LoginController', ['$http', '$scope', function($http, $scope) {
             // Custom Login functionality
