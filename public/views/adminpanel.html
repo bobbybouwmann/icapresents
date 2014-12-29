@@ -1,139 +1,213 @@
-<!-- 
-Add profiel
-- naam
-- beschrijving 
-
-Add semester:
-- profiel
-- naam
-- beschrijving
--->
 <div class="container">
-    <div>
-    <h2>Administrator Panel</h2>
+
+    <div role="tabpanel">
+    
+        <h2>Administrator Panel</h2>
+        
         <ul class="nav nav-tabs">
-            <li ng-class="{ active:isSet(1) }"><a href ng-click="setTab(1)">Profiles</a></li>
-            <li ng-class="{ active:isSet(2) }"><a href ng-click="setTab(2)">Semesters</a></li>
-            <li ng-class="{ active:isSet(3) }"><a href ng-click="setTab(3)">Projects</a></li>
+            <li ng-class="{ active:isSet(1) }"><a ng-click="setTab(1)">Profiles</a></li>
+            <li ng-class="{ active:isSet(2) }"><a ng-click="setTab(2)">Semesters</a></li>
+            <li ng-class="{ active:isSet(3) }"><a ng-click="setTab(3)">Projects</a></li>
         </ul>
-    </div>
-    <div ng-show="isSet(1)">
-        <form name="AdminPanelProfile">
-            <div class="form-group">
-                <select id="profileSelect" class="form-control" multiple="multiple" required >
-                    <option ng-repeat="profile in profiles" value="{{profile._id}}">{{profile.name}}</option>
-                </select><br>
-                <button type="submit" class="btn btn-default" ng-click="setTab(1)">Add Profile</button>
-                <button type="submit" class="btn btn-default" ng-click="removeProfile()">Remove Profile</button>
-                <button type="submit" class="btn btn-default" ng-click="getProfileData()">Edit Profile</button>
-            </div>
-        </form>
-    </div>
-    <div ng-show="isSet(2)">
-        <form name="AdminPanelSemester">
-            <div class="form-group">
-                <select id="semesterSelect" class="form-control" multiple="multiple" required >
-                    <option ng-repeat="semester in semesters" value="{{semester._id}}">{{semester.name}}</option>
-                </select><br>
-                <button type="submit" class="btn btn-default" ng-click="setTab(2)">Add Semester</button>
-                <button type="submit" class="btn btn-default" ng-click="removeSemester()" >Remove Semester</button>
-                <button type="submit" class="btn btn-default" ng-click="getSemesterData()">Edit Semester</button>
-            </div>
-        `</form>
+
+        <div class="tab-content">
+
+            <div class="tab-pane active" ng-show="isSet(1)">
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-7">
+                        
+                        <table class="table table-striped">
+
+                            <tr>
+                                <th>ID <a href="" ng-click="reverse=false; orderProfiles('_id', false)">&uArr;</a><a href="" ng-click="reverse=false; orderProfiles('-_id', false)">&dArr;</a></th>
+                                <th>Name <a href="" ng-click="reverse=false; orderProfiles('name', false)">&uArr;</a><a href="" ng-click="reverse=false; orderProfiles('-name', false)">&dArr;</a></th>
+                                <th>Actions</th>
+                            </tr>
+
+                            <tr ng-repeat="profile in profiles">
+                                <td>{{ profile._id }}</td>
+                                <td>{{ profile.name }}</td>
+                                <td><a href="" ng-click="getProfileData(profile._id)">Edit</a> / <a href="" ng-click="removeProfile(profile._id)">Delete</a></td>
+                            </tr>
+                            
+                        </table>
+
+                    </div>
+
+                    <div class="col-xs-12 col-sm-5" ng-hide="showEditProfile">
+
+                        <h3>Add Profile</h3>
+                        
+                        <form name="Add profile">
+                            
+                            <div class="form-group">
+                                <label for="profilename">Profile name</label>
+                                <input type="text" class="form-control" id="profilename" placeholder="Profile name" ng-model="formDataProfile.name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profiledescription">Profile description</label>
+                                <textarea class="form-control" id="profiledescription" placeholder="Profile description" rows="5" ng-model="formDataProfile.description" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default" ng-click="addProfile()">Save profile</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    
+                    <div class="col-xs-12 col-sm-5" ng-show="showEditProfile">
+
+                        <h3>Edit Profile</h3>
+                        
+                        <form name="Edit profile">
+                            
+                            <div class="form-group">
+                                <label for="profilename">Profile name</label>
+                                <input type="text" class="form-control" id="profilename" placeholder="Profile name" ng-model="profile.name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profiledescription">Profile description</label>
+                                <textarea class="form-control" id="profiledescription" placeholder="Profile description" rows="5" ng-model="profile.description" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default" ng-click="editProfile()">Update profile</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+    
+            </div><!-- end tab-pane -->
+
+            <div class="tab-pane active" ng-show="isSet(2)">
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-7">
+                        
+                        <table class="table table-striped">
+
+                            <tr>
+                                <th>ID <a href="" ng-click="reverse=false; orderSemesters('_id', false)">&uArr;</a><a href="" ng-click="reverse=false; orderSemesters('-_id', false)">&dArr;</a></th>
+                                <th>Name <a href="" ng-click="reverse=false; orderSemesters('name', false)">&uArr;</a><a href="" ng-click="reverse=false; orderSemesters('-name', false)">&dArr;</a></th>
+                                <th>Actions</th>
+                            </tr>
+
+                            <tr ng-repeat="semester in semesters">
+                                <td>{{ semester._id }}</td>
+                                <td>{{ semester.name }}</td>
+                                <td><a href="" ng-click="getSemesterData(semester._id)">Edit</a> / <a href="" ng-click="removeSemester(semester._id)">Delete</a></td>
+                            </tr>
+                            
+                        </table>
+
+                    </div>
+
+                    <div class="col-xs-12 col-sm-5" ng-hide="showEditSemester">
+
+                        <h3>Add Semester</h3>
+                        
+                        <form name="Add semester">
+                            
+                            <div class="form-group">
+                                <label for="semestername">Semester name</label>
+                                <input type="text" class="form-control" id="semestername" placeholder="Semester name" ng-model="formDataSemester.name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="semesterdescription">Semester description</label>
+                                <textarea class="form-control" id="semesterdescription" placeholder="Semester description" rows="5" ng-model="formDataSemester.description" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="semesterprofile">Semester profile</label>
+                                <select id="semesterprofile" class="form-control" ng-model="formDataSemester.profileid" required >
+                                    <option ng-repeat="profile in profiles" value="{{ profile._id }}">{{ profile.name }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default" ng-click="addSemester()">Save semester</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    
+                    <div class="col-xs-12 col-sm-5" ng-show="showEditSemester">
+
+                        <h3>Edit Semester</h3>
+                        
+                        <form name="Edit semester">
+                            
+                            <div class="form-group">
+                                <label for="semestername">Semester name</label>
+                                <input type="text" class="form-control" id="semestername" placeholder="Semester name" ng-model="semester.name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="semesterdescription">Semester description</label>
+                                <textarea class="form-control" id="semesterdescription" placeholder="Semester description" rows="5" ng-model="semester.description" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="semesterprofile">Semester profile</label>
+                                <select id="semesterprofile" class="form-control" ng-model="semester.profileid" required >
+                                    <option ng-repeat="profile in profiles" value="{{ profile._id }}">{{ profile.name }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default" ng-click="editSemester()">Update semester</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div><!-- end tab-pane -->
+
+            <div class="tab-pane active" ng-show="isSet(3)">
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-12">
+                        
+                        <table class="table table-striped">
+
+                            <tr>
+                                <th>ID <a href="" ng-click="reverse=false; orderProjects('_id', false)">&uArr;</a><a href="" ng-click="reverse=false; orderProjects('-_id', false)">&dArr;</a></th>
+                                <th>Name <a href="" ng-click="reverse=false; orderProjects('title', false)">&uArr;</a><a href="" ng-click="reverse=false; orderProjects('-title', false)">&dArr;</a></th>
+                                <th>Actions</th>
+                            </tr>
+
+                            <tr ng-repeat="project in projects">
+                                <td>{{ project._id }}</td>
+                                <td>{{ project.title }}</td>
+                                <td><a href="" ng-click="removeProject(project._id)">Delete</a></td>
+                            </tr>
+                            
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div><!-- end tab-pane -->
+
+        </div><!-- end tab-content -->
+
     </div>
 
-    <div ng-show="isSet(1)">
-        <form name="Add profile">
-            <div class="form-group">
-                <label for="addProfile">Add the profile name</label>
-                <input type="text" class="form-control" id="addProfile" placeholder="Add the profile name" ng-model="formDataProfile.name" required>
-            </div>
-            <div class="form-group">
-                <label for="addProfileDescription">Add the profile description</label>
-                <input type="text" class="form-control" id="addProfileDescription" placeholder="Add the profile description" ng-model="formDataProfile.description" required>
-            </div>
-            <button type="submit" class="btn btn-default" ng-click="addProfile()">Save</button>
-        </form>
-    </div>
-
-    <div ng-show="isSet(1)">
-        <form name="Edit profile">
-            <div class="form-group">
-                <label for="Profile">Edit the profile name</label>
-                <input type="text" class="form-control" id="Profile" placeholder="Edit the profile name" ng-model="profile.name" required>
-            </div>
-            <div class="form-group">
-                <label for="profileDescription">Edit the profile description</label>
-                <input type="text" class="form-control" id="profileDescription" placeholder="Edit the profile description" ng-model="profile.description" required>
-            </div>
-            <button type="submit" class="btn btn-default" ng-click="editProfile()">Save</button>
-        </form>
-    </div>
-
-    <div ng-show="isSet(2)">
-        <form name="Add Semester" >
-            <div class="form-group">
-                <label for="addSemesterName">Add the Semester name</label>
-                <input type="text" class="form-control" id="addSemesterName" placeholder="Add the semester name" ng-model="formDataSemester.name" required>
-            </div>
-            <div class="form-group">
-                <label for="addSemesterDescription">Add the Semester description</label>
-                <input type="text" class="form-control" id="addSemesterDescription" placeholder="Add the semester description" ng-model="formDataSemester.description" required>
-            </div>
-            <div class="form-group">
-                <label for="addSemesterProfile">Add the parent profile</label>
-                <select id="addSemesterProfile" class="form-control" ng-model="formDataSemester.profileid" required >
-                    <option ng-repeat="profile in profiles" value="{{profile._id}}">{{profile.name}}</option>
-                </select><br>
-            </div>
-            <button type="submit" class="btn btn-default" ng-click="addSemester()">Save</button>
-        </form>
-    </div>
-
-    <div ng-show="isSet(2)">
-        <form name="Edit Semester" >
-            <div class="form-group">
-                <label for="SemesterName">Edit the Semester name</label>
-                <input type="text" class="form-control" id="SemesterName" placeholder="Edit the semester name" ng-model="semester.name" required>
-            </div>
-            <div class="form-group">
-                <label for="SemesterDescription">Edit the Semester description</label>
-                <input type="text" class="form-control" id="SemesterDescription" placeholder="Edit the semester description" ng-model="semester.description" required>
-            </div>
-            <div class="form-group">
-                <label for="SemesterProfile">Edit the parent profile</label>
-                <select id="SemesterProfile" class="form-control" ng-model="semester.profileid"  required >
-                    <option ng-repeat="profile in profiles" id="selectSemesterProfile" value="{{profile._id}}">{{profile.name}}</option>
-                </select><br>
-            </div>
-            <button type="submit" class="btn btn-default" ng-click="editSemester()">Save</button>
-        </form>
-    </div>
-
-    <div ng-show="isSet(3)">
-        <form name="Edit Project">
-            <div class="form-group">
-                <label for="projectSelect">Select the project</label>
-                <select id="projectSelect" class="form-control" multiple="multiple" required >
-                    <option ng-repeat="project in projects" value="{{project._id}}">{{project.title}}</option>
-                </select><br>
-                <button type="submit" class="btn btn-default" ng-click="removeProject()">Remove Project</button>
-                <button type="submit" class="btn btn-default" ng-click="getProjectData()">Edit Semester</button>
-            </div>
-            <div class="form-group">
-                <label for="ProjectTitle">Edit the Project Title</label>
-                <input type="text" class="form-control" id="ProjectTitle" placeholder="Edit the project title" ng-model="project.title">
-            </div>
-            <div class="form-group">
-                <label for="content">Add your content</label>
-                <input type="text" class="form-control" id="content" placeholder="Enter the project description" ng-model="project.content" required>
-            </div>
-            <div class="form-group">
-                <label for="grade">Select your grade</label>
-                <input type="range" name="grade" id="grade" value="5" min="0" max="10" step="0.1" ng-model="project.grade">
-                <input type="text" class="form-control" ng-model="project.grade">
-            </div>
-            <button type="submit" class="btn btn-default" ng-click="updateProject()">Save</button>
-        </form>
-    </div>
-</div>
+</div><!-- end container -->

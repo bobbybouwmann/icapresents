@@ -178,6 +178,8 @@
                             unwatch();
 
                             var content = scope.project.content.replace(new RegExp('images/uploads/'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), '/images/uploads/');
+                            content = content.replace(new RegExp('contenteditable="true"'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), 'contenteditable="false"');
+        
                             $(element).html(content);
                         }
                     });
