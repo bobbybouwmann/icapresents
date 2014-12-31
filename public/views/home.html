@@ -1,15 +1,24 @@
+<div id="Carousel" class="carousel slide">
+    <ol class="carousel-indicators">
+        <li ng-repeat="project in projects | limitTo:3" data-target="Carousel" data-slide-to="0" ng-class="{active : $first}"></li>
+    </ol>
 
-    <div ng-repeat="project in projects track by $index">
-        <div class="full-page-carousel" ng-show="$index == 0">
-            <div class="text-page-silder">
-                <img class="winner-page-image" src="http://www.lorempixel.com/1920/1080/" alt="banner">
-                <div class="winner-page-info">
-                   <h3>{{ project.title }} </h3> 
-                </div>
+    <div id="carousel-style" class="carousel-inner">
+        <div class="item" ng-repeat="project in projects | limitTo:3 track by $index" ng-class="{active : $first}">
+            <div class="page-info">
+                <h3>{{ project.title }}</h3> 
             </div>
+            <img class="img-responsive" alt="Responsive image" ng-src="http://www.lorempixel.com/1920/1080/">
         </div>
     </div>
 
+    <span class="left carousel-control" data-target="#Carousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </span>
+    <span class="right carousel-control" data-target="#Carousel" data-slide="next">
+       <span class="glyphicon glyphicon-chevron-right"></span>
+    </span>
+</div>
 
 <div class="row full-row">
     <div ng-repeat="project in projects track by $index">
@@ -29,3 +38,4 @@
         <button type="button" class="btn btn-default btn-lg">VIEW MORE</button>
     </a>
 </div>
+
