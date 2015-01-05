@@ -32,15 +32,6 @@
     </head>    
 
     <body class="menu menu-right">
-        <!--<nav class="navbar navbar-default" role="navigation">
-            <div class="page-header text-center">
-                <h1><span class="fa fa-anchor"></span> ICA Portfolios</h1>
-                <a href="/projects" class="btn btn-default btn-sm">Student Work</a>
-                <a href="/about" class="btn btn-default btn-sm">About</a>
-                <a href="/addproject" class="btn btn-default btn-sm">Upload</a>
-                <a logout href="/logout" class="btn btn-default btn-sm">Login/Logout</a>
-            </div>
-        </nav> --> 
 
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 
@@ -63,15 +54,19 @@
                     <ul class="nav navbar-nav navbar-left">
                         <li><a href="/">Home</a></li>
                         <li><a href="/projects">Student Work</a></li>
+                        <li><a href="/profiles">Profiles</a></li>
                         <li><a href="/about">About</a></li>
                         <li><a href="/admin">Admin Panel</a></li>
-                        <form class="navbar-form navbar-left" role="search">
-                            <a href="/addproject" class="btn btn-default">Upload</a>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <form class="navbar-form navbar-left" role="search">                            
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Search">
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
+                            <a href="/addproject" class="btn btn-default">Add a Project</a>
                         </form>
+                        <li><a href="/profile">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -83,15 +78,23 @@
         </div>
 
         <footer class="footer">
-            <div class="container text-center">
-                <div class="col-sm-4">
-                    <h3>Contact</h3>
+            <div class="container">
+                <div class="col-sm-4">                    
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <h3 style="text-align: left;">Contact</h3>
+                            <p>Adress: Ruitenberglaan 26<br>
+                                6826 CC Arnhem<br></p>
+                            Telephone: (026) 365 82 82<br>
+                            E-mail: info@han.nl</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-4">
-                    <h3>Terms of Service</h3>
+                    <h3>Terms of Service   <span class="fa fa-copyright"></span>    2014</h3>
                 </div>
                 <div class="col-sm-4">
-                    <h3>Logos</h3>
+                    <h3><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><span class="fa fa-facebook"></span></a></h3>
                 </div>              
             </div>
         </footer>
