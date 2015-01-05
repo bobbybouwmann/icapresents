@@ -354,6 +354,12 @@ img {
     margin: 40px auto 100px auto;
 }
 
+.projectsemesterform {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 #createdcontent .remove-layout,
 #createdcontent .projectsemesterform {
     display: none;

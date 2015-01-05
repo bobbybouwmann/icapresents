@@ -19,6 +19,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button uploadimageform type="submit" class="btn btn-primary">Save changes</button>
+
                 </div>
             </form>
         </div>
@@ -96,6 +97,18 @@
         <a menuside href="#" class="menu-toggle btn btn-default pull-left">Toggle Menu</a>
 
         <a updatecontent href="#" id="save-project" class="save-project btn btn-default text-center">Save</a>
+
+        <div class="form-group projectsemesterform">
+
+            <select class="form-control" ng-model="formData.semesterid" id="projectsemester">
+                <option value="">Please select a semester or project type</option>
+                <option value="" disabled>-----------------------------------------------</option>
+                <option value="-1">Private project</option>
+                <option ng-selected="{{ project.semesterid == semester._id }}" ng-repeat="semester in semesters" value="{{ semester._id }}">{{ semester.name }}</option>
+            </select>
+            
+        </div>
+
     </div>
 
 </div>
@@ -119,17 +132,6 @@
 
         <div simpletextform id="simpleedit" class="project-title-edit"></div>
     
-        <div class="form-group col-xs-12 col-sm-offset-3 col-sm-6 projectsemesterform">
-
-            <select class="form-control" ng-model="formData.semesterid" id="projectsemester">
-                <option value="">Please select a semester or project type</option>
-                <option value="" disabled>-----------------------------------------------</option>
-                <option value="-1">Private project</option>
-                <option ng-selected="{{ project.semesterid == semester._id }}" ng-repeat="semester in semesters" value="{{ semester._id }}">{{ semester.name }}</option>
-            </select>
-            
-        </div>
-
         <div class="project-layouts" id="project-layouts">
         
         </div>

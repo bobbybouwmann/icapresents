@@ -96,6 +96,17 @@
         <a menuside href="#" class="menu-toggle btn btn-default pull-left">Toggle Menu</a>
 
         <a updateeditcontent href="#" id="save-project" class="save-project btn btn-default text-center">Save</a>
+
+        <div class="form-group projectsemesterform">
+
+            <select class="form-control" ng-model="project.semesterid" id="projectsemester">                
+                <option value="">Please select a semester or project type</option>
+                <option value="" disabled>-----------------------------------------------</option>
+                <option value="-1">Private project</option>
+                <option ng-selected="{{ project.semesterid == semester._id }}" ng-repeat="semester in semesters" value="{{ semester._id }}">{{ semester.name }}</option>
+            </select>
+            
+        </div>
     </div>
 
 </div>

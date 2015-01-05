@@ -22,6 +22,11 @@
         .controller('AdminPanelEditProjectController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
             var id = $routeParams._id;
 
+            $http.get('/api/semesters')
+                .success (function (data) {
+                    $scope.semesters = data;
+                });
+
             $http.get('/api/projects/' + id) 
                 .success (function (data) {
                     $scope.project = data.project;
