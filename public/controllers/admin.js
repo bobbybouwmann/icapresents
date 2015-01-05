@@ -142,6 +142,9 @@
                 
                 $http.get('/api/semesters/' + id)
                     .success (function (data) {
+                        data.startdate = new Date(data.startdate);
+                        data.enddate = new Date(data.enddate);
+
                         $scope.semester = data;
                     })
                     .error (function (data) {
