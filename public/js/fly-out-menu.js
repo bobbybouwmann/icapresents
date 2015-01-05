@@ -73,6 +73,11 @@ $(document).on('click', '.select-text', function () {
     $('.update-to-text').removeAttr('id');
     $(this).addClass('update-to-text');
     $(this).attr('id', 'update-to-text');
+
+    var html = $('#update-to-text').html();
+    html = html.replace(new RegExp('<i class="fa fa-plus-circle"></i> text'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), '');
+
+    $('#edit').editable('setHTML', html, false);
 });
 
 $(document).on('click', '.select-youtube', function () {

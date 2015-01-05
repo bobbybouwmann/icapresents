@@ -116,6 +116,7 @@
                         e.preventDefault();
 
                         $('#update-to-text').html($('#edit').editable('getHTML', true, true));
+                        $('#edit').editable('setHTML', '', false);
                         $('#textModal').modal('hide');
 
                         return false;
@@ -123,6 +124,21 @@
                 }
             };
         }])
+        // .directive('edittextform', ['$http', function ($http) {
+        //     return {
+        //         restrict: 'AEC',
+        //         link: function ($scope, element, attrs) {
+        //             alert('BAMMMM!!');
+        //             $('#update-to-text').click(function (e) {
+        //                 e.preventDefault();
+
+        //                 $('#edit').editable('setHTML', $('#update-to-text').html(), false);
+
+        //                 return false;
+        //             });
+        //         }
+        //     };
+        // }])
         .directive('uploadyoutubeform', ['$http', function ($http) {
             return {
                 restrict: 'A',
