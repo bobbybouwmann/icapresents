@@ -19,6 +19,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button uploadimageform type="submit" class="btn btn-primary">Save changes</button>
+
                 </div>
             </form>
         </div>
@@ -90,44 +91,6 @@
 
 </div>
 
-<div class="menu-side-right">
-    
-    <form>
-
-        <div class="form-group">
-            <label for="title">Project titel</label>
-            <input type="text" class="form-control" id="title" placeholder="Enter your project-titel" ng-model="formData.title" required>
-        </div>
-        <div multiple class="form-group">
-            <select class="form-control" ng-model="formData.semester" required >
-                <option value="CRIA">CRIA</option>
-                <option value="ADEB">ADEB</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="students">Add the project students</label>
-            <textarea class="form-control" id="students" placeholder="Add the project students" ng-model="formData.students" ng-list="&#10;" ng-trim="false" required></textarea>
-        </div>
-
-        <!-- <div class="form-group">
-            <label for="content">Add your content</label> -->
-        <input style="display: none" type="text" class="form-control" id="content" placeholder="Enter the project description" ng-model="formData.content" required>
-        <!-- </div> -->
-        <div class="form-group">
-            <label for="grade">Select your grade</label>
-            <input type="range" name="grade" id="grade" value="5" min="0" max="10" step="0.1" ng-model="formData.grade">
-        </div>
-
-        <p>
-            <div id="colorSelector"><div style="background-color: #0000ff"></div></div>
-        </p>
-
-        <button type="submit" class="btn btn-default" ng-click="addProject()">Save</button>
-
-    </form>
-
-</div>
-
 <div class="container">
     
     <div class="project-actions">
@@ -135,7 +98,17 @@
 
         <a updatecontent href="#" id="save-project" class="save-project btn btn-default text-center">Save</a>
 
-        <a menusideright href="#" class="menu-toggle-right btn btn-default pull-right">Toggle Menu Right</a>
+        <div class="form-group projectsemesterform">
+
+            <select class="form-control" ng-model="formData.semesterid" id="projectsemester">
+                <option value="">Please select a semester or project type</option>
+                <option value="" disabled>-----------------------------------------------</option>
+                <option value="-1">Private project</option>
+                <option ng-selected="{{ project.semesterid == semester._id }}" ng-repeat="semester in semesters" value="{{ semester._id }}">{{ semester.name }}</option>
+            </select>
+            
+        </div>
+
     </div>
 
 </div>
@@ -144,20 +117,20 @@
 
     <div class="page-header text-center ng-scope">
         <div class="header-image">
-            <div>
+            <!-- <div> -->
                 <div data-toggle="modal" data-target="#imageModal" class="image select-image"><i class="fa fa-plus-circle"></i> image banner</div>
-            </div>
+            <!-- </div> -->
             <div class="project-logo">
-                <div> 
+                <!-- <div>  -->
                     <div data-toggle="modal" data-target="#imageModal" class="image select-image"><i class="fa fa-plus-circle"></i> logo</div>
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
 
     <div class="container">
 
-        <div simpletextform id="simpleedit" class="project-title-edit">Project title (edit me by clicking me)</div>
+        <div simpletextform id="simpleedit" class="project-title-edit"></div>
     
         <div class="project-layouts" id="project-layouts">
         
