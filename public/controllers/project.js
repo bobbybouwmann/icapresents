@@ -28,24 +28,22 @@
     }])
     .controller('AddProjectController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
         $scope.formData = { 
-            content: '',
-            grade: 5
+            title: '',
+            semesterid: '',
+            banner: '',
+            logo: '',
+            content: ''
         };
 
-        $scope.addProject = function () {
-            $http.post('/api/projects', $scope.formData)
-                .success (function (data) {
-                    $scope.formData = {};
-                })
-                .error (function (data) {
-                    console.log("error: " + data);
-                });
-        };
-
+        $http.get('/api/semesters')
+            .success (function (data) {
+                $scope.semesters = data;
+            });
     }])
     .controller('ViewProjectsController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
         $http.get('/api/projects')
             .success (function (data) {
+                console.log(data);
                 $scope.projects = data;
             })
             .error (function (data){
@@ -66,6 +64,11 @@
     }])
     .controller('EditProjectController', ['$http', '$scope', '$routeParams', '$location', function($http, $scope, $routeParams, $location) {
         var id = $routeParams._id;
+
+        $http.get('/api/semesters')
+            .success (function (data) {
+                $scope.semesters = data;
+            });
         
         $http.get('/api/projects/' + id) 
             .success (function (data) {
@@ -74,25 +77,5 @@
             .error (function (data){
                 console.log("error: " + data);
             });
-
-        $scope.deleteProject = function () {
-            $http.delete('/api/projects/' + id)
-                .success (function (data) {
-                    $location.path('/projects');
-                })
-                .error (function (data){
-                    console.log("error: " + data);
-                });
-        };
-
-        $scope.updateProject = function () {
-            $http.put('/api/projects/' + id, $scope.project)
-                .success (function (data) {
-                    $location.path('/projects');
-                })
-                .error (function (data){
-                    console.log("error: " + data);
-                });
-        };
     }]);
 })();

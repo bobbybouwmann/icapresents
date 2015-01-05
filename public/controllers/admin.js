@@ -11,11 +11,23 @@
                 .when('/admin', {
                     templateUrl: '/views/adminpanel.html',
                     controller: 'AdminPanelController'
+                })
+                .when('/admin/editproject/:_id', {
+                    templateUrl: '/views/editproject.html',
+                    controller: 'AdminPanelEditProjectController'
                 });
 
             $locationProvider.html5Mode({ enabled: true, requireBase: false });
         }])
-        .controller('AdminPanelController', ['$http', '$scope', '$routeParams', '$filter', function($http, $scope, $routeParams, $filter) {
+        .controller('AdminPanelEditProjectController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
+            var id = $routeParams._id;
+
+            $http.get('/api/projects/' + id) 
+                .success (function (data) {
+                    $scope.project = data.project;
+                });
+        }])
+        .controller('AdminPanelController', ['$http', '$scope', '$routeParams', '$filter', '$location', function ($http, $scope, $routeParams, $filter, $location) {
             var orderBy = $filter('orderBy');
             var tab = 1;
 
@@ -153,6 +165,22 @@
                         console.log("error: " + data);
                     });
             };
+
+            $scope.getProjectData = function (id) {
+                $location.path('/admin/editproject/' + id);
+            };
+
+            $scope.editProject = function () {
+                $http.put('/api/semesters/' + $scope.project._id, $scope.project)
+                    .success (function (data) {
+                        $scope.project = "";
+                        $scope.showEditProject = false;
+                    })
+                    .error (function (data){
+                        console.log("error: " + data);
+                    });
+            };
+
             
         }]);
 

@@ -38,10 +38,12 @@ img {
 
 .menu-open .menu-side {
     left: 0;
+    padding-top: 60px;
 }
 
 .menu-open-right .menu-side-right {
     right: 0;
+    padding-top: 60px;
 }
 
 .menu-side-right, .menu-side, .menu {
@@ -94,6 +96,10 @@ img {
 /**
  * Layout picks
  */
+.project-layouts {
+    margin-top: 40px;
+}
+
 .layout-item {
     width: 100%;
     text-align: center;
@@ -217,11 +223,12 @@ img {
     border-radius: 50%;
     border: 5px solid white;
     position: relative;
-    overflow: hidden;
 }
 
 .header-image .project-logo img {
     position: absolute;
+    bottom: -85px;
+    left: calc(50% - 105px);
 }
 
 /*About page
@@ -300,7 +307,7 @@ img {
     background: #252525;
 }
 
-.team-image img{
+.team-image img {
     border-radius: 50%;
     display: inline-block;
     background-color: green;
@@ -318,4 +325,42 @@ img {
 
 .page-header {
     border: none;
+}
+
+.header-image {
+    min-height: 250px;
+    margin-bottom: 0;
+}
+
+.select-text,
+.select-image,
+.select-youtube {
+    text-align: center;
+}
+
+.select-text i,
+.select-image i,
+.select-youtube i {
+    font-size: 90px;
+    margin-right: 10px;
+}
+
+.project-title-edit {
+    text-align: center;
+    font-size: 32px;
+}
+
+.page-header {
+    margin: 40px auto 100px auto;
+}
+
+#createdcontent .remove-layout,
+#createdcontent .projectsemesterform {
+    display: none;
+}
+
+.tab-pane {
+    padding: 10px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
 }
