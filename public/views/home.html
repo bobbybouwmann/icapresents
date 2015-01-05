@@ -9,7 +9,7 @@
                 <h3>{{ project.title }}</h3> 
                 <p id="clamp">{{ project.content }}</p>
             </div>
-            <img class="img-responsive" alt="Responsive image" ng-src="http://www.lorempixel.com/1920/1080/">
+            <img class="img-responsive" alt="Responsive image" ng-src="{{ project.banner }}">
         </div>
     </div>
 
@@ -27,7 +27,7 @@
             <div class="unplaced">
                 <img src="http://www.lorempixel.com/800/400/" alt="banner">
                 <div class="page-info">
-                   <h3>{{ project.title }}</h3> 
+                   <h3>{{ project.banner }}</h3> 
                 </div
             </div>
         </div>
