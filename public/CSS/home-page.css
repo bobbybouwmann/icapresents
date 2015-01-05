@@ -21,6 +21,19 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
 }
 
+.page-info-carousel {
+    position: absolute;
+    height:30%;
+    width:30%;
+    background-color: rgba(37,37,37,0.5);
+    color:white;
+    right:0;
+    top:55%;
+    padding-top: 80px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
 /*
 Student work.
 */
