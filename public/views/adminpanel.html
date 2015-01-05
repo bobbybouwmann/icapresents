@@ -136,6 +136,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="semesterstartdate">Semester start date</label>
+                                <input type="date" placeholder="yyyy-MM-dd" min="2014-01-01" class="form-control" id="semesterstartdate" ng-model="formDataSemester.startdate" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="semesterenddate">Semester end date</label>
+                                <input type="date" placeholder="yyyy-MM-dd" min="2014-01-01" class="form-control" id="semesterenddate" ng-model="formDataSemester.enddate" required>
+                            </div>
+
+                            <div class="form-group">
                                 <button type="submit" class="btn btn-default" ng-click="addSemester()">Save semester</button>
                             </div>
 
@@ -164,6 +174,16 @@
                                 <select id="semesterprofile" class="form-control" ng-model="semester.profileid" required >
                                     <option ng-repeat="profile in profiles" value="{{ profile._id }}">{{ profile.name }}</option>
                                 </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="semesterstartdate">Semester start date</label>
+                                <input type="date" min="2014-01-01" class="form-control" id="semesterstartdate" ng-model="semester.startdate" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="semesterenddate">Semester end date</label>
+                                <input type="date" min="2014-01-01" class="form-control" id="semesterenddate" ng-model="semester.enddate" required>
                             </div>
 
                             <div class="form-group">
