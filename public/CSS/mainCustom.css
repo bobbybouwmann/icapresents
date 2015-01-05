@@ -1,3 +1,7 @@
+body {
+    margin-bottom: 200px;
+    position: relative;
+}
 /**
  * Basic styles
  */
@@ -305,6 +309,19 @@ img {
 .footer {
     color: white;
     background: #252525;
+    position: absolute;
+    height: 200px;
+    left: 0;
+    bottom: -200px;
+    width: 100%;
+}
+
+.footer h3{
+    text-align: center;
+}
+
+.footer a {
+ color: white;   
 }
 
 .team-image img {
