@@ -6,7 +6,9 @@
 
     $('.menu-toggle-right').bind('click', function () {
         $('body').toggleClass('menu-open-right');
-    });    
+    });   
+     
+     
 
 });
 
