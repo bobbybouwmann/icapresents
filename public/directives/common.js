@@ -81,6 +81,39 @@
                 }
             };
         }])
+        .directive('uploadimageprofileform', ['$http', function ($http) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    $("#imageform").submit(function(e) {
+                        e.preventDefault();
+
+                        var formData = new FormData($(this)[0]);
+
+                        $.ajax({
+                            url: "/upload",
+                            type: "POST",
+                            data: formData,
+                            async: false,
+                            success: function (data) {
+                                var img = document.createElement('img');
+                                img.setAttribute('src', 'http://localhost:3000/' + data.path.substring(7));
+                                img.setAttribute('className', "image select-image");
+                                img.setAttribute('style', "max-width: 200px; max-height: 200px;");
+
+                                $('#update-to-picture').html(img);
+                                $('#imageModal').modal('hide');
+                            },
+                            cache: false,
+                            contentType: false,
+                            processData: false
+                        });
+
+                        return false;
+                    });
+                }
+            };
+        }])
         .directive('textform', ['$http', function ($http) {
             return {
                 restrict: 'AEC',
@@ -256,6 +289,29 @@
 
                             $(element).html(content);
                         }
+                    });
+                }
+            };
+        }])
+        .directive('registeruser', ['$http', '$location', function ($http, $location) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    $('#register-user').on('click', function (e) {
+                        e.preventDefault();
+
+                        $scope.formData.picture = $('#update-to-picture img').attr('src');
+                        $scope.$apply();
+
+                        $http.post('/signup', $scope.formData)
+                            .success(function(data) {
+                                console.log(data);
+                            })
+                            .error(function (data) {
+                                console.log('Error: ' + data);
+                            });
+
+                        return false;
                     });
                 }
             };

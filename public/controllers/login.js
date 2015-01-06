@@ -38,26 +38,16 @@
         }])
         .controller('LoginForm', ['$http', '$scope', function($http, $scope) {
             $scope.login = function() {
-                $http
-                    .post('/login', {
-                        email: this.email,
-                        password: this.password
-                    })
-                    .success(function(data) {
-                        console.log(data);
-                    });
+                $http.post('/login', { 
+                    email: this.email, 
+                    password: this.password
+                });
             }
         }])
         .controller('SignupForm', ['$http', '$scope', function($http, $scope) {
-            $scope.signup = function() {
-                $http
-                    .post('/signup', {
-                        email: this.email,
-                        password: this.password
-                    })
-                    .success(function(data) {
-                        console.log(data);
-                    });
-            }
+            $http.get('/api/profiles')
+                .success(function (data) {
+                    $scope.profiles = data;
+                });
         }])
 })();

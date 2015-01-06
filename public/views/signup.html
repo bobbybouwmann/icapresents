@@ -1,3 +1,31 @@
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="imageform" enctype="multipart/form-data"> 
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="imageModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <h2>Upload Image</h2>
+
+                    <div>
+                        <label for="inputImage">Image</label>
+                        <input id="inputImage" type="file" accept="image/*" name="image">
+
+                        <img ng-show="image" ng-src="{{ image.url }}" type="{{ image.file.type }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button uploadimageprofileform type="submit" class="btn btn-primary">Save changes</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="col-sm-6 col-sm-offset-3">
 
 	<h1><span class="fa fa-sign-in"></span> Signup</h1>
@@ -6,16 +34,42 @@
 
 	<!-- LOGIN FORM -->
 	<form ng-submit="signup()" ng-controller="SignupForm">
+    
+        <div class="form-group">
+            <label for="firstname">Firstname</label>
+            <input type="text" id="firstname" class="form-control" ng-model="formData.firstname" required>
+        </div>
+
+        <div class="form-group">
+            <label for="lastname">Lastname</label>
+            <input type="text" id="lastname" class="form-control" ng-model="formData.lastname" required>
+        </div>
+
+        <div class="form-group">
+            <label for="profile">Profile</label>
+            <select class="form-control" ng-model="formData.profileid" id="profile" required>
+                <option ng-repeat="profile in profiles" value="{{ profile._id }}">{{ profile.name }}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="studentnumber">Studentnumber</label>
+            <input type="text" id="studentnumber" class="form-control" ng-model="formData.studentnumber" required>
+        </div>
+
 		<div class="form-group">
 			<label>Email</label>
-			<input type="email" class="form-control" ng-model="email">
-		</div>
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password" class="form-control" ng-model="password">
+			<input type="email" class="form-control" ng-model="formData.email" required>
 		</div>
 
-		<button type="submit" class="btn btn-warning btn-lg">Signup</button>
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" class="form-control" ng-model="formData.password" required>
+		</div>
+        
+        <div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><i class="fa fa-plus-circle"></i> image</div></div>
+
+		<button registeruser type="submit" id="register-user" class="btn btn-warning btn-lg">Signup</button>
 	</form>
 
 	<hr>

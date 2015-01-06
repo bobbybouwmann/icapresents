@@ -11,6 +11,8 @@ var fs = require('fs');
  */
 var Test = require('./models/test');
 var Collection = require('./models/collection');
+var User = require('./models/user');
+var Project = require('./models/project');
 
 /**
  * Expose routes
@@ -71,6 +73,9 @@ module.exports = function(app, passport) {
             });
         }
 
+        console.log('body before local-signup')
+        console.log(req.body);
+
 	    passport.authenticate('local-signup', function(err, user, info) {
 	        if (err) { 
 	            return res.json(err);
@@ -93,7 +98,71 @@ module.exports = function(app, passport) {
      * @see isLoggedInAjax()
      */
     app.get('/api/userData', isLoggedInAjax, function(req, res) {
-        return res.json(req.user);
+        User.findById(req.user.id, function (err, user) {
+            if (err) {
+                res.send(err);
+            }
+
+            var jsonObject = { user: user, projects: {} };
+
+            Project.find({
+                students: user._id
+            }, function (err, projects) {
+                if (err) {
+                    res.send(err);
+                }
+
+                projects.forEach(function (project) {
+                    jsonObject.projects[project._id] = project;
+                });
+
+                res.json(jsonObject);
+            });
+        });
+    });
+
+    app.get('/api/user/:_id', function (req, res) {
+        User.findById(req.params._id, function (err, user) {
+            if (err) {
+                res.send(err);
+            }
+
+            var jsonObject = { user: user, projects: {} };
+
+            Project.find({
+                students: user._id
+            }, function (err, projects) {
+                if (err) {
+                    res.send(err);
+                }
+
+                projects.forEach(function (project) {
+                    jsonObject.projects[project._id] = project;
+                });
+
+                res.json(jsonObject);
+            });
+        });
+    });
+
+    app.get('/api/countUsers', function (req, res) {
+        User.find(function (err, users) {
+            if (err) {
+                return res.send(err);
+            }
+
+            res.json(users.length);
+        });
+    });
+
+    app.get('/api/user', function (req, res) {
+        User.find(function (err, users) {
+            if (err) {
+                return res.send(err);
+            }
+
+            res.json(users);
+        });
     });
 
     /**
