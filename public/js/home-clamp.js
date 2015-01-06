@@ -1,4 +1,4 @@
-setTimeout(function() 
+setInterval(function() 
 {
     var height = $(".page-info-carousel").height();
     height = ((height + 80)/2)  + 'px';
