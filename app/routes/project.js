@@ -38,9 +38,8 @@ module.exports = function(app, passport) {
         var students = String(req.body.students).replace(/\n/g, ",");
         var studentArray = students.split(',');
 
-        console.log(req.body.semesterid);
-
         Project.create({
+            user: req.user._id,
             title: req.body.title,
             content: req.body.content,
             grade: req.body.grade,
@@ -100,6 +99,7 @@ module.exports = function(app, passport) {
             var students = String(req.body.students).replace(/\n/g, ",");
             var studentArray = students.split(',');
 
+            project.user = project.user;
             project.title = req.body.title;
             project.content = req.body.content;
             project.semesterid = req.body.semesterid;

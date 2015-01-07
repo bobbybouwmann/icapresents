@@ -73,9 +73,6 @@ module.exports = function(app, passport) {
             });
         }
 
-        console.log('body before local-signup')
-        console.log(req.body);
-
 	    passport.authenticate('local-signup', function(err, user, info) {
 	        if (err) { 
 	            return res.json(err);
@@ -142,6 +139,24 @@ module.exports = function(app, passport) {
 
                 res.json(jsonObject);
             });
+        });
+    });
+
+    app.get('/api/userByEmail/:email', function (req, res) {
+        User.find({
+            email: req.params.email
+        }, function (err, user) {
+            if (err) {
+                res.send(err);
+            }
+
+            if (user == null || user.length == 0) {
+                var jsonObject = [];
+                jsonObject.push({ email: req.params.email });
+                res.json(jsonObject);
+            } else {
+                res.json(user);
+            }
         });
     });
 

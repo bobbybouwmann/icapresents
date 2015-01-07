@@ -43,7 +43,6 @@
     .controller('ViewProjectsController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
         $http.get('/api/projects')
             .success (function (data) {
-                console.log(data);
                 $scope.projects = data;
             })
             .error (function (data){
