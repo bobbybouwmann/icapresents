@@ -38,6 +38,7 @@
 
             $scope.showEditProfile = false;
             $scope.showEditSemester = false;
+            $scope.showEditUser = false;
 
             $http.get('/api/profiles')
                 .success (function (data) {
@@ -53,6 +54,11 @@
                 .success (function (data) {
                     $scope.projects = data;
                 });  
+
+            $http.get('/api/users')
+                .success (function (data) {
+                    $scope.users = data;
+                })
 
             $scope.isSet = function(checkTab) {
                 return tab === checkTab;
@@ -70,8 +76,13 @@
                 $scope.semesters = orderBy($scope.semesters, predicate, reverse);  
             };
 
+            $scope.orderUsers = function (predicate, reverse) {
+                $scope.users = orderBy($scope.users, predicate, reverse);  
+            };
+
             $scope.orderProfiles('name', false);
             $scope.orderSemesters('name', false);
+            $scope.orderUsers('firstname', false);
 
             $scope.addProfile = function () {
                 $http.post('/api/profiles', $scope.formDataProfile)
@@ -163,6 +174,40 @@
                         console.log("error: " + data);
                     });
             };
+
+            $scope.removeUser = function (id) {
+                $http.delete('/api/users/' + id)
+                    .success (function (data) {
+                        $scope.users = data;
+                    })
+                    .error (function (data) {
+                        console.log("error: " + data);
+                    });
+            }
+
+            $scope.getUserData = function (id) {
+                $scope.showEditUser = true;
+
+                $http.get('/api/users/' + id)
+                    .success (function (data) {
+                        $scope.user = data.user;
+                    })
+                    .error (function (data) {
+                        console.log("error: " + data);
+                    });
+            }
+
+            $scope.editUser = function () {
+                $http.put('/api/users/' + $scope.user._id, $scope.user)
+                    .success (function (data) {
+                        $scope.user = "";
+                        $scope.users = data;
+                        $scope.showEditUser = false;
+                    })
+                    .error (function (data) {
+                        console.log("error: " + data);
+                    });
+            }
 
             $scope.removeProject = function (id) {
                 $http.delete('/api/projects/' + id)

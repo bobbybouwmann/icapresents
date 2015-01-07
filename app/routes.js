@@ -118,7 +118,17 @@ module.exports = function(app, passport) {
         });
     });
 
-    app.get('/api/user/:_id', function (req, res) {
+    app.get('/api/users', function (req, res) {
+        User.find(function (err, users) {
+            if (err) {
+                return res.send(err);
+            }
+
+            res.json(users);
+        });
+    });
+
+    app.get('/api/users/:_id', function (req, res) {
         User.findById(req.params._id, function (err, user) {
             if (err) {
                 res.send(err);
@@ -142,21 +152,53 @@ module.exports = function(app, passport) {
         });
     });
 
-    app.get('/api/userByEmail/:email', function (req, res) {
-        User.find({
-            email: req.params.email
+    app.put('/api/users/:_id', isLoggedInAjax, function (req, res) {
+        User.findById(req.params._id, function (err, user) {
+            if (err) {
+                res.send(err);
+            }
+
+            user.firstname = req.body.firstname;
+            user.lastname = req.body.lastname;
+            user.profileid = req.body.profileid;
+            user.studentnumber = req.body.studentnumber;
+            user.email = req.body.email;
+            user.picture = req.body.picture;
+            user.save(function (err) {
+                if (err) {
+                    res.send(err);
+                }
+
+                User.find(function (err, users) {
+                    if (err) {
+                        return res.send(err);
+                    }
+
+                    res.json(users);
+                });
+            });
+        });
+    });
+
+    /**
+     * Delete a collection based on the id provided in the request.
+     * @see isLoggedInAjax()
+     */
+    app.delete('/api/users/:_id', isLoggedInAjax, function (req, res) {
+        User.remove({
+            _id: req.params._id
         }, function (err, user) {
             if (err) {
                 res.send(err);
             }
 
-            if (user == null || user.length == 0) {
-                var jsonObject = [];
-                jsonObject.push({ email: req.params.email });
-                res.json(jsonObject);
-            } else {
-                res.json(user);
-            }
+            User.find(function (err, users) {
+                if (err) {
+                    return res.send(err);
+                }
+
+                res.json(users);
+            });
         });
     });
 
@@ -168,17 +210,7 @@ module.exports = function(app, passport) {
 
             res.json(users.length);
         });
-    });
-
-    app.get('/api/user', function (req, res) {
-        User.find(function (err, users) {
-            if (err) {
-                return res.send(err);
-            }
-
-            res.json(users);
-        });
-    });
+    });    
 
     /**
      * Get all the collections from the database.
