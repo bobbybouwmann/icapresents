@@ -90,3 +90,20 @@ Student work.
     height:903px;
     width:1080px;
 }
+
+/*
+votes
+ */
+
+.visibility-of-votes {
+    visibility:hidden;
+    opacity:0;
+    transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+    font-size: 2em;
+}
+
+.unplaced:hover .visibility-of-votes{
+    visibility:visible;
+    opacity:1;
+    transition-delay:0s;
+}
