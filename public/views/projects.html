@@ -5,7 +5,7 @@
     </div>
 </div>
 
-
+<p id="get-value" value="{{ projects.length }}"></p>
 
 <div class="row full-row">
     <div class="menu-side">
@@ -22,31 +22,34 @@
         </select>
 
     </div>
- 
+
+
     <div class="slide-student">
         <div ng-repeat="project in projects | filter:search track by $index">
             <div class="col-xs-12 col-md-4" ng-show="$index >= 0 && $index < 6">
-                <div class="unplaced">
-                    <img src="{{ project.banner }}" alt="banner">
-                    <div class="page-info">
-                       <h3>{{ project.title }}</h3>
-                       <p>{{ project.votes }}</p>
+                <a href="/project/{{project._id}}">
+                    <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
+                        <div class="page-info" >
+                            <h3>{{ project.title }}</h3>
+                            <p class="visibility-of-votes">{{ project.votes }}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
 
     <div class="slide-student">
         <div ng-repeat="project in projects | filter:search track by $index">
-            <div class="col-xs-12 col-md-4" ng-show="$index >= 1 && $index < 6">
-                <div class="unplaced">
-                    <img src="{{ project.banner }}" alt="banner">
-                    <div class="page-info">
-                       <h3>{{ project.title }}</h3>
-                       <p>{{ project.votes }}</p>
+            <div class="col-xs-12 col-md-4" ng-show="$index >= 6 && $index < 12">
+                <a href="/project/{{project._id}}">
+                    <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
+                        <div class="page-info" >
+                            <h3>{{ project.title }}</h3>
+                            <p class="visibility-of-votes">{{ project.votes }}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
@@ -54,11 +57,14 @@
 
 
 </div>
-    
-    <div id="left-student-slide" class="left carousel-control" onclick="clicked('left')">
-        <span class="glyphicon glyphicon-chevron-left"></span>
+    <div id="controles">
+
+        <div id="left-student-slide" class="left carousel-control" onclick="clicked('left')">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </div>
+        <span id="right-student-slide" class="right carousel-control" onclick="clicked('right')">
+           <span class="glyphicon glyphicon-chevron-right"></span>
+        </span>
+
     </div>
-    <span id="right-student-slide" class="right carousel-control" onclick="clicked('right')">
-       <span class="glyphicon glyphicon-chevron-right"></span>
-    </span>
 

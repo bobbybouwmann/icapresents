@@ -1,17 +1,37 @@
 $( document ).ready(function() {
-    window.viewportWidth = $(window).width() + ( $(window).width() / 2 ); 
+    window.viewportWidth = $(window).width() + ( $(window).width() / 4 );
+    window.reverse = viewportWidth * - 1;
     check_next_slide();
+
+    setTimeout(function() {
+        window.get_amount_of_projects = $( '#get-value' ).attr('value');
+        check_amount_projects();
+    }, 500);
 });
+
+function check_amount_projects () {
+    if (get_amount_of_projects <= 6) {
+        $( '#controles' ).css("visibility", "hidden");
+    } else {
+        console.log("I have a value off: " + get_amount_of_projects);
+    }
+}
 
 function clicked (side) {
     var check_side = side;
 
     if(check_side === "left") {
+        check_amount_projects();
         $( '.slide-student:nth-child(2)' ).css({left: 0});
         $( '.slide-student:nth-child(3)' ).css({left: viewportWidth});
     } else if (check_side === "right") {
-        $( '.slide-student:nth-child(2)' ).css({left: viewportWidth});
-        $( '.slide-student:nth-child(3)' ).css({left: 0});
+        if (get_amount_of_projects > 6) {
+            check_amount_projects();
+            $( '.slide-student:nth-child(2)' ).css({left: reverse});
+            $( '.slide-student:nth-child(3)' ).css({left: 0});
+        } else {
+            alert("boe");
+        }
     } else {
         console.log(check_side + ' is not a valid side!');
     }
