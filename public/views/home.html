@@ -22,14 +22,16 @@
 </div>
 
 <div class="row full-row">
-    <div ng-repeat="project in projects track by $index">
+    <div ng-repeat="project in projects | limitTo:6 track by $index">
         <div class="col-xs-12 col-md-4" ng-show="$index == 0 || $index > 0">
-            <div class="unplaced">
-                <img src="http://www.lorempixel.com/800/400/" alt="banner">
-                <div class="page-info">
-                   <h3>{{ project.banner }}</h3> 
-                </div
-            </div>
+            <a href="/project/{{project._id}}">
+                <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
+<!--                <img src=" {{ project.banner }} " alt="banner"> -->
+                    <div class="page-info" >
+                        <h3>{{ project.title }}</h3>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>
