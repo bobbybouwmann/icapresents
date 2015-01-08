@@ -2,8 +2,10 @@
     position: absolute!important;
     top:10%;
     left:0;
-    -webkit-transition:left linear 0.5s;
-    transition:left linear 0.5s;
+    -webkit-transition:all ease 1.5s;
+    transition:all ease 1.5s;
+    height:300px;
+    width:100%;
 }
 
 .slide-student:nth-child(2) {
@@ -18,7 +20,6 @@
     margin-top:-20px;
 }
 
-.unplaced {
-    -webkit-transition:all linear 0.5s;
-    transition:all linear 0.5s;
+#controles{
+    visibility: visible;
 }
