@@ -38,9 +38,8 @@ module.exports = function(app, passport) {
         var students = String(req.body.students).replace(/\n/g, ",");
         var studentArray = students.split(',');
 
-        console.log(req.body.semesterid);
-
         Project.create({
+            user: req.user._id,
             title: req.body.title,
             content: req.body.content,
             grade: req.body.grade,
@@ -100,6 +99,7 @@ module.exports = function(app, passport) {
             var students = String(req.body.students).replace(/\n/g, ",");
             var studentArray = students.split(',');
 
+            project.user = project.user;
             project.title = req.body.title;
             project.content = req.body.content;
             project.semesterid = req.body.semesterid;
@@ -143,6 +143,23 @@ module.exports = function(app, passport) {
                 res.json(projects);
             });
         });
+    });
+
+    app.post('/api/projects/votes/:_id', function (req, res, done) {
+        Project.findById(req.params._id, function (err, project) {
+            if (err) {
+                res.send(err);
+            }
+
+            project.votes = project.votes + 1;
+            project.save(function (err) {
+                if (err) {
+                    res.send(err);
+                }
+
+                console.log(project);
+            });
+        })
     });
 
 };

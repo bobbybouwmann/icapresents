@@ -107,6 +107,7 @@ module.exports = function(passport) {
                             newUser.role = req.body.role;
                         }
                         newUser.picture = req.body.picture;
+                        newUser.bio = req.body.bio;
 
                         newUser.save(function (err) {
                             if (err) {

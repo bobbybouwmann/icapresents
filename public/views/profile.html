@@ -8,43 +8,11 @@
 </div>
 
 <div class="container">  
-    <div class="description trext-center">
-        <div class="text col-xs-12 col-sm-6">
-            <h2>{{user.name}} Admín Azul</h2>
-            <p>{{user.description}}asdxfcnhjkljhdxzsaxdvgbnhjhvfdsafkljhgdsaf;lkdxszaDFKL;KJGFDSADEGTKL;JGDSAqsd;lkjfesdtkl;'kjh edrtjkl;hgfdsaj'jhfdsfgjkl;jfdsaSDEGTEDSWGTKL;'DCSXFJ/,.JHG</p>
-        </div>
+    <div class="description text-center">
+        <h2>{{ user.firstname }} {{ user.lastname }}</h2>
+        <p>{{ profile.name }}</p>
+        <p>{{ user.bio }}</p>
     </div>
 </div>
 
-<div class="row">
-    <div ng-repeat="project in projects">
-        <div class="col-xs-12 col-md-12 unplaced">
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.content }}</p>
-            <p>{{ project.grade }}</p>
-            <p>{{ project.students | json }}</p>
-            <p>{{ project.test }}</p>
-        </div>
-    </div>
-</div>
-
-<div class="row profile-offset">
-    <div class="text-center">
-        <a class="btn btn-default btn-sm" ng-click="show = !show">Show Local Information</a>
-        <a href="/editprofile" class="btn btn-default btn-sm">Edit Profile</a>
-    </div>
-    <!-- LOCAL INFORMATION -->
-    <div class="col-sm-12" id="sensitiveInfo" ng-show="show">
-    	<div class="well">
-    		<h3><span class="fa fa-user"></span>Local</h3>
-    		<container ng-show="user.email">
-    			<p>
-    				<strong>id</strong>: {{ user._id }}<br>
-    				<strong>email</strong>: {{ user.email }}<br>
-    				<strong>password</strong>: {{ user.password }}<br>
-    				<strong>role</strong>: {{ user.role }}
-    			</p>
-    		</container>
-    	</div>
-    </div>
-</div>
+<h3>Projecten (Pjotr needs to put them in here)</h3>

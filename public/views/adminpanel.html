@@ -8,6 +8,7 @@
             <li ng-class="{ active:isSet(1) }"><a ng-click="setTab(1)">Profiles</a></li>
             <li ng-class="{ active:isSet(2) }"><a ng-click="setTab(2)">Semesters</a></li>
             <li ng-class="{ active:isSet(3) }"><a ng-click="setTab(3)">Projects</a></li>
+            <li ng-class="{ active:isSet(4) }"><a ng-click="setTab(4)">Users</a></li>
         </ul>
 
         <div class="tab-content">
@@ -219,6 +220,82 @@
                             </tr>
                             
                         </table>
+
+                    </div>
+
+                </div>
+
+            </div><!-- end tab-pane -->
+
+            <div class="tab-pane active" ng-show="isSet(4)">
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-7">
+                        
+                        <table class="table table-striped">
+
+                            <tr>
+                                <th>ID <a href="" ng-click="reverse=false; orderUsers('_id', false)">&uArr;</a><a href="" ng-click="reverse=false; orderUsers('-_id', false)">&dArr;</a></th>
+                                <th>Firstname <a href="" ng-click="reverse=false; orderUsers('firstname', false)">&uArr;</a><a href="" ng-click="reverse=false; orderUsers('-firstname', false)">&dArr;</a></th>
+                                <th>Lastname <a href="" ng-click="reverse=false; orderUsers('lastname', false)">&uArr;</a><a href="" ng-click="reverse=false; orderUsers('-lastname', false)">&dArr;</a></th>
+                                <th>Actions</th>
+                            </tr>
+
+                            <tr ng-repeat="user in users">
+                                <td>{{ user._id }}</td>
+                                <td>{{ user.firstname }}</td>
+                                <td>{{ user.lastname }}</td>
+                                <td><a href="" ng-click="getUserData(user._id)">Edit</a> / <a href="" ng-click="removeUser(user._id)">Delete</a></td>
+                            </tr>
+                            
+                        </table>
+
+                    </div>
+
+                    <div class="col-xs-12 col-sm-5" ng-show="showEditUser">
+
+                        <h3>Edit User</h3>
+                        
+                        <form name="Edit user">
+                            
+                            <div class="form-group">
+                                <label for="firstname">Firstname</label>
+                                <input type="text" class="form-control" id="firstname" placeholder="Firstname" ng-model="user.firstname" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastname">Lastname</label>
+                                <input type="text" class="form-control" id="lastname" placeholder="Lastname" ng-model="user.lastname" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="userprofile">Profile</label>
+                                <select id="userprofile" class="form-control" ng-model="user.profileid" required >
+                                    <option ng-selected="{{ user.profileid == profile._id }}" ng-repeat="profile in profiles" value="{{ profile._id }}">{{ profile.name }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="studentnumber">Studentnumber</label>
+                                <input type="text" class="form-control" id="studentnumber" placeholder="Studentnumber" ng-model="user.studentnumber" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email" placeholder="Email" ng-model="user.email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" rows="10" class="form-control" placeholder="Bio about you!" ng-model="user.bio" required></textarea>
+                            </div>
+    
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default" ng-click="editUser()">Update user</button>
+                            </div>
+
+                        </form>
 
                     </div>
 

@@ -73,9 +73,6 @@ module.exports = function(app, passport) {
             });
         }
 
-        console.log('body before local-signup')
-        console.log(req.body);
-
 	    passport.authenticate('local-signup', function(err, user, info) {
 	        if (err) { 
 	            return res.json(err);
@@ -92,6 +89,10 @@ module.exports = function(app, passport) {
 	        });
 	    })(req, res);
 	});
+
+    app.get('/loggedin', function(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    });
 
     /**
      * Get the userdata of the current logged in user.
@@ -116,12 +117,24 @@ module.exports = function(app, passport) {
                     jsonObject.projects[project._id] = project;
                 });
 
+                console.log(jsonObject);
+
                 res.json(jsonObject);
             });
         });
     });
 
-    app.get('/api/user/:_id', function (req, res) {
+    app.get('/api/users', function (req, res) {
+        User.find(function (err, users) {
+            if (err) {
+                return res.send(err);
+            }
+
+            res.json(users);
+        });
+    });
+
+    app.get('/api/users/:_id', function (req, res) {
         User.findById(req.params._id, function (err, user) {
             if (err) {
                 res.send(err);
@@ -140,7 +153,60 @@ module.exports = function(app, passport) {
                     jsonObject.projects[project._id] = project;
                 });
 
+                console.log(jsonObject);
+
                 res.json(jsonObject);
+            });
+        });
+    });
+
+    app.put('/api/users/:_id', isLoggedInAjax, function (req, res) {
+        User.findById(req.params._id, function (err, user) {
+            if (err) {
+                res.send(err);
+            }
+
+            user.firstname = req.body.firstname;
+            user.lastname = req.body.lastname;
+            user.profileid = req.body.profileid;
+            user.studentnumber = req.body.studentnumber;
+            user.email = req.body.email;
+            user.picture = req.body.picture;
+            user.bio = req.body.bio;
+            user.save(function (err) {
+                if (err) {
+                    res.send(err);
+                }
+
+                User.find(function (err, users) {
+                    if (err) {
+                        return res.send(err);
+                    }
+
+                    res.json(users);
+                });
+            });
+        });
+    });
+
+    /**
+     * Delete a collection based on the id provided in the request.
+     * @see isLoggedInAjax()
+     */
+    app.delete('/api/users/:_id', isLoggedInAjax, function (req, res) {
+        User.remove({
+            _id: req.params._id
+        }, function (err, user) {
+            if (err) {
+                res.send(err);
+            }
+
+            User.find(function (err, users) {
+                if (err) {
+                    return res.send(err);
+                }
+
+                res.json(users);
             });
         });
     });
@@ -153,17 +219,7 @@ module.exports = function(app, passport) {
 
             res.json(users.length);
         });
-    });
-
-    app.get('/api/user', function (req, res) {
-        User.find(function (err, users) {
-            if (err) {
-                return res.send(err);
-            }
-
-            res.json(users);
-        });
-    });
+    });    
 
     /**
      * Get all the collections from the database.
