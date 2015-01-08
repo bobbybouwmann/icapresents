@@ -94,6 +94,10 @@ module.exports = function(app, passport) {
         res.send(req.isAuthenticated() ? req.user : '0');
     });
 
+    app.get('/loggedinadmin', function(req, res) {
+        res.send((req.isAuthenticated() && req.user.role == 'admin') ? req.user : '0');
+    });
+
     /**
      * Get the userdata of the current logged in user.
      * @see isLoggedInAjax()
@@ -116,8 +120,6 @@ module.exports = function(app, passport) {
                 projects.forEach(function (project) {
                     jsonObject.projects[project._id] = project;
                 });
-
-                console.log(jsonObject);
 
                 res.json(jsonObject);
             });
@@ -152,8 +154,6 @@ module.exports = function(app, passport) {
                 projects.forEach(function (project) {
                     jsonObject.projects[project._id] = project;
                 });
-
-                console.log(jsonObject);
 
                 res.json(jsonObject);
             });

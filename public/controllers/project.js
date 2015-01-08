@@ -6,10 +6,32 @@
 (function() {
     angular.module('project', [])
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+            
+        var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
+            var deferred = $q.defer();
+
+            $http.get('/loggedin')
+                .success(function (user) {
+                    if (user !== '0') {
+                        $timeout(deferred.resolve, 0);
+                    } else {
+                        $timeout(function () {
+                            deferred.reject();
+                        }, 0);
+                        $location.path('/login');
+                    };
+                });
+
+            return deferred.promise;
+        };
+
         $routeProvider
             .when('/addproject', {
                 templateUrl: '/views/addproject.html',
-                controller: 'AddProjectController'
+                controller: 'AddProjectController',
+                resolve: {
+                    loggedin: checkLoggedin
+                }
             })
             .when('/projects', {
                 templateUrl: '/views/projects.html',
