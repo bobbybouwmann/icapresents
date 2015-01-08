@@ -96,16 +96,18 @@ module.exports = function(passport) {
                             error: 'Oops! This email already exists!'
                         });
                     } else {
-                        var newUser            = new User();
-
+                        var newUser = new User();
+                        newUser.firstname = req.body.firstname;
+                        newUser.lastname = req.body.lastname;
+                        newUser.profileid = req.body.profileid;
+                        newUser.studentnumber = req.body.studentnumber;
                         newUser.email    = email;
                         newUser.password = newUser.generateHash(password);
                         if (req.body.role != '' && req.body.role == 'admin') {
                             newUser.role = req.body.role;
                         }
-                        newUser.profileid = req.body.profileid;
-                        newUser.name = req.body.name;
-                        newUser.description = req.body.description;
+                        newUser.picture = req.body.picture;
+                        newUser.bio = req.body.bio;
 
                         newUser.save(function (err) {
                             if (err) {

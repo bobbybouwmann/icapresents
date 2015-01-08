@@ -11,6 +11,8 @@ var fs = require('fs');
  */
 var Test = require('./models/test');
 var Collection = require('./models/collection');
+var User = require('./models/user');
+var Project = require('./models/project');
 
 /**
  * Expose routes
@@ -88,13 +90,136 @@ module.exports = function(app, passport) {
 	    })(req, res);
 	});
 
+    app.get('/loggedin', function(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    });
+
+    app.get('/loggedinadmin', function(req, res) {
+        res.send((req.isAuthenticated() && req.user.role == 'admin') ? req.user : '0');
+    });
+
     /**
      * Get the userdata of the current logged in user.
      * @see isLoggedInAjax()
      */
     app.get('/api/userData', isLoggedInAjax, function(req, res) {
-        return res.json(req.user);
+        User.findById(req.user.id, function (err, user) {
+            if (err) {
+                res.send(err);
+            }
+
+            var jsonObject = { user: user, projects: {} };
+
+            Project.find({
+                students: user._id
+            }, function (err, projects) {
+                if (err) {
+                    res.send(err);
+                }
+
+                projects.forEach(function (project) {
+                    jsonObject.projects[project._id] = project;
+                });
+
+                res.json(jsonObject);
+            });
+        });
     });
+
+    app.get('/api/users', function (req, res) {
+        User.find(function (err, users) {
+            if (err) {
+                return res.send(err);
+            }
+
+            res.json(users);
+        });
+    });
+
+    app.get('/api/users/:_id', function (req, res) {
+        User.findById(req.params._id, function (err, user) {
+            if (err) {
+                res.send(err);
+            }
+
+            var jsonObject = { user: user, projects: {} };
+
+            Project.find({
+                students: user._id
+            }, function (err, projects) {
+                if (err) {
+                    res.send(err);
+                }
+
+                projects.forEach(function (project) {
+                    jsonObject.projects[project._id] = project;
+                });
+
+                res.json(jsonObject);
+            });
+        });
+    });
+
+    app.put('/api/users/:_id', isLoggedInAjax, function (req, res) {
+        User.findById(req.params._id, function (err, user) {
+            if (err) {
+                res.send(err);
+            }
+
+            user.firstname = req.body.firstname;
+            user.lastname = req.body.lastname;
+            user.profileid = req.body.profileid;
+            user.studentnumber = req.body.studentnumber;
+            user.email = req.body.email;
+            user.picture = req.body.picture;
+            user.bio = req.body.bio;
+            user.save(function (err) {
+                if (err) {
+                    res.send(err);
+                }
+
+                User.find(function (err, users) {
+                    if (err) {
+                        return res.send(err);
+                    }
+
+                    res.json(users);
+                });
+            });
+        });
+    });
+
+    /**
+     * Delete a collection based on the id provided in the request.
+     * @see isLoggedInAjax()
+     */
+    app.delete('/api/users/:_id', isLoggedInAjax, function (req, res) {
+        User.remove({
+            _id: req.params._id
+        }, function (err, user) {
+            if (err) {
+                res.send(err);
+            }
+
+            User.find(function (err, users) {
+                if (err) {
+                    return res.send(err);
+                }
+
+                res.json(users);
+            });
+        });
+    });
+
+    app.get('/api/countUsers', function (req, res) {
+        User.find(function (err, users) {
+            if (err) {
+                return res.send(err);
+            }
+
+            res.json(users.length);
+        });
+    });    
 
     /**
      * Get all the collections from the database.

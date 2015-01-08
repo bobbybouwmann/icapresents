@@ -1,3 +1,64 @@
-<div ng-repeat="project in projects">
-    <h2><a href="/editproject/{{ project._id }}">{{ project.title }}</a> <a href="/project/{{ project._id }}">Bekijk</a></h2>
+<div class="container">
+    <div class="project-actions">
+        <a menuside href="#" class="menu-toggle btn btn-default pull-left">Toggle Filter</a>
+        <br><br><br><br><br>
+    </div>
 </div>
+
+
+
+<div class="row full-row">
+    <div class="menu-side">
+        <h3> Filter </h3>
+
+        <div id="Title">
+            <label for="Title-field">Project Title</label>
+            <input id="Title-field" ng-model="search.title">
+        </div>
+
+        <label for="Semester-Date-field">Semester Dates</label>
+        <select ng-model="search.$">
+            <option id="Semester-Date-field" ng-repeat="project in projects track by $index" value="{{project.date}}">{{project.date}}</option>
+        </select>
+
+    </div>
+ 
+    <div class="slide-student">
+        <div ng-repeat="project in projects | filter:search track by $index">
+            <div class="col-xs-12 col-md-4" ng-show="$index >= 0 && $index < 6">
+                <div class="unplaced">
+                    <img src="{{ project.banner }}" alt="banner">
+                    <div class="page-info">
+                       <h3>{{ project.title }}</h3>
+                       <p>{{ project.votes }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-student">
+        <div ng-repeat="project in projects | filter:search track by $index">
+            <div class="col-xs-12 col-md-4" ng-show="$index >= 1 && $index < 6">
+                <div class="unplaced">
+                    <img src="{{ project.banner }}" alt="banner">
+                    <div class="page-info">
+                       <h3>{{ project.title }}</h3>
+                       <p>{{ project.votes }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+    
+    <div id="left-student-slide" class="left carousel-control" onclick="clicked('left')">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </div>
+    <span id="right-student-slide" class="right carousel-control" onclick="clicked('right')">
+       <span class="glyphicon glyphicon-chevron-right"></span>
+    </span>
+

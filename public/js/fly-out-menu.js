@@ -6,7 +6,9 @@
 
     $('.menu-toggle-right').bind('click', function () {
         $('body').toggleClass('menu-open-right');
-    });    
+    });   
+     
+     
 
 });
 
@@ -65,14 +67,19 @@ $(document).on('click', '.remove-layout', function () {
 
 $(document).on('click', '.select-image', function () {
     $('.update-to-picture').removeAttr('id');
-    $(this).parent().addClass('update-to-picture'); 
-    $(this).parent().attr('id', 'update-to-picture');
+    $(this).addClass('update-to-picture'); 
+    $(this).attr('id', 'update-to-picture');
 });
 
 $(document).on('click', '.select-text', function () {
     $('.update-to-text').removeAttr('id');
-    $(this).parent().addClass('update-to-text');
-    $(this).parent().attr('id', 'update-to-text');
+    $(this).addClass('update-to-text');
+    $(this).attr('id', 'update-to-text');
+
+    var html = $('#update-to-text').html();
+    html = html.replace(new RegExp('<i class="fa fa-plus-circle"></i> text'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), '');
+
+    $('#edit').editable('setHTML', html, false);
 });
 
 $(document).on('click', '.select-youtube', function () {
@@ -80,5 +87,21 @@ $(document).on('click', '.select-youtube', function () {
     $(this).parent().addClass('update-to-youtube');
     $(this).parent().attr('id', 'update-to-youtube');
 }); 
+
+$(document).on('click', '#vote', function () {
+    if ($.cookie('votecookie') == undefined) {
+        $.cookie('votecookie', 'voted', { 
+            expires: 14,
+            path: '/'
+        });
+
+        $.ajax({
+            type: "POST",
+            url: '/api/projects/votes/' + $('#vote').data('id'),
+            dataType: "json",
+            data: {}
+        });
+    }
+})
 
 

@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="../css/froala_content.min.css">
         <link rel="stylesheet" href="../css/mainCustom.css">
         <link rel="stylesheet" href="../css/home-page.css">
+        <link rel="stylesheet" href="../css/student-work-page.css">
 
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-route.min.js"></script>
@@ -23,6 +24,7 @@
         <script src="/controllers/pages.js"></script>
         <script src="/controllers/test.js"></script>
         <script src="/controllers/project.js"></script>
+        <script src="/controllers/footer.js"></script>
         <script src="/controllers/image.js"></script>
 	    <script src="/controllers/profile.js"></script>
 	    <script src="/controllers/login.js"></script>
@@ -32,15 +34,6 @@
     </head>    
 
     <body class="menu menu-right">
-        <!--<nav class="navbar navbar-default" role="navigation">
-            <div class="page-header text-center">
-                <h1><span class="fa fa-anchor"></span> ICA Portfolios</h1>
-                <a href="/projects" class="btn btn-default btn-sm">Student Work</a>
-                <a href="/about" class="btn btn-default btn-sm">About</a>
-                <a href="/addproject" class="btn btn-default btn-sm">Upload</a>
-                <a logout href="/logout" class="btn btn-default btn-sm">Login/Logout</a>
-            </div>
-        </nav> --> 
 
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 
@@ -58,20 +51,23 @@
                     </button>
                   
                 </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-left">
                         <li><a href="/">Home</a></li>
                         <li><a href="/projects">Student Work</a></li>
+                        <li><a href="/profiles">Profiles</a></li>
                         <li><a href="/about">About</a></li>
                         <li><a href="/admin">Admin Panel</a></li>
-                        <form class="navbar-form navbar-left" role="search">
-                            <a href="/addproject" class="btn btn-default">Upload</a>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <form class="navbar-form navbar-left" role="search">                            
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Search">
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
+                            <a href="/addproject" class="btn btn-default">Add a Project</a>
                         </form>
+                        <li><a href="/profile">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -82,22 +78,31 @@
 
         </div>
 
-        <footer class="footer">
-            <div class="container text-center">
-                <div class="col-sm-4">
-                    <h3>Contact</h3>
+        <footer class="footer" ng-controller="FooterController">
+            <div class="container">
+                <div class="col-sm-4">                    
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <h3 style="text-align: left;">Contact</h3>
+                            <p>Adress: Ruitenberglaan 26<br>
+                                6826 CC Arnhem<br></p>
+                            Telephone: (026) 365 82 82<br>
+                            E-mail: info@han.nl</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-4">
-                    <h3>Terms of Service</h3>
+                    <h3>Terms of Service   <span class="fa fa-copyright"></span>    2014</h3>
                 </div>
                 <div class="col-sm-4">
-                    <h3>Logos</h3>
+                    <h3><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><span class="fa fa-facebook"></span></a></h3>
                 </div>              
             </div>
         </footer>
 
         <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="../js/jquery.cookie.js"></script>
         <script src="../js/froala_editor.min.js"></script>
         <script src="../js/plugins/block_styles.min.js"></script>
         <script src="../js/plugins/colors.min.js"></script>
@@ -106,5 +111,8 @@
         <script src="../js/plugins/lists.min.js"></script>
         <script src="../js/plugins/tables.min.js"></script>
         <script src="../js/fly-out-menu.js"></script>
+        <script src="../js/clamp.js"></script>
+        <script src="../js/home-clamp.js"></script>
+        <script src="../js/student-work-slider.js"></script>
     </body>
 </html>

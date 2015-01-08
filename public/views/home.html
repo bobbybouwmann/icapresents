@@ -1,25 +1,40 @@
+<div id="Carousel" class="carousel slide">
+    <ol class="carousel-indicators">
+        <li ng-repeat="project in projects | limitTo:4  track by $index" data-target="Carousel" data-slide-to="{{ $index }}" ng-class="{active : $first}"></li>
+    </ol>
 
-    <div ng-repeat="project in projects track by $index">
-        <div class="full-page-carousel" ng-show="$index == 0">
-            <div class="text-page-silder">
-                <img class="winner-page-image" src="http://www.lorempixel.com/1920/1080/" alt="banner">
-                <div class="winner-page-info">
-                   <h3>{{ project.title }} </h3> 
+    <div id="carousel-style" class="carousel-inner">
+        <div class="item" ng-repeat="project in projects | limitTo:4 track by $index" ng-class="{active : $first}">
+            <div class="page-info-carousel">
+                <div class="fix-center">
+                    <h3 class="hope-page-title">{{ project.title }}</h3> 
+                    <p id="clamp">{{ project.content }}</p>
                 </div>
             </div>
+            <img class="img-responsive" alt="Responsive image" ng-src="{{ project.banner }}">
         </div>
     </div>
 
+    <span class="left carousel-control" data-target="#Carousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </span>
+    <span class="right carousel-control" data-target="#Carousel" data-slide="next">
+       <span class="glyphicon glyphicon-chevron-right"></span>
+    </span>
+</div>
 
 <div class="row full-row">
-    <div ng-repeat="project in projects track by $index">
+    <div ng-repeat="project in projects | limitTo:6 track by $index">
         <div class="col-xs-12 col-md-4" ng-show="$index == 0 || $index > 0">
-            <div class="unplaced">
-                <img src="http://www.lorempixel.com/800/400/" alt="banner">
-                <div class="page-info">
-                   <h3>{{ project.title }}</h3> 
-                </div
-            </div>
+            <a href="/project/{{project._id}}">
+                <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
+<!--                <img src=" {{ project.banner }} " alt="banner"> -->
+                    <div class="page-info" >
+                        <h3>{{ project.title }}</h3>
+                        <p class="visibility-of-votes">{{ project.votes }}</p>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>
@@ -29,3 +44,4 @@
         <button type="button" class="btn btn-default btn-lg">VIEW MORE</button>
     </a>
 </div>
+
