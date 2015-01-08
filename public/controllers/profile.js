@@ -27,23 +27,25 @@
         }])
         .controller('ProfileController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
             $http.get('/api/userData')
-                .success(function(data) {
-                    $scope.user = data;
-                });
+                .success (function (data) {
+                    $scope.user = data.user;
+                    $scope.projects = data.projects;
 
-            /* Get project data from user
-                
-            $http.get('/api/projects')
-                .success(function(data) {
-                    console.log(data);
-                    $scope.projects = data; 
-                }); 
-            */
+                    console.log($scope.user);
+
+                    $http.get('/api/profiles/' + data.user.profileid)
+                        .success (function (data) {
+                            $scope.profile = data;
+                        });
+                })
+                .error (function (data) {
+                    console.log("error:" + data);
+                });
         }])
         .controller('ProfileIdController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
             var id = $routeParams._id;
 
-            $http.get('/api/user/' + id)
+            $http.get('/api/users/' + id)
                 .success (function (data) {
                     $scope.user = data.user;
                     $scope.projects = data.projects;

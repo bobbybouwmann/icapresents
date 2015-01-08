@@ -145,6 +145,23 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.post('/api/projects/votes/:_id', function (req, res, done) {
+        Project.findById(req.params._id, function (err, project) {
+            if (err) {
+                res.send(err);
+            }
+
+            project.votes = project.votes + 1;
+            project.save(function (err) {
+                if (err) {
+                    res.send(err);
+                }
+
+                console.log(project);
+            });
+        })
+    });
+
 };
 
 /**

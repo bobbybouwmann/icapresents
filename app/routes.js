@@ -90,6 +90,10 @@ module.exports = function(app, passport) {
 	    })(req, res);
 	});
 
+    app.get('/loggedin', function(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    });
+
     /**
      * Get the userdata of the current logged in user.
      * @see isLoggedInAjax()
@@ -112,6 +116,8 @@ module.exports = function(app, passport) {
                 projects.forEach(function (project) {
                     jsonObject.projects[project._id] = project;
                 });
+
+                console.log(jsonObject);
 
                 res.json(jsonObject);
             });
@@ -147,6 +153,8 @@ module.exports = function(app, passport) {
                     jsonObject.projects[project._id] = project;
                 });
 
+                console.log(jsonObject);
+
                 res.json(jsonObject);
             });
         });
@@ -164,6 +172,7 @@ module.exports = function(app, passport) {
             user.studentnumber = req.body.studentnumber;
             user.email = req.body.email;
             user.picture = req.body.picture;
+            user.bio = req.body.bio;
             user.save(function (err) {
                 if (err) {
                     res.send(err);

@@ -190,7 +190,9 @@
 
                 $http.get('/api/users/' + id)
                     .success (function (data) {
+                        console.log(data.user);
                         $scope.user = data.user;
+                        $scope.profileid = data.user.profileid;
                     })
                     .error (function (data) {
                         console.log("error: " + data);

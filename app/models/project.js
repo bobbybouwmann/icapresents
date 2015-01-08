@@ -16,7 +16,8 @@ var projectSchema = mongoose.Schema({
     content: String,
     semesterid: String,
     students: [String],
-    updated: { type: Date, default: Date.now }
+    updated: { type: Date, default: Date.now },
+    votes: { type: Number, default: 0 }
 });
 
 /**

@@ -272,7 +272,7 @@
                             <div class="form-group">
                                 <label for="userprofile">Profile</label>
                                 <select id="userprofile" class="form-control" ng-model="user.profileid" required >
-                                    <option ng-repeat="profile in profiles" value="{{ user._id }}">{{ profile.name }}</option>
+                                    <option ng-selected="{{ user.profileid == profile._id }}" ng-repeat="profile in profiles" value="{{ profile._id }}">{{ profile.name }}</option>
                                 </select>
                             </div>
 
@@ -286,6 +286,11 @@
                                 <input type="text" class="form-control" id="email" placeholder="Email" ng-model="user.email" required>
                             </div>
 
+                            <div class="form-group">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" rows="10" class="form-control" placeholder="Bio about you!" ng-model="user.bio" required></textarea>
+                            </div>
+    
                             <div class="form-group">
                                 <button type="submit" class="btn btn-default" ng-click="editUser()">Update user</button>
                             </div>

@@ -157,21 +157,6 @@
                 }
             };
         }])
-        // .directive('edittextform', ['$http', function ($http) {
-        //     return {
-        //         restrict: 'AEC',
-        //         link: function ($scope, element, attrs) {
-        //             alert('BAMMMM!!');
-        //             $('#update-to-text').click(function (e) {
-        //                 e.preventDefault();
-
-        //                 $('#edit').editable('setHTML', $('#update-to-text').html(), false);
-
-        //                 return false;
-        //             });
-        //         }
-        //     };
-        // }])
         .directive('uploadyoutubeform', ['$http', function ($http) {
             return {
                 restrict: 'A',
@@ -269,6 +254,7 @@
 
                             var content = scope.project.content.replace(new RegExp('src="images/uploads/'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), 'src="/images/uploads/');
                             content = content.replace(new RegExp('contenteditable="true"'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), 'contenteditable="false"');
+                            content = content.replace(new RegExp('{{ project._id }}'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), scope.project._id);
         
                             $(element).html(content);
                         }

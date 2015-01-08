@@ -86,4 +86,20 @@ $(document).on('click', '.select-youtube', function () {
     $(this).parent().attr('id', 'update-to-youtube');
 }); 
 
+$(document).on('click', '#vote', function () {
+    if ($.cookie('votecookie') == undefined) {
+        $.cookie('votecookie', 'voted', { 
+            expires: 14,
+            path: '/'
+        });
+
+        $.ajax({
+            type: "POST",
+            url: '/api/projects/votes/' + $('#vote').data('id'),
+            dataType: "json",
+            data: {}
+        });
+    }
+})
+
 
