@@ -7,14 +7,38 @@
 
     angular.module('admin', [])
         .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+            var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
+                var deferred = $q.defer();
+
+                $http.get('/loggedinadmin')
+                    .success(function (user) {
+                        if (user !== '0') {
+                            $timeout(deferred.resolve, 0);
+                        } else {
+                            $timeout(function () {
+                                deferred.reject();
+                            }, 0);
+                            $location.path('/login');
+                        };
+                    });
+
+                return deferred.promise;
+            };
+
             $routeProvider
                 .when('/admin', {
                     templateUrl: '/views/adminpanel.html',
-                    controller: 'AdminPanelController'
+                    controller: 'AdminPanelController',
+                    resolve: {
+                        loggedin: checkLoggedin
+                    }
                 })
                 .when('/admin/editproject/:_id', {
                     templateUrl: '/views/editproject.html',
-                    controller: 'AdminPanelEditProjectController'
+                    controller: 'AdminPanelEditProjectController',
+                    resolve: {
+                        loggedin: checkLoggedin
+                    }
                 });
 
             $locationProvider.html5Mode({ enabled: true, requireBase: false });
