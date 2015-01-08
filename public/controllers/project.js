@@ -6,10 +6,32 @@
 (function() {
     angular.module('project', [])
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+            
+        var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
+            var deferred = $q.defer();
+
+            $http.get('/loggedin')
+                .success(function (user) {
+                    if (user !== '0') {
+                        $timeout(deferred.resolve, 0);
+                    } else {
+                        $timeout(function () {
+                            deferred.reject();
+                        }, 0);
+                        $location.path('/login');
+                    };
+                });
+
+            return deferred.promise;
+        };
+
         $routeProvider
             .when('/addproject', {
                 templateUrl: '/views/addproject.html',
-                controller: 'AddProjectController'
+                controller: 'AddProjectController',
+                resolve: {
+                    loggedin: checkLoggedin
+                }
             })
             .when('/projects', {
                 templateUrl: '/views/projects.html',
@@ -28,25 +50,30 @@
     }])
     .controller('AddProjectController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
         $scope.formData = { 
-            content: '',
-            grade: 5
+            title: '',
+            semesterid: '',
+            banner: '',
+            logo: '',
+            content: ''
         };
 
-        $scope.addProject = function () {
-            $http.post('/api/projects', $scope.formData)
-                .success (function (data) {
-                    $scope.formData = {};
-                })
-                .error (function (data) {
-                    console.log("error: " + data);
-                });
-        };
-
+        $http.get('/api/semesters')
+            .success (function (data) {
+                $scope.semesters = data;
+            });
     }])
     .controller('ViewProjectsController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
         $http.get('/api/projects')
             .success (function (data) {
                 $scope.projects = data;
+            })
+            .error (function (data){
+                console.log("error: " + data);
+            });
+        $http.get('/api/semesters')
+            .success (function (data) {
+                console.log(data);
+                $scope.semesters = data;
             })
             .error (function (data){
                 console.log("error: " + data);
@@ -66,6 +93,11 @@
     }])
     .controller('EditProjectController', ['$http', '$scope', '$routeParams', '$location', function($http, $scope, $routeParams, $location) {
         var id = $routeParams._id;
+
+        $http.get('/api/semesters')
+            .success (function (data) {
+                $scope.semesters = data;
+            });
         
         $http.get('/api/projects/' + id) 
             .success (function (data) {
@@ -74,25 +106,5 @@
             .error (function (data){
                 console.log("error: " + data);
             });
-
-        $scope.deleteProject = function () {
-            $http.delete('/api/projects/' + id)
-                .success (function (data) {
-                    $location.path('/projects');
-                })
-                .error (function (data){
-                    console.log("error: " + data);
-                });
-        };
-
-        $scope.updateProject = function () {
-            $http.put('/api/projects/' + id, $scope.project)
-                .success (function (data) {
-                    $location.path('/projects');
-                })
-                .error (function (data){
-                    console.log("error: " + data);
-                });
-        };
     }]);
 })();

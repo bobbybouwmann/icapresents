@@ -64,15 +64,44 @@
                             data: formData,
                             async: false,
                             success: function (data) {
-                                var div = document.createElement('div');
-                                div.className = 'image';
-
                                 var img = document.createElement('img');
-                                img.setAttribute('src', data.path.substring(7));
+                                img.setAttribute('src', 'http://localhost:3000/' + data.path.substring(7));
+                                img.setAttribute('className', "image select-image");
 
-                                div.appendChild(img);
+                                $('#update-to-picture').html(img);
+                                $('#imageModal').modal('hide');
+                            },
+                            cache: false,
+                            contentType: false,
+                            processData: false
+                        });
 
-                                $('#update-to-picture').html(div);
+                        return false;
+                    });
+                }
+            };
+        }])
+        .directive('uploadimageprofileform', ['$http', function ($http) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    $("#imageform").submit(function(e) {
+                        e.preventDefault();
+
+                        var formData = new FormData($(this)[0]);
+
+                        $.ajax({
+                            url: "/upload",
+                            type: "POST",
+                            data: formData,
+                            async: false,
+                            success: function (data) {
+                                var img = document.createElement('img');
+                                img.setAttribute('src', 'http://localhost:3000/' + data.path.substring(7));
+                                img.setAttribute('className', "image select-image");
+                                img.setAttribute('style', "max-width: 200px; max-height: 200px;");
+
+                                $('#update-to-picture').html(img);
                                 $('#imageModal').modal('hide');
                             },
                             cache: false,
@@ -120,6 +149,7 @@
                         e.preventDefault();
 
                         $('#update-to-text').html($('#edit').editable('getHTML', true, true));
+                        $('#edit').editable('setHTML', '', false);
                         $('#textModal').modal('hide');
 
                         return false;
@@ -161,8 +191,53 @@
                     $('#save-project').on('click', function (e) {
                         e.preventDefault();
 
+                        $scope.formData.banner = $('.header-image .image img').attr('src');
+                        console.log('Logo: ' + $('.project-logo .image img').attr('src'));
+                        $scope.formData.logo = $('.project-logo .image img').attr('src');
+                        $scope.formData.title = $('#simpleedit .froala-element p').text();
                         $scope.formData.content = $('#project-content').html();
+                        $scope.formData.semesterid = $('#projectsemester option:selected').val();
                         $scope.$apply();
+
+                        $http.post('/api/projects', $scope.formData)
+                            .success (function (data) {
+                                console.log(data);
+                            })
+                            .error (function (data) {
+                                console.log("error: " + data);
+                            });                        
+
+                        return false;
+                    });
+                }
+            };
+        }])
+        .directive('updateeditcontent', ['$http', '$location', function ($http, $location) {
+            return {
+                restrict: 'A',
+                link: function ($scope, element, attrs) {
+                    $('#save-project').on('click', function (e) {
+                        e.preventDefault();
+
+                        var content = $('#project-content').html();
+                        content = content.replace(new RegExp('src="images/uploads/'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), 'src="localhost:3000/images/uploads/');
+
+                        $scope.project.banner = $('.header-image .image img').attr('src');
+                        $scope.project.logo = $('.project-logo .image img').attr('src');
+                        $scope.project.title = $('#simpleedit .froala-element p').text();
+                        $scope.project.semesterid = $('#projectsemester option:selected').val();
+                        $scope.project.content = $('#project-content').html();
+                        $scope.$apply();
+
+                        console.log($scope.project);
+
+                        $http.put('/api/projects/' + $scope.project._id, $scope.project)
+                            .success (function (data) {
+                                $location.path('/projects');
+                            })
+                            .error (function (data){
+                                console.log("error: " + data);
+                            });
 
                         return false;
                     });
@@ -177,11 +252,54 @@
                         if (value) {
                             unwatch();
 
-                            var content = scope.project.content.replace(new RegExp('images/uploads/'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), '/images/uploads/');
+                            var content = scope.project.content.replace(new RegExp('src="images/uploads/'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), 'src="/images/uploads/');
+                            content = content.replace(new RegExp('contenteditable="true"'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), 'contenteditable="false"');
+                            content = content.replace(new RegExp('{{ project._id }}'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), scope.project._id);
+        
                             $(element).html(content);
                         }
                     });
                 }
             };
-        }]);    
+        }])
+        .directive('showeditcontent', ['$http', function ($http) {
+            return {
+                restrict: 'AEC',
+                link: function (scope, element, attrs) {
+                    var unwatch = scope.$watch('project', function (value) {
+                        if (value) {
+                            unwatch();
+
+                            var content = scope.project.content.replace(new RegExp('src="images/uploads/'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), 'src="/images/uploads/');
+                            content = content.replace(new RegExp('formData'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), 'project');
+
+                            $(element).html(content);
+                        }
+                    });
+                }
+            };
+        }])
+        .directive('registeruser', ['$http', '$location', function ($http, $location) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    $('#register-user').on('click', function (e) {
+                        e.preventDefault();
+
+                        $scope.formData.picture = $('#update-to-picture img').attr('src');
+                        $scope.$apply();
+
+                        $http.post('/signup', $scope.formData)
+                            .success(function(data) {
+                                console.log(data);
+                            })
+                            .error(function (data) {
+                                console.log('Error: ' + data);
+                            });
+
+                        return false;
+                    });
+                }
+            };
+        }]);
 })();

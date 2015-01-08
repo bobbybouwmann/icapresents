@@ -1,38 +1,114 @@
-<!--
-Velden required:
-Titel
-Regististerd students/non- registered students
-Semester
-Cijfer
-Votes
-Content (images, videos en text) 
--->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="imageform" enctype="multipart/form-data"> 
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="imageModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <h2>Upload Image</h2>
 
-<div>
-    <form name="ProjectForm">
-        <div class="form-group">
-            <label for="title">Project titel</label>
-            <input type="text" class="form-control" id="title" placeholder="Enter your project-titel" ng-model="project.title" required>
+                    <div>
+                        <label for="inputImage">Image</label>
+                        <input id="inputImage" type="file" accept="image/*" name="image">
+
+                        <img ng-show="image" ng-src="{{ image.url }}" type="{{ image.file.type }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button uploadimageform type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
-        <div multiple class="form-group">
-            <select class="form-control" ng-model="project.semester" required >
-                <option value="CRIA">CRIA</option>
-                <option value="ADEB">ADEB</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="students">Add the project students</label>
-            <input type="text" class="form-control" id="students" placeholder="Add the project students" ng-model="project.students" required>
-        </div>
-        <div class="form-group">
-            <label for="content">Add your content</label>
-            <input type="text" class="form-control" id="content" placeholder="Enter the project description" ng-model="project.content" required>
-        </div>
-        <div class="form-group">
-            <label for="grade">Select your grade</label>
-            <input type="range" name="grade" id="grade" value="5" min="0" max="10" step="0.1" ng-model="project.grade">
-        </div>
-        <button type="submit" class="btn btn-default" ng-click="updateProject()">Save</button>
-        <button type="submit" class="btn btn-default" ng-click="deleteProject()">Delete</button>
-    </form>
+    </div>
 </div>
+
+<div class="modal fade" id="textModal" tabindex="-1" role="dialog" aria-labelledby="textModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="textModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <textarea textform name="content" id="edit"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button uploadtextform id="submittextform" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog" aria-labelledby="youtubeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="youtubeModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>YouTube link:</p>
+                <input type="url" id="youtubeinput">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button uploadyoutubeform id="submityoutubeform" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="menu-side">
+    
+    <div class="layout-item add-layout-image">
+        <i class="fa fa-picture-o"></i>
+    </div>
+
+    <hr>
+
+    <div class="layout-item add-layout-text-image">
+        <i class="fa fa-align-left"></i>
+        <i class="fa fa-picture-o"></i>
+    </div>
+
+    <hr>
+
+    <div class="layout-item add-layout-image-text">
+        <i class="fa fa-picture-o"></i>
+        <i class="fa fa-align-left"></i>
+    </div>
+
+    <hr>
+
+    <div class="layout-item add-layout-video">
+        <i class="fa fa-video-camera"></i>
+    </div>
+
+</div>
+
+<div class="container">
+    
+    <div class="project-actions">
+        <a menuside href="#" class="menu-toggle btn btn-default pull-left">Toggle Menu</a>
+
+        <a updateeditcontent href="#" id="save-project" class="save-project btn btn-default text-center">Save</a>
+
+        <div class="form-group projectsemesterform">
+
+            <select class="form-control" ng-model="project.semesterid" id="projectsemester">                
+                <option value="">Please select a semester or project type</option>
+                <option value="" disabled>-----------------------------------------------</option>
+                <option value="-1">Private project</option>
+                <option ng-selected="{{ project.semesterid == semester._id }}" ng-repeat="semester in semesters" value="{{ semester._id }}">{{ semester.name }}</option>
+            </select>
+            
+        </div>
+    </div>
+
+</div>
+
+<div showeditcontent id="project-content"></div><!-- end project-content -->

@@ -14,8 +14,6 @@ var env = process.env.NODE_ENV || 'development';
 var port = process.env.PORT || 3000;
 var database = require('./config/database.js');
 
-console.log(env);
-
 mongoose.connect(database[env]); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
@@ -47,18 +45,26 @@ app.get('*', function(req, res) {
     res.sendfile('./public/views/index.html');
 });
 
-request.post('http://localhost:3000/signup', { 
-	form: { 
-		email: "admin@han.nl",
-		password: "admin",
-		role: "admin" 
-	}
-}, function (err, response, body) {
-	if (err) {
-		console.log('Error: ' + err);
-	}
-    
-    console.log(body);
+request.get('http://localhost:3000/api/countUsers', function (err, response, body) {
+    if (err) {
+        console.log('Error: ' + err);
+    }
+
+    if (body == '0') {
+        request.post('http://localhost:3000/signup', { 
+            form: { 
+                email: "admin@han.nl",
+                password: "admin",
+                role: "admin" 
+            }
+        }, function (err, response, body) {
+            if (err) {
+                console.log('Error: ' + err);
+            }
+            
+            console.log(body);
+        });
+    }
 });
 
 // launch ======================================================================

@@ -39,11 +39,14 @@ module.exports = function(app, passport) {
         var studentArray = students.split(',');
 
         Project.create({
+            user: req.user._id,
             title: req.body.title,
             content: req.body.content,
             grade: req.body.grade,
-            students: studentArray,
-            semesterid: req.body.semester,
+            semesterid: req.body.semesterid,
+            banner: req.body.banner,
+            logo: req.body.logo,
+            students: studentArray
         }, function (err, project) {
             if (err) {
                 res.send(err);
@@ -96,11 +99,13 @@ module.exports = function(app, passport) {
             var students = String(req.body.students).replace(/\n/g, ",");
             var studentArray = students.split(',');
 
+            project.user = project.user;
             project.title = req.body.title;
             project.content = req.body.content;
-            project.grade = req.body.grade;
+            project.semesterid = req.body.semesterid;
+            project.banner = req.body.banner;
+            project.logo = req.body.logo;
             project.students = studentArray;
-            project.semesterid = req.body.semester;
             
             project.save(function (err) {
                 if (err) {
@@ -138,6 +143,23 @@ module.exports = function(app, passport) {
                 res.json(projects);
             });
         });
+    });
+
+    app.post('/api/projects/votes/:_id', function (req, res, done) {
+        Project.findById(req.params._id, function (err, project) {
+            if (err) {
+                res.send(err);
+            }
+
+            project.votes = project.votes + 1;
+            project.save(function (err) {
+                if (err) {
+                    res.send(err);
+                }
+
+                console.log(project);
+            });
+        })
     });
 
 };
