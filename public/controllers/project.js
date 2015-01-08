@@ -70,6 +70,14 @@
             .error (function (data){
                 console.log("error: " + data);
             });
+        $http.get('/api/semesters')
+            .success (function (data) {
+                console.log(data);
+                $scope.semesters = data;
+            })
+            .error (function (data){
+                console.log("error: " + data);
+            });
     }])
     .controller('ViewProjectController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
         var id = $routeParams._id;
