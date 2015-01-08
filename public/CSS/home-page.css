@@ -53,16 +53,12 @@ Student work.
 */
 
 .unplaced {
-    height:300px;
+    height:calc(903px/3);
     margin-bottom: 30px;
 }
 
-.unplaced:hover {
-
-}
-
 .unplaced > img {
-    height:auto;
+    height:100%!important;
     width:100%;
 }
 
@@ -71,7 +67,7 @@ Student work.
     height:200px;
     width:200px;
     border-radius: 50%;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.5);
     border: 5px solid white;
     left:calc(50% - 100px);
     top:calc(50% - 110px);
