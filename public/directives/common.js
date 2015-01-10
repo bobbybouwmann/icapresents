@@ -27,23 +27,13 @@
                 }
             };
         }])
-        .directive('menusideright', ['$http', function ($http) {
+        .directive('logout', ['$http', '$rootScope', function ($http, $rootScope) {
             return {
                 restrict: 'A',
-                link: function (scope, element, attrs) {
+                link: function($scope, element, attrs) {
                     element.on('click', function (e) {
                         e.preventDefault();
-                        $('body').toggleClass('menu-open-right');
-                    })
-                }
-            };
-        }])
-        .directive('logout', ['$http', function ($http) {
-            return {
-                restrict: 'A',
-                link: function(scope, element, attrs) {
-                    element.on('click', function (e) {
-                        e.preventDefault();
+                        $rootScope.loggedin = false;
                         $http.post('/logout');
                     });
                 }
@@ -70,6 +60,47 @@
 
                                 $('#update-to-picture').html(img);
                                 $('#imageModal').modal('hide');
+                            },
+                            cache: false,
+                            contentType: false,
+                            processData: false
+                        });
+
+                        return false;
+                    });
+                }
+            };
+        }])
+        .directive('uploadlogoform', ['$http', function ($http) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    $("#logoform").submit(function(e) {
+                        e.preventDefault();
+
+                        var formData = new FormData($(this)[0]);
+
+                        $.ajax({
+                            url: "/upload",
+                            type: "POST",
+                            data: formData,
+                            async: false,
+                            success: function (data) {
+                                var div = document.createElement('div');
+                                div.setAttribute('className', "image select-image project-logo-background");
+                                div.style.backgroundImage = 'url("http://localhost:3000/' + data.path.substring(7) + '")';
+                                div.style.backgroundSize = 'cover';
+                                div.style.backgroundRepeat = 'no-repeat';
+                                div.style.backgroundPosition = '50% 50%';
+                                div.style.borderRadius = '50%';
+                                div.style.position = 'absolute';
+                                div.style.left = 'calc(50% - 100px)';
+                                div.style.top = '-110px';
+                                div.style.width = '200px';
+                                div.style.height = '200px';
+
+                                $('#update-to-picture').html(div);
+                                $('#logoModal').modal('hide');
                             },
                             cache: false,
                             contentType: false,
@@ -141,6 +172,75 @@
                 }
             };
         }])
+        .directive('firstnameform', ['$http', function ($http) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    var unwatch = $scope.$watch('user', function (value) {
+                        if (value) {
+                            unwatch();
+
+                            $('#firstnameedit').editable({
+                                inlineMode: true,
+                                plainPaste: true,
+                                placeholder: 'Typ your firstname',
+                                buttons: []
+                            });
+
+                            $("#firstnameedit").editable('setHTML', '<p>' + $scope.user.firstname + '</p>', false);
+                            $("#firstnameedit").editable('checkPlaceholder');
+                        }
+                    });
+                }
+            };
+        }])
+        .directive('lastnameform', ['$http', function ($http) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    var unwatch = $scope.$watch('user', function (value) {
+                        if (value) {
+                            unwatch();
+
+                            $('#lastnameedit').editable({
+                                inlineMode: true,
+                                plainPaste: true,
+                                placeholder: 'Typ your lastname',
+                                buttons: []
+                            });
+
+                            $("#lastnameedit").editable('setHTML', '<p>' + $scope.user.lastname + '</p>', false);
+                            $("#lastnameedit").editable('checkPlaceholder');
+                        }
+                    });
+                }
+            };
+        }])
+        .directive('bioform', ['$http', function ($http) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    var unwatch = $scope.$watch('user', function (value) {
+                        if (value) {
+                            unwatch();
+
+                            $('#bioedit').editable({
+                                inlineMode: false,
+                                placeholder: 'Typ your awesome bio here!',
+                                toolbarFixed: false,
+                                shortcuts: true,
+                                minHeight: 200,
+                                shortcutsAvailable: ['bold', 'italic', 'underline'],
+                                buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'sep', 'fontFamily', 'fontSize', 'sep', 'color', 'blockStyle', 'align', 'sep', 'insertOrderedList', 'insertUnorderedList', 'sep', 'selectAll', 'undo', 'redo', 'removeFormat', 'sep', 'insertHorizontalRule', 'table']
+                            });
+
+                            $("#bioedit").editable('setHTML', $scope.user.bio, false);
+                            $("#bioedit").editable('checkPlaceholder');
+                        }
+                    });
+                }
+            };
+        }])
         .directive('uploadtextform', ['$http', function ($http) {
             return {
                 restrict: 'AEC',
@@ -167,14 +267,14 @@
                         var youtubeLink, linkByUser = $('#youtubeinput').val();
 
                         if (linkByUser.indexOf('watch?v=') > -1) {
-                            youtubeLink = '//www.youtube.com/embed/' + linkByUser.substr(linkByUser.indexOf('watch?v=') + 8);
+                            youtubeLink = '//www.youtube.com/embed/' + linkByUser.substr(linkByUser.indexOf('watch?v=') + 8, 11);
                         } else {
                             youtubeLink = linkByUser;
                         }
 
                         console.log(youtubeLink);
 
-                        var html = '<div class="embed-container"><iframe src="' + youtubeLink + '" frameborder="0" allowfullscreen></iframe></div>';
+                        var html = '<div class="embed-container"><div class="actions"><a href="#" data-toggle="modal" data-target="#youtubeModal" class="update-to-youtube">edit</a><a href="#" class="remove-youtube">Delete</a></div><iframe src="' + youtubeLink + '" frameborder="0" allowfullscreen></iframe></div>';
                         
                         $('#update-to-youtube').html(html);
                         $('#youtubeModal').modal('hide');
@@ -184,7 +284,7 @@
                 }
             };
         }])
-        .directive('updatecontent', ['$http', function ($http) {
+        .directive('updatecontent', ['$http', '$location', function ($http, $location) {
             return {
                 restrict: 'A',
                 link: function ($scope, element, attrs) {
@@ -201,7 +301,7 @@
 
                         $http.post('/api/projects', $scope.formData)
                             .success (function (data) {
-                                console.log(data);
+                                $location.path('/profile');
                             })
                             .error (function (data) {
                                 console.log("error: " + data);
@@ -233,7 +333,7 @@
 
                         $http.put('/api/projects/' + $scope.project._id, $scope.project)
                             .success (function (data) {
-                                $location.path('/projects');
+                                $location.path('/profile');
                             })
                             .error (function (data){
                                 console.log("error: " + data);
@@ -291,13 +391,55 @@
 
                         $http.post('/signup', $scope.formData)
                             .success(function(data) {
-                                console.log(data);
+                                $rootScope.loggedin = true;
                             })
                             .error(function (data) {
                                 console.log('Error: ' + data);
                             });
 
                         return false;
+                    });
+                }
+            };
+        }])
+        .directive('saveportfolio', ['$http', '$location', function ($http, $location) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    $('#save-portfolio').on('click', function (e) {
+                        e.preventDefault();
+
+                        $scope.user.picture = $('.select-image img').attr('src');
+                        $scope.user.firstname = $("#firstnameedit").editable('getText');
+                        $scope.user.lastname = $("#lastnameedit").editable('getText');
+                        $scope.user.bio = $("#bioedit").editable('getHTML', true, true);
+
+                        console.log($scope.user);
+
+                        $http.put('/api/users/' + $scope.user._id, $scope.user)
+                            .success (function (data) {
+                                console.log(data);
+                                $location.path('/profile');
+                            })
+                            .error (function (data) {
+                                console.log('error: ' + data);
+                            })
+
+                        return false;
+                    });
+                }
+            };
+        }])
+        .directive('showbio', ['$http', function ($http) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    var unwatch = $scope.$watch('user', function (value) {
+                        if (value) {
+                            unwatch();
+
+                            $(element).html($scope.user.bio);
+                        }
                     });
                 }
             };

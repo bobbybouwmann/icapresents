@@ -8,9 +8,7 @@ var mongoose = require('mongoose');
 var semesterSchema = mongoose.Schema({
     name: String,
     description: String,
-    profileid: String,
-    startdate: Date,
-    enddate: Date
+    profileid: String
 });
 
 /**

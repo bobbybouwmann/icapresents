@@ -111,7 +111,7 @@ module.exports = function(app, passport) {
             var jsonObject = { user: user, projects: {} };
 
             Project.find({
-                students: user._id
+                user: user._id
             }, function (err, projects) {
                 if (err) {
                     res.send(err);
@@ -145,7 +145,7 @@ module.exports = function(app, passport) {
             var jsonObject = { user: user, projects: {} };
 
             Project.find({
-                students: user._id
+                user: user._id
             }, function (err, projects) {
                 if (err) {
                     res.send(err);

@@ -61,6 +61,10 @@ $(document).on('click', '.add-layout-video', function () {
 /**
  * @todo Remove images if layout is removed
  */
+$(document).on('click', '.remove-youtube', function () {
+    $(this).parent().parent().parent().parent().remove();
+});
+
 $(document).on('click', '.remove-layout', function () {
     $(this).parent().remove(); 
 });
