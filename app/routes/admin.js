@@ -32,7 +32,8 @@ module.exports = function (app, passport) {
     app.post('/api/profiles', isLoggedInAjax, function (req, res) {
         Profile.create({
             name: req.body.name,
-            description: req.body.description            
+            description: req.body.description,
+            main: req.body.main            
         }, function (err, profile) {
             if (err) {
                 res.send(err);
@@ -74,6 +75,7 @@ module.exports = function (app, passport) {
 
             profile.name = req.body.name;
             profile.description = req.body.description;
+            profile.main = req.body.main;
 
             profile.save(function (err) {
                 if (err) {
@@ -135,9 +137,7 @@ module.exports = function (app, passport) {
         Semester.create({
             name: req.body.name,
             description: req.body.description,
-            profileid: req.body.profileid,
-            startdate: new Date(req.body.startdate),
-            enddate: new Date(req.body.enddate)
+            profileid: req.body.profileid
         }, function (err, semester) {
             if (err) {
                 res.send(err);
@@ -180,8 +180,6 @@ module.exports = function (app, passport) {
             semester.name = req.body.name;
             semester.description = req.body.description;
             semester.profileid = req.body.profileid;
-            semester.startdate = new Date(req.body.startdate);
-            semester.enddate = new Date(req.body.enddate);
 
             console.log(semester);
 

@@ -62,6 +62,16 @@
             var orderBy = $filter('orderBy');
             var tab = 1;
 
+            $scope.mainprofiles = [{
+                number: 1, name: 'Business IT & Management'
+            }, {
+                number: 2, name: 'Communication & Multimedia Design'
+            }, {
+                number: 3, name: 'Informatics'
+            }, {
+                number: 4, name: 'Technical Informatics'
+            }];
+
             $scope.showEditProfile = false;
             $scope.showEditSemester = false;
             $scope.showEditUser = false;
