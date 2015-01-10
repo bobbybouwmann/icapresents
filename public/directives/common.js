@@ -56,7 +56,7 @@
                             success: function (data) {
                                 var img = document.createElement('img');
                                 img.setAttribute('src', 'http://localhost:3000/' + data.path.substring(7));
-                                img.setAttribute('className', "image select-image");
+                                img.className = 'image image select-image';
 
                                 $('#update-to-picture').html(img);
                                 $('#imageModal').modal('hide');
@@ -87,13 +87,14 @@
                             async: false,
                             success: function (data) {
                                 var div = document.createElement('div');
-                                div.setAttribute('className', "image select-image project-logo-background");
+                                div.className = 'image select-image project-logo-background';
                                 div.style.backgroundImage = 'url("http://localhost:3000/' + data.path.substring(7) + '")';
                                 div.style.backgroundSize = 'cover';
                                 div.style.backgroundRepeat = 'no-repeat';
                                 div.style.backgroundPosition = '50% 50%';
                                 div.style.borderRadius = '50%';
                                 div.style.position = 'absolute';
+                                div.style.margin = 0;
                                 div.style.left = 'calc(50% - 100px)';
                                 div.style.top = '-110px';
                                 div.style.width = '200px';
@@ -167,6 +168,7 @@
                 link: function ($scope, element, attrs) {
                     $('#simpleedit').editable({
                         inlineMode: true,
+                        placeholder: 'Typ your awesome project name!',
                         buttons: ['bold', 'italic', 'underline', 'fontFamily']
                     });
                 }
@@ -266,17 +268,19 @@
 
                         var youtubeLink, linkByUser = $('#youtubeinput').val();
 
-                        if (linkByUser.indexOf('watch?v=') > -1) {
-                            youtubeLink = '//www.youtube.com/embed/' + linkByUser.substr(linkByUser.indexOf('watch?v=') + 8, 11);
-                        } else {
-                            youtubeLink = linkByUser;
+                        if (linkByUser != '') {
+                            if (linkByUser.indexOf('watch?v=') > -1) {
+                                youtubeLink = '//www.youtube.com/embed/' + linkByUser.substr(linkByUser.indexOf('watch?v=') + 8, 11);
+                            } else {
+                                youtubeLink = linkByUser;
+                            }
+
+                            var html = '<div class="embed-container"><div class="actions"><a href="#" data-toggle="modal" data-target="#youtubeModal" class="update-to-youtube"><i class="fa fa-pencil-square-o"></i></a><a href="#" class="remove-youtube"><i class="fa fa-trash"></i></a></div><iframe src="' + youtubeLink + '" frameborder="0" allowfullscreen></iframe></div>';
+                            
+                            $('#update-to-youtube').html(html);
+                            $('#youtubeModal').modal('hide');
                         }
 
-                        console.log(youtubeLink);
-
-                        var html = '<div class="embed-container"><div class="actions"><a href="#" data-toggle="modal" data-target="#youtubeModal" class="update-to-youtube">edit</a><a href="#" class="remove-youtube">Delete</a></div><iframe src="' + youtubeLink + '" frameborder="0" allowfullscreen></iframe></div>';
-                        
-                        $('#update-to-youtube').html(html);
                         $('#youtubeModal').modal('hide');
 
                         return false;
@@ -291,21 +295,34 @@
                     $('#save-project').on('click', function (e) {
                         e.preventDefault();
 
-                        $scope.formData.banner = $('.header-image .image img').attr('src');
-                        console.log('Logo: ' + $('.project-logo .image img').attr('src'));
-                        $scope.formData.logo = $('.project-logo .image img').attr('src');
-                        $scope.formData.title = $('#simpleedit .froala-element p').text();
-                        $scope.formData.content = $('#project-content').html();
-                        $scope.formData.semesterid = $('#projectsemester option:selected').val();
-                        $scope.$apply();
+                        if ($('#simpleedit .froala-element p').text() == '') {
+                            $('.error-title').show();
+                            $('#simpleedit .fr-placeholder').css('color', '#e74c3c');
+                            $('#simpleedit .froala-wrapper').css('borderBottom', '1px solid #e74c3c');
+                        } else if ($('#projectsemester option:selected').val().length == '0') {
+                            $('.error-semester').show();
+                            $('#projectsemester').css('borderColor', '#e74c3c');
+                        } else {
+                            $('.error-title').hide();
+                            
+                            var logo = $('.project-logo .project-logo-background').css('background-image');
+                            logo = logo.replace('url(', '').replace(')', '');
 
-                        $http.post('/api/projects', $scope.formData)
-                            .success (function (data) {
-                                $location.path('/profile');
-                            })
-                            .error (function (data) {
-                                console.log("error: " + data);
-                            });                        
+                            $scope.formData.logo = logo;
+                            $scope.formData.banner = $('.header-image .image img').attr('src');
+                            $scope.formData.title = $('#simpleedit .froala-element p').text();
+                            $scope.formData.content = $('#project-content').html();
+                            $scope.formData.semesterid = $('#projectsemester option:selected').val();
+                            $scope.$apply();
+
+                            $http.post('/api/projects', $scope.formData)
+                                .success (function (data) {
+                                    $location.path('/profile');
+                                })
+                                .error (function (data) {
+                                    console.log("error: " + data);
+                                });                        
+                        }
 
                         return false;
                     });
@@ -319,25 +336,32 @@
                     $('#save-project').on('click', function (e) {
                         e.preventDefault();
 
-                        var content = $('#project-content').html();
-                        content = content.replace(new RegExp('src="images/uploads/'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), 'src="localhost:3000/images/uploads/');
+                        if ($('#simpleedit .froala-element p').text() == '') {
+                            $('.error-title').show();
+                            $('#simpleedit .fr-placeholder').css('color', '#e74c3c');
+                            $('#simpleedit .froala-wrapper').css('borderBottom', '1px solid #e74c3c');
+                        } else {
+                            var content = $('#project-content').html();
+                            content = content.replace(new RegExp('src="images/uploads/'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), 'src="localhost:3000/images/uploads/');
 
-                        $scope.project.banner = $('.header-image .image img').attr('src');
-                        $scope.project.logo = $('.project-logo .image img').attr('src');
-                        $scope.project.title = $('#simpleedit .froala-element p').text();
-                        $scope.project.semesterid = $('#projectsemester option:selected').val();
-                        $scope.project.content = $('#project-content').html();
-                        $scope.$apply();
+                            var logo = $('.project-logo .project-logo-background').css('background-image');
+                            logo = logo.replace('url(', '').replace(')', '');
 
-                        console.log($scope.project);
+                            $scope.formData.logo = logo;
+                            $scope.project.banner = $('.header-image .image img').attr('src');
+                            $scope.project.title = $('#simpleedit .froala-element p').text();
+                            $scope.project.semesterid = $('#projectsemester option:selected').val();
+                            $scope.project.content = $('#project-content').html();
+                            $scope.$apply();
 
-                        $http.put('/api/projects/' + $scope.project._id, $scope.project)
-                            .success (function (data) {
-                                $location.path('/profile');
-                            })
-                            .error (function (data){
-                                console.log("error: " + data);
-                            });
+                            $http.put('/api/projects/' + $scope.project._id, $scope.project)
+                                .success (function (data) {
+                                    $location.path('/profile');
+                                })
+                                .error (function (data){
+                                    console.log("error: " + data);
+                                });
+                        }
 
                         return false;
                     });
@@ -409,16 +433,13 @@
                     $('#save-portfolio').on('click', function (e) {
                         e.preventDefault();
 
-                        $scope.user.picture = $('.select-image img').attr('src');
+                        $scope.user.picture = $('.update-to-picture img').attr('src');
                         $scope.user.firstname = $("#firstnameedit").editable('getText');
                         $scope.user.lastname = $("#lastnameedit").editable('getText');
                         $scope.user.bio = $("#bioedit").editable('getHTML', true, true);
 
-                        console.log($scope.user);
-
                         $http.put('/api/users/' + $scope.user._id, $scope.user)
                             .success (function (data) {
-                                console.log(data);
                                 $location.path('/profile');
                             })
                             .error (function (data) {
