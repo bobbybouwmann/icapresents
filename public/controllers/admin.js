@@ -56,7 +56,9 @@
                     $scope.project = data.project;
                 });
         }])
-        .controller('AdminPanelController', ['$http', '$scope', '$routeParams', '$filter', '$location', function ($http, $scope, $routeParams, $filter, $location) {
+        .controller('AdminPanelController', ['$http', '$scope', '$routeParams', '$filter', '$location', '$rootScope', function ($http, $scope, $routeParams, $filter, $location, $rootScope) {
+            console.log($rootScope.loggedin);
+
             var orderBy = $filter('orderBy');
             var tab = 1;
 

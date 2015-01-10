@@ -13,6 +13,7 @@
             $http.get('/loggedin')
                 .success(function (user) {
                     if (user !== '0') {
+                        $rootScope.loggedin = true;
                         $timeout(deferred.resolve, 0);
                     } else {
                         $timeout(function () {
@@ -39,7 +40,10 @@
             })
             .when('/editproject/:_id', {
                 templateUrl: '/views/editproject.html',
-                controller: 'EditProjectController'
+                controller: 'EditProjectController',
+                resolve: {
+                    loggedin: checkLoggedin
+                }
             })
             .when('/project/:_id', {
                 templateUrl: '/views/project.html',
@@ -98,13 +102,10 @@
             .success (function (data) {
                 $scope.semesters = data;
             });
-        
+
         $http.get('/api/projects/' + id) 
             .success (function (data) {
-                $scope.project = data;
-            })
-            .error (function (data){
-                console.log("error: " + data);
+                $scope.project = data.project;
             });
     }]);
 })();

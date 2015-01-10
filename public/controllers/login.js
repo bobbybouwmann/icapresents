@@ -36,12 +36,14 @@
         .controller('SignupController', ['$http', '$scope', function($http, $scope) {
             // Custom Signup functionality
         }])
-        .controller('LoginForm', ['$http', '$scope', function($http, $scope) {
+        .controller('LoginForm', ['$http', '$scope', '$rootScope', function($http, $scope, $rootScope) {
             $scope.login = function() {
                 $http.post('/login', { 
                     email: this.email, 
                     password: this.password
                 });
+
+                $rootScope.loggedin = true;
             }
         }])
         .controller('SignupForm', ['$http', '$scope', function($http, $scope) {

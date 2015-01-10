@@ -1,0 +1,56 @@
+.profileinformation {
+    margin-top: 15px;
+}
+
+.profileinformation .form-margin {
+    margin-top: 20px;
+}
+
+.profileinformation .form-margin:last-child {
+    margin-bottom: 0px;
+}
+
+.project-logo-background {
+    position: absolute;
+    left: calc(50% - 100px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+#vote {
+    display: none;
+}
+
+#createdcontent #vote {
+    display: inline-block;
+}
+
+#createdcontent .actions {
+    display: none;
+}
+
+.embed-container .actions {
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.embed-container .actions a {
+    display: inline-block;
+    text-align: center;
+    background: #eeeeee;
+    width: 100px;
+    height: 100px;
+    font-size: 24px;
+    margin-right: 10px;
+    line-height: 100px;
+}
+
+.embed-container .actions a:last-child {
+    margin-right: 0;
+    margin-left: 10px;
+}

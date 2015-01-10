@@ -223,6 +223,18 @@ module.exports = function (app, passport) {
         });
     });
 
+    app.get('/api/profilesemesters/:_id', function (req, res) {
+        Semester.find({
+            profileid: req.params._id
+        }, function (err, semesters) {
+            if (err) {
+                res.send(err);
+            }
+
+            res.json(semesters);
+        })
+    })
+
 };
 
 /**
