@@ -1,39 +1,78 @@
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="imageform" enctype="multipart/form-data"> 
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="imageModalLabel">Profile image</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <input id="inputImage" type="file" accept="image/*" name="image">
+
+                        <img ng-show="image" ng-src="{{ image.url }}" type="{{ image.file.type }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button uploadimageform type="submit" class="btn btn-primary">Use image</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="container">
-    <form name="ProfileForm">
-    <p>ID: {{user._id}}</p>
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" value="{{user.name}}">
+    <div class="project-actions">
+        <a saveportfolio href="#" id="save-portfolio" class="save-project btn btn-default text-center">Save Portfolio</a>
+    </div>
+</div>
+
+<div class="profileinformation clearfix text-center">
+
+    <div ng-show="user.picture" data-toggle="modal" data-target="#imageModal" class="image select-image"><img ng-src="{{ user.picture }}"></div>
+
+    <div ng-hide="user.picture" data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="profile-background"><i class="fa fa-picture-o"></i></div></div>
+
+    <div class="col-xs-4 col-xs-offset-4 text-left form-margin">
+        <div class="col-xs-6">
+            <label for="firstname">Firstname</label>
+            <div firstnameform id="firstnameedit"></div>
         </div>
-        <div multiple class="form-group">
-            <label for="profileSelect">What Profile have you chosen?</label>
-            <select id="profileSelect" class="form-control" multiple="multiple" >
-                <option ng-repeat="profile in profiles" value="{{profile._id}}">{{profile.name}}</option>
-            </select>
+
+        <div class="col-xs-6">
+            <label for="lastname">Lastname</label>
+            <div lastnameform id="lastnameedit"></div>
         </div>
-        <div multiple class="form-group">
-            <label for="semesterSelect">Which semesters have you done?</label>
-            <select id="semesterSelect" class="form-control" multiple="multiple" >
-                <option ng-repeat="semester in semesters" value="{{semester._id}}">{{semester.name}}</option>
-            </select>
+    </div>
+
+    <div class="col-xs-4 col-xs-offset-4 text-left form-margin">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <label for="profile">Profile</label>
+                <select class="form-control" ng-model="user.profileid" id="profile" required>
+                    <option ng-repeat="profile in profiles" value="{{ profile._id }}">{{ profile.name }}</option>
+                </select>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="startingYear">Starting Year</label>
-            <input type="text" class="form-control" id="startingYear" placeholder="What year did you start?">
+    </div>
+
+    <div class="col-xs-8 col-xs-offset-2 text-left">
+        <div class="col-xs-12 form-group">
+            <label for="bio">Bio</label>
+            <div bioform id="bioedit"></div>
         </div>
-        <div class="form-group">
-            <label for="content">Tell something about yourself</label>
-            <input type="text" class="form-control" id="content" value="{{user.description}}">
-        </div>
-        <div class="form-group">
-            <label for="content">What are your skills?</label>
-            <input type="text" class="form-control" id="content" placeholder="">
-        </div>
-        <div class="form-group">
-            <span>Cover Photo</span><input type="file" class="filestyle" data-input="false">
-            <span>Profile Picture</span><input type="file" class="filestyle" data-input="false">
-            <span>Other pictures</span><input type="file" class="filestyle" data-input="false">
-        </div>
-        <a href="/profile" class="btn btn-default" >Cancel</a>
-    </form>
+    </div>
+</div>
+
+<hr>
+
+<h3>Projecten (Pjotr needs to put them in here)</h3>
+
+<div class="row">
+    <div class="col-xs-2" ng-repeat="project in projects">
+        <a href="" ng-click="editProject(project._id)">Edit</a>
+        <a href="" ng-click="removeProject(project._id)">Delete</a>
+    </div> 
 </div>

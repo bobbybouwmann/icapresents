@@ -4,22 +4,42 @@
             <form id="imageform" enctype="multipart/form-data"> 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="imageModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="imageModalLabel">Upload image</h4>
                 </div>
                 <div class="modal-body">
-                    <h2>Upload Image</h2>
-
                     <div>
-                        <label for="inputImage">Image</label>
                         <input id="inputImage" type="file" accept="image/*" name="image">
 
                         <img ng-show="image" ng-src="{{ image.url }}" type="{{ image.file.type }}">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button uploadimageform type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button uploadimageform type="submit" class="btn btn-primary">Use image</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
+<div class="modal fade" id="logoModal" tabindex="-1" role="dialog" aria-labelledby="logoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="logoform" enctype="multipart/form-data"> 
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="logoModalLabel">Logo</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <input id="inputImage" type="file" accept="image/*" name="image">
+
+                        <img ng-show="image" ng-src="{{ image.url }}" type="{{ image.file.type }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button uploadlogoform type="submit" class="btn btn-primary">Use logo</button>
                 </div>
             </form>
         </div>
@@ -31,14 +51,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="textModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="textModalLabel">Write Text</h4>
             </div>
             <div class="modal-body">
                 <textarea textform name="content" id="edit"></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button uploadtextform id="submittextform" type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button uploadtextform id="submittextform" type="button" class="btn btn-primary">Use text</button>
             </div>
         </div>
     </div>
@@ -49,15 +69,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="youtubeModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="youtubeModalLabel">Embed YouTube</h4>
             </div>
             <div class="modal-body">
                 <p>YouTube link:</p>
-                <input type="url" id="youtubeinput">
+                <input class="form-control" type="url" id="youtubeinput">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button uploadyoutubeform id="submityoutubeform" type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button uploadyoutubeform id="submityoutubeform" type="button" class="btn btn-primary">Use YouTube link</button>
             </div>
         </div>
     </div>
@@ -94,16 +114,15 @@
 <div class="container">
     
     <div class="project-actions">
-        <a menuside href="#" class="menu-toggle btn btn-default pull-left">Toggle Menu</a>
+        <a menuside href="#" class="menu-toggle btn btn-default pull-left">Layout options</a>
 
-        <a updatecontent href="#" id="save-project" class="save-project btn btn-default text-center">Save</a>
+        <a saveproject href="#" id="save-project" class="save-project btn btn-default text-center">Save Project</a>
 
         <div class="form-group projectsemesterform">
 
             <select class="form-control" ng-model="formData.semesterid" id="projectsemester">
-                <option value="">Please select a semester or project type</option>
+                <option value="">Please select a semester</option>
                 <option value="" disabled>-----------------------------------------------</option>
-                <option value="-1">Private project</option>
                 <option ng-selected="{{ project.semesterid == semester._id }}" ng-repeat="semester in semesters" value="{{ semester._id }}">{{ semester.name }}</option>
             </select>
             
@@ -113,16 +132,28 @@
 
 </div>
 
+<div class="container">
+    <div class="alert alert-danger error-title alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <strong>Oeps!</strong> You need to have an awesome project name!
+    </div>
+
+    <div class="alert alert-danger error-semester alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <strong>Oeps!</strong> To make the site really useful you need to pick a semester in right corner!
+    </div>
+</div>
+
 <div id="project-content">
 
     <div class="page-header text-center ng-scope">
         <div class="header-image">
             <!-- <div> -->
-                <div data-toggle="modal" data-target="#imageModal" class="image select-image"><i class="fa fa-plus-circle"></i> image banner</div>
+                <div data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="banner-background"><i class="fa fa-picture-o"></i></div></div>
             <!-- </div> -->
             <div class="project-logo">
                 <!-- <div>  -->
-                    <div data-toggle="modal" data-target="#imageModal" class="image select-image"><i class="fa fa-plus-circle"></i> logo</div>
+                    <div data-toggle="modal" data-target="#logoModal" class="image select-image"><div class="logo-background"><i class="fa fa-picture-o"></i></div></div>
                 <!-- </div> -->
             </div>
         </div>
@@ -130,9 +161,9 @@
 
     <div class="container">
 
-        <a href="#" id="vote" data-id="{{ project._id }}" class="vote btn btn-default text-center">Vote</a>
+        <a href="#" id="vote" data-id="{{ project._id }}" class="vote"><i class="fa fa-heart"></i></a>
 
-        <div simpletextform id="simpleedit" class="project-title-edit"></div>
+        <div simpletextform id="simpleedit" class="project-title-edit"></div> 
     
         <div class="project-layouts" id="project-layouts">
         

@@ -1,18 +1,22 @@
-<!-- Change pictures to angular -->
-<div class="page-header text-center">
-	<div class="header-image">
-        <div class="project-logo">
-            <img src="http://lorempixel.com/200/200" alt="">
+<div class="header-image-profile text-center">
+    <img ng-src="{{ user.picture }}">
+
+    <h2>{{ user.firstname }} {{ user.lastname }}</h2>
+    <p><i>{{ profile.name }}</i></p>
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <div showbio></div>
         </div>
     </div>
 </div>
 
-<div class="container">  
-    <div class="description text-center">
-        <h2>{{ user.firstname }} {{ user.lastname }}</h2>
-        <p>{{ profile.name }}</p>
-        <p>{{ user.bio }}</p>
-    </div>
-</div>
+<hr>
 
 <h3>Projecten (Pjotr needs to put them in here)</h3>
+
+<div class="row">
+    <div class="col-xs-2" ng-repeat="project in projects">
+        <a href="" ng-click="editProject(project._id)">Edit</a>
+        <a href="" ng-click="removeProject(project._id)">Delete</a>
+    </div> 
+</div>

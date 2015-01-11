@@ -10,7 +10,8 @@ var mongoose = require('mongoose');
  */
 var profileSchema = mongoose.Schema({
     name: String,
-    description: String
+    description: String,
+    main: String
 });
 
 /**

@@ -1,20 +1,13 @@
 // app/routes/project.js
 
-/**
- * Global variables
- */
-var i = 0;
-
-/**
- * Model dependencies
- */
+// Model dependencies
 var Project = require('./../models/project');
 var User = require('./../models/user');
 
 /**
- * Expose project routes
+ * Expose project routes.
  */
-module.exports = function(app, passport) {
+module.exports = function(app) {
 
     /**
      * Get all the projects from the database.
@@ -32,6 +25,7 @@ module.exports = function(app, passport) {
     /**
      * Create a project based on the data provided in the request 
      * and save it in the database.
+     * 
      * @see isLoggedInAjax()
      */
     app.post('/api/projects', isLoggedInAjax, function (req, res) {
@@ -88,6 +82,7 @@ module.exports = function(app, passport) {
     /**
      * Update a project based on the id provided in the request url and 
      * the data provided in the request.
+     * 
      * @see isLoggedInAjax()
      */
     app.put('/api/projects/:_id', isLoggedInAjax, function (req, res) {
@@ -125,6 +120,7 @@ module.exports = function(app, passport) {
     
     /**
      * Delete a project based on the id provided in the request.
+     * 
      * @see isLoggedInAjax()
      */
     app.delete('/api/projects/:_id', isLoggedInAjax, function (req, res) {
@@ -145,6 +141,9 @@ module.exports = function(app, passport) {
         });
     });
 
+    /**
+     * Increase the vote of a project based on the id provided in the request.
+     */
     app.post('/api/projects/votes/:_id', function (req, res, done) {
         Project.findById(req.params._id, function (err, project) {
             if (err) {
@@ -165,7 +164,8 @@ module.exports = function(app, passport) {
 };
 
 /**
- * Middleware to check if the user is logged in using ajax get request
+ * Middleware to check if the user is logged in using ajax get request.
+ * 
  * @param  {Object}   req  Request object
  * @param  {Object}   res  Response object
  * @param  {Function} next Next route

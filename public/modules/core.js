@@ -2,9 +2,11 @@
 
 /**
  * Expose application dependencies
+ *
+ * @main app
  */
 (function() {
     
-    angular.module('app', ['ngRoute', 'login', 'admin', 'profile', 'imageuploadfile', 'project', 'collection', 'test', 'home', 'footer', 'pages', 'httpFactory', 'common-directives', 'angular-growl']);
+    angular.module('app', ['ngRoute', 'angular-growl', 'httpFactory', 'admin', 'footer', 'home', 'login', 'pages', 'profile', 'profiles', 'project', 'directives']);
 
 })();

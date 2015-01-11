@@ -1,118 +1,15 @@
-// app/routes/admin.js
+// app/routes/semester.js
 
 /**
  * Model dependencies
  */
-var Profile = require('./../models/profile');
 var Semester = require('./../models/semester');
 
 /**
- * Expose admin routes
+ * Expose semester routes
  */
-module.exports = function (app, passport) {
-
-    /**
-     * Get all the profile from the database.
-     */
-    app.get('/api/profiles', function (req, res) {
-        Profile.find(function (err, profiles) {
-            if (err) {
-                return res.send(err);
-            }
-
-            res.json(profiles);
-        });
-    });
-
-    /**
-     * Create a profile based on the data provided in the request
-     * * and save it in the database.
-     * @see isLoggedInAjax()
-     */
-    app.post('/api/profiles', isLoggedInAjax, function (req, res) {
-        Profile.create({
-            name: req.body.name,
-            description: req.body.description            
-        }, function (err, profile) {
-            if (err) {
-                res.send(err);
-            }
-
-            Profile.find(function(err, profiles) {
-                if (err) {
-                    res.send(err);
-                }
-
-                res.json(profiles);
-            });
-        });
-    });
-
-    /**
-     * Get a profile based on the id provided in the request url
-     */
-    app.get('/api/profiles/:_id', function (req, res) {
-        Profile.findById(req.params._id, function (err, profile) {
-            if (err) {
-                res.send(err);
-            }
-
-            res.json(profile);
-        });
-    });
-
-    /**
-     * Update a profile based on the id provided in the request url and 
-     * the data provided in the request.
-     * @see isLoggedInAjax()
-     */
-    app.put('/api/profiles/:_id', isLoggedInAjax, function (req, res) {
-        Profile.findById(req.params._id, function (err, profile) {
-            if (err) {
-                res.send(err);
-            }
-
-            profile.name = req.body.name;
-            profile.description = req.body.description;
-
-            profile.save(function (err) {
-                if (err) {
-                    res.send(err);
-                }
-
-                Profile.find(function(err, profiles) {
-                    if (err) {
-                        res.send(err);
-                    }
-
-                    res.json(profiles);
-                });
-            });            
-        }); 
-    });
-
-    /**
-     * Delete a profile based on the id provided in the request url.
-     * @see isLoggedInAjax()
-     */
-    app.delete('/api/profiles/:_id', isLoggedInAjax, function (req, res) {
-        Profile.remove({
-            _id: req.params._id
-        }, function (err, profile) {
-            if (err) {
-                res.send(err);
-            }
-
-            Profile.find(function(err, profiles) {
-                if (err) {
-                    res.send(err);
-                }
-
-                res.json(profiles);
-            });
-        });
-    });
-
+module.exports = function (app) {
+    
     /**
      * Get all the semesters from the database.
      */
@@ -135,9 +32,7 @@ module.exports = function (app, passport) {
         Semester.create({
             name: req.body.name,
             description: req.body.description,
-            profileid: req.body.profileid,
-            startdate: new Date(req.body.startdate),
-            enddate: new Date(req.body.enddate)
+            profileid: req.body.profileid
         }, function (err, semester) {
             if (err) {
                 res.send(err);
@@ -180,8 +75,6 @@ module.exports = function (app, passport) {
             semester.name = req.body.name;
             semester.description = req.body.description;
             semester.profileid = req.body.profileid;
-            semester.startdate = new Date(req.body.startdate);
-            semester.enddate = new Date(req.body.enddate);
 
             console.log(semester);
 
@@ -222,6 +115,18 @@ module.exports = function (app, passport) {
             });
         });
     });
+
+    app.get('/api/profilesemesters/:_id', function (req, res) {
+        Semester.find({
+            profileid: req.params._id
+        }, function (err, semesters) {
+            if (err) {
+                res.send(err);
+            }
+
+            res.json(semesters);
+        })
+    })
 
 };
 

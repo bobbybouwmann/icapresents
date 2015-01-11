@@ -6,16 +6,14 @@
 
     $('.menu-toggle-right').bind('click', function () {
         $('body').toggleClass('menu-open-right');
-    });   
-     
-     
+    }); 
 
 });
 
 $(document).on('click', '.add-layout-image', function () {
     var $newdiv = $('<div class="layout layout-image row">' + 
-                        '<div class="remove-layout"><i class="fa fa-times"></i></div>' + 
-                        '<div class="col-xs-12"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><i class="fa fa-plus-circle"></i><i class="fa fa-plus-circle"></i> image</div></div>' + 
+                        '<div class="remove-layout"><i class="fa fa-trash"></i></div>' + 
+                        '<div class="col-xs-12"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="image-background"><i class="fa fa-picture-o"></i></div></div></div>' + 
                     '</div>');
 
     $('#project-layouts').append($newdiv);
@@ -25,9 +23,9 @@ $(document).on('click', '.add-layout-image', function () {
 
 $(document).on('click', '.add-layout-image-text', function () {
     var $newdiv = $('<div class="layout layout-image-text row">' + 
-                        '<div class="remove-layout"><i class="fa fa-times"></i></div>' + 
-                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><i class="fa fa-plus-circle"></i> image</div></div>' + 
-                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#textModal" class="text select-text"><i class="fa fa-plus-circle"></i> text</div></div>' + 
+                        '<div class="remove-layout"><i class="fa fa-trash"></i></div>' + 
+                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="image-background"><i class="fa fa-picture-o"></i></div></div></div>' + 
+                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#textModal" class="text select-text"><div class="text-background"><i class="fa fa-align-left"></i></div></div></div>' + 
                     '</div>');
 
     $('#project-layouts').append($newdiv);
@@ -37,9 +35,9 @@ $(document).on('click', '.add-layout-image-text', function () {
 
 $(document).on('click', '.add-layout-text-image', function () {
     var $newdiv = $('<div class="layout layout-image-text row">' + 
-                        '<div class="remove-layout"><i class="fa fa-times"></i></div>' + 
-                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#textModal" class="text select-text"><i class="fa fa-plus-circle"></i> text</div></div>' + 
-                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><i class="fa fa-plus-circle"></i> image</div></div>' + 
+                        '<div class="remove-layout"><i class="fa fa-trash"></i></div>' + 
+                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#textModal" class="text select-text"><div class="text-background"><i class="fa fa-align-left"></i></div></div></div>' + 
+                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="image-background"><i class="fa fa-picture-o"></i></div></div></div>' + 
                     '</div>');
 
     $('#project-layouts').append($newdiv);
@@ -49,8 +47,7 @@ $(document).on('click', '.add-layout-text-image', function () {
 
 $(document).on('click', '.add-layout-video', function () {
     var $newdiv = $('<div class="layout layout-video row">' + 
-                        '<div class="remove-layout"><i class="fa fa-times"></i></div>' + 
-                        '<div class="col-xs-12"><div data-toggle="modal" data-target="#youtubeModal" class="youtube select-youtube"><i class="fa fa-plus-circle"></i> youtube</div></div>' +
+                        '<div class="col-xs-12"><div data-toggle="modal" data-target="#youtubeModal" class="youtube select-youtube"><div class="youtube-background"><i class="fa fa-youtube-play"></i></div></div></div>' +
                     '</div>');
 
     $('#project-layouts').append($newdiv);
@@ -61,6 +58,10 @@ $(document).on('click', '.add-layout-video', function () {
 /**
  * @todo Remove images if layout is removed
  */
+$(document).on('click', '.remove-youtube', function () {
+    $(this).parent().parent().parent().parent().remove();
+});
+
 $(document).on('click', '.remove-layout', function () {
     $(this).parent().remove(); 
 });
@@ -76,10 +77,8 @@ $(document).on('click', '.select-text', function () {
     $(this).addClass('update-to-text');
     $(this).attr('id', 'update-to-text');
 
-    var html = $('#update-to-text').html();
-    html = html.replace(new RegExp('<i class="fa fa-plus-circle"></i> text'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), '');
-
-    $('#edit').editable('setHTML', html, false);
+    $('#update-to-text .text-background').remove();
+    $('#edit').editable('setHTML', $('#update-to-text').html(), false);
 });
 
 $(document).on('click', '.select-youtube', function () {

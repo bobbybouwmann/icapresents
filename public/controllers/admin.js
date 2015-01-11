@@ -1,12 +1,17 @@
 // public/controllers/admin.js
 
 /**
- * Expose admin controllers and routes
+ * Expose admin controllers and user admin routes
  */
 (function() {
 
     angular.module('admin', [])
+
         .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+            
+            /**
+             * Check if the current user is logged in as an admin.
+             */
             var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
                 var deferred = $q.defer();
 
@@ -25,17 +30,20 @@
                 return deferred.promise;
             };
 
+            /**
+             * Admin routes
+             */
             $routeProvider
                 .when('/admin', {
                     templateUrl: '/views/adminpanel.html',
-                    controller: 'AdminPanelController',
+                    controller: 'AdminController',
                     resolve: {
                         loggedin: checkLoggedin
                     }
                 })
                 .when('/admin/editproject/:_id', {
                     templateUrl: '/views/editproject.html',
-                    controller: 'AdminPanelEditProjectController',
+                    controller: 'AdminEditProjectController',
                     resolve: {
                         loggedin: checkLoggedin
                     }
@@ -43,7 +51,11 @@
 
             $locationProvider.html5Mode({ enabled: true, requireBase: false });
         }])
-        .controller('AdminPanelEditProjectController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
+        
+        /**
+         * Edit a project as an admin. 
+         */
+        .controller('AdminEditProjectController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
             var id = $routeParams._id;
 
             $http.get('/api/semesters')
@@ -56,9 +68,24 @@
                     $scope.project = data.project;
                 });
         }])
-        .controller('AdminPanelController', ['$http', '$scope', '$routeParams', '$filter', '$location', function ($http, $scope, $routeParams, $filter, $location) {
+
+        /**
+         * Fill the $scope with data from the database and provide
+         * functions to update that data. 
+         */
+        .controller('AdminController', ['$http', '$scope', '$routeParams', '$filter', '$location', '$rootScope', function ($http, $scope, $routeParams, $filter, $location, $rootScope) {
             var orderBy = $filter('orderBy');
             var tab = 1;
+
+            $scope.mainprofiles = [{
+                number: 1, name: 'Business IT & Management'
+            }, {
+                number: 2, name: 'Communication & Multimedia Design'
+            }, {
+                number: 3, name: 'Informatics'
+            }, {
+                number: 4, name: 'Technical Informatics'
+            }];
 
             $scope.showEditProfile = false;
             $scope.showEditSemester = false;
@@ -245,22 +272,9 @@
                     });
             };
 
-            $scope.getProjectData = function (id) {
+            $scope.editProject = function (id) {
                 $location.path('/admin/editproject/' + id);
             };
-
-            $scope.editProject = function () {
-                $http.put('/api/semesters/' + $scope.project._id, $scope.project)
-                    .success (function (data) {
-                        $scope.project = "";
-                        $scope.showEditProject = false;
-                    })
-                    .error (function (data){
-                        console.log("error: " + data);
-                    });
-            };
-
-            
         }]);
 
 })();
