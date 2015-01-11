@@ -1,3 +1,8 @@
+// public/controllers/pages.js
+
+/**
+ * Expose routes for simple pages
+ */
 (function() {
     
     angular.module('pages', [])
@@ -5,13 +10,17 @@
             $routeProvider    
                 .when('/about', {
                     templateUrl: '/views/about.html',
-                    controller: 'AboutController',
-                    controllerAs: 'about'
-                })
+                    controller: 'AboutController'
+                });
 
             $locationProvider.html5Mode({ enabled: true, requireBase: false });
         }])
+
+        /**
+         * Controller for the About page (empty at this time)
+         */
         .controller('AboutController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
-            //Custom Profile functionality
+            // No extra functions yet
         }]);
+        
 })();

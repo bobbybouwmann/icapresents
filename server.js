@@ -1,5 +1,9 @@
+// server.js
+
+/**
+ * Module dependencies
+ */
 var express = require('express');
-var app = express();
 var multer = require('multer');
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -10,15 +14,39 @@ var methodOverride = require('method-override');
 var session = require('express-session');
 var request = require('request');
 
+/**
+ * Initialize application
+ */
+var app = express();
+
+/** 
+ * Set environment
+ */
 var env = process.env.NODE_ENV || 'development';
+
+/**
+ * Set port
+ */
 var port = process.env.PORT || 3000;
+
+/**
+ * Get databae configuration
+ */
 var database = require('./config/database.js');
 
-mongoose.connect(database[env]); // connect to our database
+/**
+ * Connect to the database
+ */
+mongoose.connect(database[env]);
 
-require('./config/passport')(passport); // pass passport for configuration
+/**
+ * Configure passport
+ */
+require('./config/passport')(passport);
 
-// set up express application
+/**
+ * Set up application
+ */
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(multer({
@@ -27,24 +55,37 @@ app.use(multer({
 app.use(bodyParser());
 app.use(methodOverride());
 
-// required for passport
-app.use(session({ secret: 'yoursecretsession' })); // session secret
+/**
+ * Set session for passport and initialize passport
+ */
+app.use(session({ secret: 'yoursecretsession' }));
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-
-app.use(express.static(__dirname + '/public'))
-// routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-require('./app/routes/project.js')(app, passport); // Load the routes for projects.
-require('./app/routes/admin.js')(app, passport); // Load the routes for the admin.
+app.use(passport.session());
 
 /**
- * Default route.
+ * Set public path for user
+ */
+app.use(express.static(__dirname + '/public'))
+
+/**
+ * Routes
+ */
+require('./app/routes/user.js')(app, passport); // Load the routes for users
+require('./app/routes/project.js')(app); // Load the routes for projects
+require('./app/routes/profile.js')(app); // Load the routes for profiles
+require('./app/routes/semester.js')(app); // Load the routes for semesters
+require('./app/routes/image.js')(app); // Load the routes for images
+
+/**
+ * If everything fails use default route
  */
 app.get('*', function(req, res) {
     res.sendfile('./public/views/index.html');
 });
 
+/**
+ * Generate admin user if it doesn't exist
+ */
 request.get('http://localhost:3000/api/countUsers', function (err, response, body) {
     if (err) {
         console.log('Error: ' + err);
@@ -61,15 +102,14 @@ request.get('http://localhost:3000/api/countUsers', function (err, response, bod
             if (err) {
                 console.log('Error: ' + err);
             }
-            
-            console.log(body);
         });
     }
 });
 
-// launch ======================================================================
+/**
+ * Launch application on the configurated port
+ */
 app.listen(port);
-console.log('ready captain, on deck ' + port);
 
 /**
  * Expose application

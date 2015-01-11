@@ -4,7 +4,9 @@
  * Expose common directives
  */
 (function(){
-    angular.module('common-directives', [])
+
+    angular.module('directives', [])
+    
         .directive('redir', ['$http', function ($http) {
             return {
                 restrict: 'A',
@@ -346,7 +348,7 @@
                             var content = $('#project-content').html();
                             content = content.replace(new RegExp('src="images/uploads/'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 'g'), 'src="localhost:3000/images/uploads/');
 
-                            var logo = $('.project-logo .project-logo-background').css('background-image');
+                            var logo = $('.project-logo-background').css('background-image');
                             logo = logo.replace('url(', '').replace(')', '');
 
                             $scope.formData.logo = logo;
