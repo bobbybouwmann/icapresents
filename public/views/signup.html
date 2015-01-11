@@ -4,22 +4,17 @@
             <form id="imageform" enctype="multipart/form-data"> 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="imageModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="imageModalLabel">Profile image</h4>
                 </div>
                 <div class="modal-body">
-                    <h2>Upload Image</h2>
-
                     <div>
-                        <label for="inputImage">Image</label>
                         <input id="inputImage" type="file" accept="image/*" name="image">
-
                         <img ng-show="image" ng-src="{{ image.url }}" type="{{ image.file.type }}">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button uploadimageprofileform type="submit" class="btn btn-primary">Save changes</button>
-
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button uploadimageprofileform type="submit" class="btn btn-primary">Use image</button>
                 </div>
             </form>
         </div>

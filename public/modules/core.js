@@ -7,6 +7,6 @@
  */
 (function() {
     
-    angular.module('app', ['ngRoute', 'login', 'admin', 'profile', 'project', 'collection', 'profiles', 'test', 'home', 'footer', 'pages', 'httpFactory', 'common-directives', 'angular-growl']);
+    angular.module('app', ['ngRoute', 'angular-growl', 'httpFactory', 'admin', 'footer', 'home', 'login', 'pages', 'profile', 'profiles', 'project', 'directives']);
 
 })();

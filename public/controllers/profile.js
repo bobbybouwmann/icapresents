@@ -6,6 +6,7 @@
 (function() {
     
     angular.module('profile', [])
+        
         .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
             $routeProvider    
                 .when('/profile', {
@@ -21,6 +22,10 @@
 
             $locationProvider.html5Mode({ enabled: true, requireBase: false });
         }])
+
+        /**
+         * Show the profile of the current logged in user.
+         */
         .controller('ProfileController', ['$http', '$scope', '$routeParams', '$location', function($http, $scope, $routeParams, $location) {
             $http.get('/api/userData')
                 .success (function (data) {
@@ -36,6 +41,12 @@
                     console.log("error:" + data);
                 });
         }])
+
+        /**
+         * Show the edit profile page of the current logged in user and
+         * provide the user with some functions to edit their profile 
+         * and the project which belong to them.
+         */
         .controller('ProfileEditController', ['$http', '$scope', '$routeParams', '$location', '$route', function($http, $scope, $routeParams, $location, $route) {
             $http.get('/api/userData')
                 .success(function(data) {

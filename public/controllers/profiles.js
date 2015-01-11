@@ -6,6 +6,7 @@
 (function() {
     
     angular.module('profiles', [])
+        
         .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
             $routeProvider    
                 .when('/profiles', {
@@ -19,6 +20,10 @@
 
             $locationProvider.html5Mode({ enabled: true, requireBase: false });
         }])
+
+        /**
+         * Show all the profiles
+         */
         .controller('ProfilesController', ['$http', '$scope', '$routeParams', '$location', function ($http, $scope, $routeParams, $location) {
             $http.get('/api/profiles')
                 .success (function (data) {
@@ -28,6 +33,10 @@
                     console.log('error: ' + data);
                 });
         }])
+
+        /**
+         * Show all the semesters that belong to the id of the clicked profile.
+         */
         .controller('SemesterController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
             var id = $routeParams._id;
 
@@ -38,6 +47,6 @@
                 .error (function (data) {
                     console.log('error: ' + data);
                 });
-
         }]);
+        
 })();

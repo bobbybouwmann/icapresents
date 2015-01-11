@@ -32,7 +32,8 @@ module.exports = function(passport) {
     });
 
     /**
-     * Passport local login
+     * Passport local login. Find the user by it's email and 
+     * check if the password is valid. If so return the user.
      */
     passport.use('local-login', new LocalStrategy({
         usernameField: 'email', 
@@ -71,7 +72,9 @@ module.exports = function(passport) {
     }));
 
     /**
-     * Passport local signup
+     * Passport local signup. First check if user exists. 
+     * If not create a new user and hash the password.
+     * After that return the user.
      */
     passport.use('local-signup', new LocalStrategy({
         usernameField: 'email',

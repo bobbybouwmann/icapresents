@@ -1,12 +1,17 @@
 // public/controllers/admin.js
 
 /**
- * Expose admin controllers and routes
+ * Expose admin controllers and user admin routes
  */
 (function() {
 
     angular.module('admin', [])
+
         .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+            
+            /**
+             * Check if the current user is logged in as an admin.
+             */
             var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
                 var deferred = $q.defer();
 
@@ -25,6 +30,9 @@
                 return deferred.promise;
             };
 
+            /**
+             * Admin routes
+             */
             $routeProvider
                 .when('/admin', {
                     templateUrl: '/views/adminpanel.html',
@@ -43,6 +51,10 @@
 
             $locationProvider.html5Mode({ enabled: true, requireBase: false });
         }])
+        
+        /**
+         * Edit a project as an admin. 
+         */
         .controller('AdminEditProjectController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
             var id = $routeParams._id;
 
@@ -56,9 +68,12 @@
                     $scope.project = data.project;
                 });
         }])
-        .controller('AdminController', ['$http', '$scope', '$routeParams', '$filter', '$location', '$rootScope', function ($http, $scope, $routeParams, $filter, $location, $rootScope) {
-            console.log($rootScope.loggedin);
 
+        /**
+         * Fill the $scope with data from the database and provide
+         * functions to update that data. 
+         */
+        .controller('AdminController', ['$http', '$scope', '$routeParams', '$filter', '$location', '$rootScope', function ($http, $scope, $routeParams, $filter, $location, $rootScope) {
             var orderBy = $filter('orderBy');
             var tab = 1;
 
@@ -260,7 +275,6 @@
             $scope.editProject = function (id) {
                 $location.path('/admin/editproject/' + id);
             };
-            
         }]);
 
 })();

@@ -6,12 +6,8 @@ var User = require('./../models/user');
 
 /**
  * Expose project routes.
- *
- * @param {Object} app Application object.
- * @param {Object} passport Passport object.
- * @module app
  */
-module.exports = function(app, passport) {
+module.exports = function(app) {
 
     /**
      * Get all the projects from the database.
