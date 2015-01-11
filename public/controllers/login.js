@@ -18,11 +18,6 @@
                     controller: 'LoginController',
                     controllerAs: 'login',
                     caseInsensitiveMatch: true
-                })
-                .otherwise({
-                    templateUrl: '/views/landing.html',
-                    controller: 'IndexController',
-                    controllerAs: 'index'
                 });
 
             $locationProvider.html5Mode({ enabled: true, requireBase: false });

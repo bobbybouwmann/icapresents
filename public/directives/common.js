@@ -288,7 +288,7 @@
                 }
             };
         }])
-        .directive('updatecontent', ['$http', '$location', function ($http, $location) {
+        .directive('saveproject', ['$http', '$location', function ($http, $location) {
             return {
                 restrict: 'A',
                 link: function ($scope, element, attrs) {
@@ -303,8 +303,10 @@
                             $('.error-semester').show();
                             $('#projectsemester').css('borderColor', '#e74c3c');
                         } else {
-                            $('.error-title').hide();
-                            
+                            $('#simpleedit .fr-placeholder').css('color', '');
+                            $('#simpleedit .froala-wrapper').css('borderBottom', '');
+                            $('#projectsemester').css('borderColor', '');
+
                             var logo = $('.project-logo .project-logo-background').css('background-image');
                             logo = logo.replace('url(', '').replace(')', '');
 
@@ -329,7 +331,7 @@
                 }
             };
         }])
-        .directive('updateeditcontent', ['$http', '$location', function ($http, $location) {
+        .directive('saveeditproject', ['$http', '$location', function ($http, $location) {
             return {
                 restrict: 'A',
                 link: function ($scope, element, attrs) {

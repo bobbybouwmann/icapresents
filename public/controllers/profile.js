@@ -13,13 +13,9 @@
                     controller: 'ProfileController',
                     controllerAs: 'profile'
                 })
-                .when('/profile/:_id', {
-                    templateUrl: '/views/profile.html',
-                    controller: 'ProfileIdController'
-                })
                 .when('/editprofile', {
                     templateUrl: '/views/editprofile.html',
-                    controller: 'EditProfileController',
+                    controller: 'ProfileEditController',
                     controllerAs: 'editprofile'
                 });                
 
@@ -40,19 +36,7 @@
                     console.log("error:" + data);
                 });
         }])
-        .controller('ProfileIdController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
-            var id = $routeParams._id;
-
-            $http.get('/api/users/' + id)
-                .success (function (data) {
-                    $scope.user = data.user;
-                    $scope.projects = data.projects;
-                })
-                .error (function (data) {
-                    console.log("error:" + data);
-                });
-        }])
-        .controller('EditProfileController', ['$http', '$scope', '$routeParams', '$location', '$route', function($http, $scope, $routeParams, $location, $route) {
+        .controller('ProfileEditController', ['$http', '$scope', '$routeParams', '$location', '$route', function($http, $scope, $routeParams, $location, $route) {
             $http.get('/api/userData')
                 .success(function(data) {
                     $scope.user = data.user;
