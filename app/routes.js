@@ -16,6 +16,9 @@ var Project = require('./models/project');
 
 /**
  * Expose routes
+ *
+ * @param {Object} app Express configurated Object.
+ * @param {Object} passport Passport configurated Object.
  */
 module.exports = function(app, passport) {
 
@@ -57,6 +60,9 @@ module.exports = function(app, passport) {
     /**
      * Sign the user up based on their input using Passport.
      * Return an error message when something went wrong. 
+     *
+     * @method post
+     * @return {JSON} Returns the redirect string for AngularJS's httpFactory module.
      */
 	app.post('/signup', function(req, res, next) {
 	    if (!req.body.email || !req.body.password) {

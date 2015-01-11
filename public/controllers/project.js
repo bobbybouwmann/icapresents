@@ -29,30 +29,30 @@
         $routeProvider
             .when('/addproject', {
                 templateUrl: '/views/addproject.html',
-                controller: 'AddProjectController',
+                controller: 'ProjectAddController',
                 resolve: {
                     loggedin: checkLoggedin
                 }
             })
             .when('/projects', {
                 templateUrl: '/views/projects.html',
-                controller: 'ViewProjectsController'
+                controller: 'ProjectsViewController'
             })
             .when('/editproject/:_id', {
                 templateUrl: '/views/editproject.html',
-                controller: 'EditProjectController',
+                controller: 'ProjectEditController',
                 resolve: {
                     loggedin: checkLoggedin
                 }
             })
             .when('/project/:_id', {
                 templateUrl: '/views/project.html',
-                controller: 'ViewProjectController'
+                controller: 'ProjectViewController'
             });
             
         $locationProvider.html5Mode({ enabled: true, requireBase: false });
     }])
-    .controller('AddProjectController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
+    .controller('ProjectAddController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
         $scope.formData = { 
             title: '',
             semesterid: '',
@@ -66,7 +66,7 @@
                 $scope.semesters = data;
             });
     }])
-    .controller('ViewProjectsController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
+    .controller('ProjectsViewController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
         $http.get('/api/projects')
             .success (function (data) {
                 $scope.projects = data;
@@ -83,7 +83,7 @@
                 console.log("error: " + data);
             });
     }])
-    .controller('ViewProjectController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
+    .controller('ProjectViewController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
         var id = $routeParams._id;
 
         $http.get ('/api/projects/' + id)
@@ -95,7 +95,7 @@
                 console.log("error: " + data);
             }); 
     }])
-    .controller('EditProjectController', ['$http', '$scope', '$routeParams', '$location', function($http, $scope, $routeParams, $location) {
+    .controller('ProjectEditController', ['$http', '$scope', '$routeParams', '$location', function($http, $scope, $routeParams, $location) {
         var id = $routeParams._id;
 
         $http.get('/api/semesters')

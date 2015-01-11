@@ -28,14 +28,14 @@
             $routeProvider
                 .when('/admin', {
                     templateUrl: '/views/adminpanel.html',
-                    controller: 'AdminPanelController',
+                    controller: 'AdminController',
                     resolve: {
                         loggedin: checkLoggedin
                     }
                 })
                 .when('/admin/editproject/:_id', {
                     templateUrl: '/views/editproject.html',
-                    controller: 'AdminPanelEditProjectController',
+                    controller: 'AdminEditProjectController',
                     resolve: {
                         loggedin: checkLoggedin
                     }
@@ -43,7 +43,7 @@
 
             $locationProvider.html5Mode({ enabled: true, requireBase: false });
         }])
-        .controller('AdminPanelEditProjectController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
+        .controller('AdminEditProjectController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
             var id = $routeParams._id;
 
             $http.get('/api/semesters')
@@ -56,7 +56,7 @@
                     $scope.project = data.project;
                 });
         }])
-        .controller('AdminPanelController', ['$http', '$scope', '$routeParams', '$filter', '$location', '$rootScope', function ($http, $scope, $routeParams, $filter, $location, $rootScope) {
+        .controller('AdminController', ['$http', '$scope', '$routeParams', '$filter', '$location', '$rootScope', function ($http, $scope, $routeParams, $filter, $location, $rootScope) {
             console.log($rootScope.loggedin);
 
             var orderBy = $filter('orderBy');
@@ -257,21 +257,9 @@
                     });
             };
 
-            $scope.getProjectData = function (id) {
+            $scope.editProject = function (id) {
                 $location.path('/admin/editproject/' + id);
             };
-
-            $scope.editProject = function () {
-                $http.put('/api/semesters/' + $scope.project._id, $scope.project)
-                    .success (function (data) {
-                        $scope.project = "";
-                        $scope.showEditProject = false;
-                    })
-                    .error (function (data){
-                        console.log("error: " + data);
-                    });
-            };
-
             
         }]);
 
