@@ -18,7 +18,29 @@ $(document).on('click', '.add-layout-image', function () {
 
     $('#project-layouts').append($newdiv);
     $('body').removeClass('menu-open');
-    $('body').removeClass('menu-open-right');
+});
+
+$(document).on('click', '.add-layout-image-image', function () {
+    var $newdiv = $('<div class="layout layout-image-image row">' + 
+                        '<div class="remove-layout"><i class="fa fa-trash"></i></div>' + 
+                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="image-background"><i class="fa fa-picture-o"></i></div></div></div>' + 
+                        '<div class="col-xs-12 col-sm-6"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="image-background"><i class="fa fa-picture-o"></i></div></div></div>' + 
+                    '</div>');
+
+    $('#project-layouts').append($newdiv);
+    $('body').removeClass('menu-open');
+});
+
+$(document).on('click', '.add-layout-image-image-image', function () {
+    var $newdiv = $('<div class="layout layout-image-image-image row">' + 
+                        '<div class="remove-layout"><i class="fa fa-trash"></i></div>' + 
+                        '<div class="col-xs-12 col-sm-4"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="image-background"><i class="fa fa-picture-o"></i></div></div></div>' + 
+                        '<div class="col-xs-12 col-sm-4"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="image-background"><i class="fa fa-picture-o"></i></div></div></div>' + 
+                        '<div class="col-xs-12 col-sm-4"><div data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="image-background"><i class="fa fa-picture-o"></i></div></div></div>' + 
+                    '</div>');
+
+    $('#project-layouts').append($newdiv);
+    $('body').removeClass('menu-open');
 });
 
 $(document).on('click', '.add-layout-image-text', function () {
@@ -30,7 +52,6 @@ $(document).on('click', '.add-layout-image-text', function () {
 
     $('#project-layouts').append($newdiv);
     $('body').removeClass('menu-open');
-    $('body').removeClass('menu-open-right');
 });
 
 $(document).on('click', '.add-layout-text-image', function () {
@@ -42,7 +63,16 @@ $(document).on('click', '.add-layout-text-image', function () {
 
     $('#project-layouts').append($newdiv);
     $('body').removeClass('menu-open');
-    $('body').removeClass('menu-open-right');
+});
+
+$(document).on('click', '.add-layout-text', function () {
+    var $newdiv = $('<div class="layout layout-text row">' + 
+                        '<div class="remove-layout"><i class="fa fa-trash"></i></div>' + 
+                        '<div class="col-xs-12"><div data-toggle="modal" data-target="#textModal" class="text select-text"><div class="text-background"><i class="fa fa-align-left"></i></div></div></div>' + 
+                    '</div>');
+
+    $('#project-layouts').append($newdiv);
+    $('body').removeClass('menu-open');
 });
 
 $(document).on('click', '.add-layout-video', function () {
@@ -52,7 +82,6 @@ $(document).on('click', '.add-layout-video', function () {
 
     $('#project-layouts').append($newdiv);
     $('body').removeClass('menu-open');
-    $('body').removeClass('menu-open-right');
 });
 
 /**
