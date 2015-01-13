@@ -132,3 +132,13 @@ function get_style_value(style, selector, sheet) {
     }
     return null;
 }
+
+
+function slide_to_first() {
+    $( '.slide-student:nth-child(2)' ).css({left: 0});
+    $( '.slide-student:nth-child(3)' ).css({left: viewportWidth});
+}
+
+function force_reload() {
+    location.reload();
+}
