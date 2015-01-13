@@ -1,6 +1,6 @@
 <div class="container">
     <div class="project-actions">
-        <a menuside href="#" class="menu-toggle btn btn-default pull-left">Toggle Filter</a>
+        <a onclick="slide_to_first()" menuside href="#" class="menu-toggle btn btn-default pull-left">Toggle Filter</a>
         <br><br><br><br><br>
     </div>
 </div>
@@ -9,17 +9,41 @@
 
 <div id="place_pages" class="row full-row">
     <div class="menu-side">
-        <h3> Filter </h3>
+        <h2> Filter by:</h2>
 
-        <div id="Title">
-            <label for="Title-field">Project Title</label>
-            <input id="Title-field" ng-model="search.title">
+        <div id="projects">
+            <h3> Projects </h3>
+
+            <div id="Title">
+                <label for="Title-field">Project Title</label>
+                <input id="Title-field" ng-model="search.title">
+            </div>
+
+            <label for="Semester">Semesters</label>
+            <select ng-model="search.$">
+                <option id="Semester" ng-repeat="semester in semesters" value=" {{ semester._id }} "> {{ semester.name }}</option>
+            </select>
+
+            <br>
+
+            <label for="Semester-Date-field">Semester date</label>
+            <select ng-model="search.$">
+                <option id="date"> 2014, p1</option>
+            </select>
+
         </div>
 
-        <label for="Semester-Date-field">Semester Dates</label>
-        <select ng-model="search.$">
-            <option id="Semester-Date-field" ng-repeat="project in projects track by $index" value="{{project.date}}">{{project.date}}</option>
-        </select>
+        <br>
+
+        <div id="Students">
+            <h3> Students <h3>
+
+            <div id="Name">
+                <label for="Name-field">Student Name</label>
+                <input id="Name-field" ng-model="search.firstname">
+            </div>
+        </div>
+
     </div>
 
 
@@ -29,8 +53,8 @@
                 <a href="/project/{{project._id}}">
                     <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
                         <div class="page-info" >
-                            <h3>{{ project.title }}</h3>
-                            <p class="visibility-of-votes">{{ project.votes }}</p>
+                            <h3 class="visibility-of-title">{{ project.title }}</h3>
+                            <p class="visibility-of-votes"><i class="fa fa-heart"></i> {{ project.votes }}</p>
                         </div>
                     </div>
                 </a>
@@ -44,8 +68,8 @@
                 <a href="/project/{{project._id}}">
                     <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
                         <div class="page-info" >
-                            <h3>{{ project.title }}</h3>
-                            <p class="visibility-of-votes">{{ project.votes }}</p>
+                            <h3 class="visibility-of-title">{{ project.title }}</h3>
+                            <p class="visibility-of-votes"><i class="fa fa-heart"></i> {{ project.votes }}</p>
                         </div>
                     </div>
                 </a>
