@@ -351,7 +351,7 @@
                             var logo = $('.project-logo-background').css('background-image');
                             logo = logo.replace('url(', '').replace(')', '');
 
-                            $scope.formData.logo = logo;
+                            $scope.project.logo = logo;
                             $scope.project.banner = $('.header-image .image img').attr('src');
                             $scope.project.title = $('#simpleedit .froala-element p').text();
                             $scope.project.semesterid = $('#projectsemester option:selected').val();

@@ -87,6 +87,7 @@
                 .error (function (data){
                     console.log("error: " + data);
                 });
+                
             $http.get('/api/semesters')
                 .success (function (data) {
                     $scope.semesters = data;

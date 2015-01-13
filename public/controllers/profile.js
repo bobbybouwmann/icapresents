@@ -29,13 +29,10 @@
         .controller('ProfileController', ['$http', '$scope', '$routeParams', '$location', function($http, $scope, $routeParams, $location) {
             $http.get('/api/userData')
                 .success (function (data) {
+                    console.log(data);
                     $scope.user = data.user;
                     $scope.projects = data.projects;
-
-                    $http.get('/api/profiles/' + data.user.profileid)
-                        .success (function (data) {
-                            $scope.profile = data;
-                        });
+                    $scope.profile = data.profile;
                 })
                 .error (function (data) {
                     console.log("error:" + data);
@@ -52,11 +49,7 @@
                 .success(function(data) {
                     $scope.user = data.user;
                     $scope.projects = data.projects;
-
-                    $http.get('/api/profiles/' + data.user.profileid)
-                        .success (function (data) {
-                            $scope.profile = data;
-                        });
+                    $scope.profile = data.profile;
                 });
 
             $http.get('/api/profiles')

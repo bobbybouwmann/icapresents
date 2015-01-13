@@ -13,12 +13,14 @@ module.exports = function(app) {
      * Get all the projects from the database.
      */
     app.get('/api/projects', function (req, res) {
-        Project.find(function (err, projects) {
-            if (err) {
-                return res.send(err);
-            }
+        Project.find({})
+            .sort({'votes': -1, 'updated': -1})
+            .find(function (err, projects) {
+                if (err) {
+                    return res.send(err);
+                }
 
-            res.json(projects);
+                res.json(projects);
         });
     });
 
@@ -64,8 +66,6 @@ module.exports = function(app) {
             User.find({ 
                 email: { $in: project.students }
             }, function (err, users) {
-                console.log(users.length);
-
                 if (err) {
                     res.send(err);
                 }
@@ -155,8 +155,6 @@ module.exports = function(app) {
                 if (err) {
                     res.send(err);
                 }
-
-                console.log(project);
             });
         })
     });

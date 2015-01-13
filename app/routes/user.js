@@ -5,6 +5,7 @@
  */
 var User = require('./../models/user');
 var Project = require('./../models/project');
+var Profile = require('./../models/profile');
 
 /**
  * Expose user routes
@@ -107,20 +108,26 @@ module.exports = function(app, passport) {
                 res.send(err);
             }
 
-            var jsonObject = { user: user, projects: {} };
-
-            Project.find({
-                user: user._id
-            }, function (err, projects) {
+            Profile.findById(user.profileid, function (err, profile) {
                 if (err) {
                     res.send(err);
                 }
 
-                projects.forEach(function (project) {
-                    jsonObject.projects[project._id] = project;
-                });
+                var jsonObject = { user: user, projects: {}, profile: profile };
 
-                res.json(jsonObject);
+                Project.find({
+                    user: user._id
+                }, function (err, projects) {
+                    if (err) {
+                        res.send(err);
+                    }
+
+                    projects.forEach(function (project) {
+                        jsonObject.projects[project._id] = project;
+                    });
+
+                    res.json(jsonObject);
+                });
             });
         });
     });

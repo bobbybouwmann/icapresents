@@ -38,6 +38,7 @@ img {
 .menu-open .menu-side {
     left: 0;
     padding-top: 60px;
+    z-index: 2;
 }
 
 .menu-side, .menu {
@@ -89,13 +90,14 @@ img {
 
 .layout {
     position: relative;
+    text-align: center;
 }
 
 .remove-layout {
     display: none;
     position: absolute;
-    top: 0;
-    right: 10px;
+    top: 20px;
+    right: -20px;
     font-size: 24px;
     width: 24px;
     height: 24px;
@@ -105,9 +107,7 @@ img {
     display: block;
 }
 
-.layout-image {
-    padding: 20px 0;
-    text-align: center;
+.layout-image     
 }
 
 .layout-image img {
@@ -115,8 +115,15 @@ img {
     height: auto;
 }
 
-.layout-image-text {
+.layout-image,
+.layout-image-image,
+.layout-image-image-image,
+.layout-image-text,
+.layout-text-image,
+.layout-text,
+.layout-video {
     padding: 20px 0;
+    text-align: center;
 }
 
 .layout-image-text .image {
@@ -128,21 +135,9 @@ img {
     height: auto;
 }
 
-.layout-text-image {
-    padding: 20px 0;
-}
-
-.layout-text-image .image {
-    text-align: center;
-}
-
 .layout-text-image .image img {
     max-width: 100%;
     height: auto;
-}
-
-.layout-video {
-    padding: 20px 0;
 }
 
 .layout-video .embed-container { 
@@ -162,6 +157,10 @@ img {
     left: 0; 
     width: 100%; 
     height: 100%; 
+}
+
+.layout .fr-tag {
+    text-align: left;
 }
 
 .embed-container .actions {
