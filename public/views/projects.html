@@ -7,7 +7,7 @@
 
 <p id="get-value" value="{{ projects.length }}"></p>
 
-<div class="row full-row">
+<div id="place_pages" class="row full-row">
     <div class="menu-side">
         <h3> Filter </h3>
 
@@ -20,7 +20,6 @@
         <select ng-model="search.$">
             <option id="Semester-Date-field" ng-repeat="project in projects track by $index" value="{{project.date}}">{{project.date}}</option>
         </select>
-
     </div>
 
 
