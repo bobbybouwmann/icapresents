@@ -14,9 +14,18 @@
 
 <h3>Projecten (Pjotr needs to put them in here)</h3>
 
-<div class="row">
-    <div class="col-xs-2" ng-repeat="project in projects">
-        <a href="" ng-click="editProject(project._id)">Edit</a>
-        <a href="" ng-click="removeProject(project._id)">Delete</a>
-    </div> 
+<div class="row full-row">
+    <div ng-repeat="project in projects | limitTo:6 track by $index">
+        <div class="col-xs-12 col-md-4" ng-show="$index == 0 || $index > 0">
+            <a href="/project/{{project._id}}">
+                <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
+<!--                <img src=" {{ project.banner }} " alt="banner"> -->
+                    <div class="page-info" >
+                        <h3>{{ project.title }}</h3>
+                        <p class="visibility-of-votes">{{ project.votes }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
