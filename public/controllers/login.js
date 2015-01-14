@@ -22,6 +22,8 @@
                                 deferred.reject();
                             }, 0);
                             $location.path('/login');
+                        } else {
+                            $timeout(deferred.resolve, 0);  
                         }
                     });
 
