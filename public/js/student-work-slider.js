@@ -26,6 +26,8 @@ function set_height () {
     var set_full_height = document.getElementById("place_pages");
     if($(window).width() < 992) {
         var count = $("#setheight").children().length;
+        setheight = 50;
+        get_student_slide.style.marginTop = setheight + "px";
         if (count > 6) {
             count = 6;
             set_full_height.style.height = 340 * count + "px";
@@ -36,7 +38,6 @@ function set_height () {
     }
     if (setheight > 0) {
         get_student_slide.style.marginTop = setheight + "px";
-        setheight = 150;
     } else {
         setheight = 50;
         get_student_slide.style.marginTop = setheight + "px";
