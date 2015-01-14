@@ -13,6 +13,7 @@
                 link: function(scope, element, attrs) {
                     element.on('click', function (e) {
                         e.preventDefault();
+                        $('.modal').modal('hide');
                         window.location = attrs.href;
                     });
                 }
@@ -437,12 +438,35 @@
                         $scope.formData.picture = $('#update-to-picture img').attr('src');
                         $scope.$apply();
 
-                        $scope.formData.email = $scope.formData.email + '@student.han.nl';
-
                         $http.post('/signup', $scope.formData)
                             .success(function(data) {
-                                $rootScope.loggedin = true;
-                                
+                                if (jQuery.isEmptyObject(data)) {
+                                    $('.modal').hide();
+                                    $location.path('/profile');
+                                }
+                            })
+                            .error(function (data) {
+                                console.log('Error: ' + data);
+                            });
+
+                        return false;
+                    });
+                }
+            };
+        }])
+        .directive('loginuser', ['$http', '$location', function ($http, $location) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    $('#login-user').on('click', function (e) {
+                        e.preventDefault();
+
+                        $http.post('/login', $scope.formData)
+                            .success(function(data) {
+                                if (jQuery.isEmptyObject(data)) {
+                                    $('.modal').hide();
+                                    $location.path('/profile');
+                                }
                             })
                             .error(function (data) {
                                 console.log('Error: ' + data);
