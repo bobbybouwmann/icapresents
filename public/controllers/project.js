@@ -43,8 +43,9 @@
                         if (user !== '0') {
                             $rootScope.user = user;
                             $rootScope.loggedin = true;
-                            $timeout(deferred.resolve, 0);
                         }
+
+                        $timeout(deferred.resolve, 0);
                     });
 
                 return deferred.promise;
