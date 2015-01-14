@@ -31,6 +31,8 @@ function set_height () {
         if (count > 6) {
             count = 6;
             set_full_height.style.height = 340 * count + "px";
+        } else {
+            set_full_height.style.height = 340 * count + "px";
         }
     }
     if($(window).height() < 600) {
