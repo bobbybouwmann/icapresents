@@ -42,12 +42,12 @@
         </div>
     </div>
 
-    <div class="slide-student">
+    <div id="setheight" class="slide-student">
         <div ng-repeat="project in projects | filter:search track by $index">
             <div class="col-xs-12 col-md-4" ng-show="$index >= 0 && $index < 6">
                 <a href="/project/{{project._id}}">
                     <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
-                        <div class="page-info" >
+                        <div class="inner-circle page-info" >
                             <h3 class="visibility-of-title">{{ project.title }}</h3>
                             <p class="visibility-of-votes"><i class="fa fa-heart"></i> {{ project.votes }}</p>
                         </div>
@@ -57,12 +57,12 @@
         </div>
     </div>
 
-    <div class="slide-student">
+    <div id="setheight" class="slide-student">
         <div ng-repeat="project in projects | filter:search track by $index">
             <div class="col-xs-12 col-md-4" ng-show="$index >= 6 && $index < 12">
                 <a href="/project/{{project._id}}">
                     <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
-                        <div class="page-info" >
+                        <div class="inner-circle page-info" >
                             <h3 class="visibility-of-title">{{ project.title }}</h3>
                             <p class="visibility-of-votes"><i class="fa fa-heart"></i> {{ project.votes }}</p>
                         </div>
@@ -80,9 +80,9 @@
         <div id="left-student-slide" class="left carousel-control" onclick="clicked('left')">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </div>
-        <span id="right-student-slide" class="right carousel-control" onclick="clicked('right')">
-           <span class="glyphicon glyphicon-chevron-right"></span>
-        </span>
+        <div id="right-student-slide" class="right carousel-control" onclick="clicked('right')">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </div>
 
     </div>
 
