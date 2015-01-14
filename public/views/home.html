@@ -1,14 +1,14 @@
 <div id="Carousel" class="carousel slide">
     <ol class="carousel-indicators">
-        <li ng-repeat="project in projects | limitTo:4  track by $index" data-target="Carousel" data-slide-to="{{ $index }}" ng-class="{active : $first}"></li>
+        <li ng-repeat="project in projects | limitTo:3  track by $index" data-target="Carousel" data-slide-to="{{ $index }}" ng-class="{active : $first}"></li>
     </ol>
 
     <div id="carousel-style" class="carousel-inner">
-        <div class="item" ng-repeat="project in projects | limitTo:4 track by $index" ng-class="{active : $first}">
+        <div class="item" ng-repeat="project in projects | limitTo:3 track by $index" ng-class="{active : $first}">
             <div class="page-info-carousel">
                 <div class="fix-center">
                     <h3 class="hope-page-title">{{ project.title }}</h3> 
-                    <p id="clamp">{{ project.content }}</p>
+                    <p id="clamp">{{ project.description }}</p>
                 </div>
             </div>
             <img class="img-responsive" alt="Responsive image" ng-src="{{ project.banner }}">

@@ -23,11 +23,20 @@ function set_height () {
     console.log("resized");
     var setheight = ((viewportHeight - 660) / 2);
     var get_student_slide = document.getElementById("setheight");
-    var get_left_arrow = document.getElementById("leftarrowheight");
+    var set_full_height = document.getElementById("place_pages");
+    if($(window).width() < 992) {
+        var count = $("#setheight").children().length;
+        if (count > 6) {
+            count = 6;
+            set_full_height.style.height = 340 * count + "px";
+        }
+    }
+    if($(window).height() < 600) {
+        set_full_height.style.height = 903 + "px";
+    }
     if (setheight > 0) {
         get_student_slide.style.marginTop = setheight + "px";
         setheight = 150;
-        get_left_arrow.style.marginTop = setheight + "px";
     } else {
         setheight = 50;
         get_student_slide.style.marginTop = setheight + "px";
