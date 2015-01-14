@@ -1,5 +1,7 @@
 $( document ).ready(function() {
     window.viewportWidth = $(window).width() + ( $(window).width() / 4 );
+    window.viewportHeight = $(window).height() - 50;
+    
     window.reverse = viewportWidth * - 1;
     
     check_next_slide();
@@ -7,9 +9,30 @@ $( document ).ready(function() {
     setTimeout(function() {
         window.get_amount_of_projects = $( '#get-value' ).attr('value');
         check_amount_projects();
+        set_height();
         // amount_of_pages();
     }, 500);
 });
+
+$( window ).resize(function() {
+    location.reload();
+    set_height();
+});
+
+function set_height () {
+    console.log("resized");
+    var setheight = ((viewportHeight - 660) / 2);
+    var get_student_slide = document.getElementById("setheight");
+    var get_left_arrow = document.getElementById("leftarrowheight");
+    if (setheight > 0) {
+        get_student_slide.style.marginTop = setheight + "px";
+        setheight = 150;
+        get_left_arrow.style.marginTop = setheight + "px";
+    } else {
+        setheight = 50;
+        get_student_slide.style.marginTop = setheight + "px";
+    }
+}
 
 function check_amount_projects () {
     if (get_amount_of_projects <= 6) {
