@@ -74,11 +74,11 @@
                 }
             };
         }])
-        .directive('uploadlogoform', ['$http', function ($http) {
+        .directive('uploadlogo', ['$http', function ($http) {
             return {
                 restrict: 'AEC',
                 link: function ($scope, element, attrs) {
-                    $("#logoform").submit(function(e) {
+                    $('.logoform').submit(function (e) {
                         e.preventDefault();
 
                         var formData = new FormData($(this)[0]);
@@ -88,6 +88,9 @@
                             type: "POST",
                             data: formData,
                             async: false,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
                             success: function (data) {
                                 var div = document.createElement('div');
                                 div.className = 'image select-image project-logo-background';
@@ -105,14 +108,11 @@
 
                                 $('#update-to-picture').html(div);
                                 $('#logoModal').modal('hide');
-                            },
-                            cache: false,
-                            contentType: false,
-                            processData: false
-                        });
+                            }
+                        })
 
                         return false;
-                    });
+                    }); 
                 }
             };
         }])
@@ -171,7 +171,19 @@
                 link: function ($scope, element, attrs) {
                     $('#simpleedit').editable({
                         inlineMode: true,
-                        placeholder: 'Typ your awesome project name!',
+                        placeholder: 'Type your awesome project name!',
+                        buttons: ['bold', 'italic', 'underline', 'fontFamily']
+                    });
+                }
+            };
+        }])
+        .directive('simpledescriptionform', ['$http', function ($http) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    $('#simpledescription').editable({
+                        inlineMode: true,
+                        placeholder: 'Type your awesome description!',
                         buttons: ['bold', 'italic', 'underline', 'fontFamily']
                     });
                 }
@@ -316,6 +328,7 @@
                             $scope.formData.logo = logo;
                             $scope.formData.banner = $('.header-image .image img').attr('src');
                             $scope.formData.title = $('#simpleedit .froala-element p').text();
+                            $scope.formData.description = $('#simpledescription .froala-element p').text();
                             $scope.formData.content = $('#project-content').html();
                             $scope.formData.semesterid = $('#projectsemester option:selected').val();
                             $scope.$apply();
@@ -355,6 +368,7 @@
                             $scope.project.logo = logo;
                             $scope.project.banner = $('.header-image .image img').attr('src');
                             $scope.project.title = $('#simpleedit .froala-element p').text();
+                            $scope.project.description = $('#simpledescription .froala-element p').text();
                             $scope.project.semesterid = $('#projectsemester option:selected').val();
                             $scope.project.content = $('#project-content').html();
                             $scope.$apply();
@@ -435,9 +449,6 @@
                     $('#register-user').on('click', function (e) {
                         e.preventDefault();
 
-                        $scope.formData.picture = $('#update-to-picture img').attr('src');
-                        $scope.$apply();
-
                         $http.post('/signup', $scope.formData)
                             .success(function(data) {
                                 if (jQuery.isEmptyObject(data)) {
@@ -484,21 +495,25 @@
                     $('#save-portfolio').on('click', function (e) {
                         e.preventDefault();
 
-                        $scope.user.profileid = $('.select-profile option:selected').val();
-                        $scope.user.picture = $('.profileinformation img').attr('src');
-                        $scope.user.firstname = $("#firstnameedit").editable('getText');
-                        $scope.user.lastname = $("#lastnameedit").editable('getText');
-                        $scope.user.bio = $("#bioedit").editable('getHTML', true, true);
+                        console.log($('.profileinformation img:first').attr('src'));
+                        console.log($('.profileinformation').find('img').attr('src'));
+                        console.log($('.profileinformation').find('img:first').attr('src'));
 
-                        $http.put('/api/users/' + $scope.user._id, $scope.user)
-                            .success (function (data) {
-                                $location.path('/profile');
-                            })
-                            .error (function (data) {
-                                console.log('error: ' + data);
-                            })
+                        // $scope.user.profileid = $('.select-profile option:selected').val();
+                        // $scope.user.picture = $('.profileinformation').find('img:first').attr('src');
+                        // $scope.user.firstname = $("#firstnameedit").editable('getText');
+                        // $scope.user.lastname = $("#lastnameedit").editable('getText');
+                        // $scope.user.bio = $("#bioedit").editable('getHTML', true, true);
 
-                        return false;
+                        // $http.put('/api/users/' + $scope.user._id, $scope.user)
+                        //     .success (function (data) {
+                        //         $location.path('/profile');
+                        //     })
+                        //     .error (function (data) {
+                        //         console.log('error: ' + data);
+                        //     })
+
+                        // return false;
                     });
                 }
             };

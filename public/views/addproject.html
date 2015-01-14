@@ -1,3 +1,20 @@
+<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="logoform" enctype="multipart/form-data"> 
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <br><br>
+                    <div class="help-info">
+                        <p>* Select items from Layout Options and click to add the content you would like to use within the post configurator to start building your project page.</p>
+                        <p>* All the text elements can be adjusted using the text editor to customize your page.</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -25,7 +42,7 @@
 <div class="modal fade" id="logoModal" tabindex="-1" role="dialog" aria-labelledby="logoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="logoform" enctype="multipart/form-data"> 
+            <form id="logoform" class="logoform" enctype="multipart/form-data"> 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title" id="logoModalLabel">Logo</h4>
@@ -38,8 +55,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button uploadlogoform type="submit" class="btn btn-primary">Use logo</button>
+                    <button type="button" class="icabutton" data-dismiss="modal">Cancel</button>
+                    <button uploadlogo type="submit" class="icabutton">Use logo</button>
                 </div>
             </form>
         </div>
@@ -150,7 +167,7 @@
             
         </div>
 
-        <a class="help pull-right" href="#">Help</a>
+        <a data-toggle="modal" data-target="#helpModal" class="help pull-right" href="#">Help</a>
 
     </div>
 
@@ -177,7 +194,7 @@
             <!-- </div> -->
             <div class="project-logo">
                 <!-- <div>  -->
-                    <div data-toggle="modal" data-target="#logoModal" class="image select-image"><div class="logo-background"><div class="plus-icon-editor">+</div><i class="fa fa-picture-o"></i></div>
+                    <div data-toggle="modal" data-target="#logoModal" class="image select-image"><div class="logo-background"><i class="fa fa-picture-o"></i></div></div>
                 <!-- </div> -->
             </div>
         </div>
@@ -188,6 +205,8 @@
         <a href="#" id="vote" data-id="{{ project._id }}" class="vote"><i class="fa fa-heart"></i></a>
 
         <div simpletextform id="simpleedit" class="project-title-edit"></div> 
+
+        <div simpledescriptionform id="simpledescription" class="project-description-edit"></div> 
     
         <div class="project-layouts" id="project-layouts">
         
