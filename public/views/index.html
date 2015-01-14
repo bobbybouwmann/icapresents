@@ -148,11 +148,10 @@
                         <li ng-hide="$root.loggedin"><a data-toggle="modal" data-target="#registerModal">Register</a></li>
                         <li ng-hide="$root.loggedin"><a data-toggle="modal" data-target="#loginModal">Login</a></li>
 
-                        <li ng-show="$root.loggedin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ $root.user.firstname }} <span class="caret"></span></a>
+                        <li ng-show="$root.loggedin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span style="background-image: url('{{ $root.user.picture }}');"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/profile">My profile</a></li>
                                 <li><a href="/editprofile">Edit portfolio</a></li>
-                                <li class="divider"></li>
                                 <li><a logout href="">Logout</a></li>
                             </ul>
                         </li>

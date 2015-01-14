@@ -372,6 +372,26 @@
                 }
             };
         }])
+        .directive('deleteeditproject', ['$http', '$location', function ($http, $location) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    $('#delete-project').on('click', function (e) {
+                        e.preventDefault();
+
+                        $http.delete('/api/projects/' + $scope.project._id)
+                            .success (function (data) {
+                                $location.path('/profile');
+                            })
+                            .error (function (data) {
+                                console.log('error: ' + data);
+                            });
+
+                        return false;
+                    });
+                }
+            };
+        }])
         .directive('showcontent', ['$http', function ($http) {
             return {
                 restrict: 'AEC',
@@ -417,6 +437,8 @@
                         $scope.formData.picture = $('#update-to-picture img').attr('src');
                         $scope.$apply();
 
+                        $scope.formData.email = $scope.formData.email + '@student.han.nl';
+
                         $http.post('/signup', $scope.formData)
                             .success(function(data) {
                                 $rootScope.loggedin = true;
@@ -438,7 +460,8 @@
                     $('#save-portfolio').on('click', function (e) {
                         e.preventDefault();
 
-                        $scope.user.picture = $('.update-to-picture img').attr('src');
+                        $scope.user.profileid = $('.select-profile option:selected').val();
+                        $scope.user.picture = $('.profileinformation img').attr('src');
                         $scope.user.firstname = $("#firstnameedit").editable('getText');
                         $scope.user.lastname = $("#lastnameedit").editable('getText');
                         $scope.user.bio = $("#bioedit").editable('getHTML', true, true);

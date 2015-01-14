@@ -29,4 +29,3 @@ node_modules
 
 # Ignore images
 public/images/uploads
-*.jpg

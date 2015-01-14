@@ -108,26 +108,20 @@ module.exports = function(app, passport) {
                 res.send(err);
             }
 
-            Profile.findById(user.profileid, function (err, profile) {
+            var jsonObject = { user: user, projects: {} };
+
+            Project.find({
+                user: user._id
+            }, function (err, projects) {
                 if (err) {
                     res.send(err);
                 }
 
-                var jsonObject = { user: user, projects: {}, profile: profile };
-
-                Project.find({
-                    user: user._id
-                }, function (err, projects) {
-                    if (err) {
-                        res.send(err);
-                    }
-
-                    projects.forEach(function (project) {
-                        jsonObject.projects[project._id] = project;
-                    });
-
-                    res.json(jsonObject);
+                projects.forEach(function (project) {
+                    jsonObject.projects[project._id] = project;
                 });
+
+                res.json(jsonObject);
             });
         });
     });
