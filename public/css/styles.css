@@ -19,13 +19,18 @@ img {
     color: #000000;
     text-decoration: none;
     cursor: pointer;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
 }
 
 .icabutton:hover,
 .icabutton:focus,
 .icabutton:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
     text-decoration: none;
     color: #000000;
+    box-shadow: 0px 1px 2px #000000;
 }
 
 /**
@@ -52,16 +57,43 @@ img {
     margin-top: 18px;
 }
 
-/*.navbar-form button {
-    border: none;
-    background: #ffd200;
-    padding: 8px 15px;
-    font-size: 14px;
-    box-shadow: 0px 2px 4px #000000;
-}*/
-
 .navbar-brand img {
     height: 40px;
+}
+
+.nav .open > a, 
+.nav .open > a:hover, 
+.nav .open > a:focus {
+    background: #dfdfdf;
+}
+
+.navbar-nav > li > .dropdown-menu {
+    background: #dfdfdf;
+    border: none;
+    width: 200px;
+}
+
+.dropdown-menu > li {
+    text-align: center;
+}
+
+.dropdown > a > span {
+    width: 52px;
+    height: 52px;
+    display: inline-block;
+    margin-top: -16px;
+    margin-bottom: -16px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border: 2px solid #9c9b9a;
+}
+
+.dropdown-menu > li > a:hover, 
+.dropdown-menu > li > a:focus {
+    color: #333333;
+    background: #ffd200;
 }
 
 /**
@@ -88,8 +120,10 @@ img {
 }
  
 .menu-open .menu-side {
+    background: #e1e1e1;
+    color: #333333;
     left: 0;
-    padding-top: 60px;
+    padding-top: 90px;
     z-index: 2;
 }
 
@@ -262,9 +296,6 @@ img {
     display: block;
 }
 
-.layout-image     
-}
-
 .layout-image img {
     max-width: 100%;
     height: auto;
@@ -317,6 +348,8 @@ img {
 .layout .fr-tag {
     text-align: left;
 }
+
+.layout:hover 
 
 .embed-container .actions {
     z-index: 999;
@@ -525,6 +558,8 @@ img {
 
 .banner-background {
     background: #ffd200;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
     padding: 40px 0 120px 0;
 }
 
@@ -543,6 +578,8 @@ img {
     margin: -70px auto 0 auto;
     background: #ffffff;
     box-shadow: 0px 1px 2px #000000;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
 }
 
 .plus-icon-editor {
@@ -565,7 +602,21 @@ img {
 .text-background,
 .youtube-background {
     padding: 40px;
-    background: #eee;
+    position: relative;
+    background: #e1e1e1;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+}
+
+.image-background:hover,
+.text-background:hover,
+.youtube-background:hover,
+.logo-background:hover {
+    background: #9c9b9a;
+}
+
+.banner-background:hover {
+    background: #e1e1e1;
 }
 
 .select-text i, 
@@ -587,12 +638,12 @@ img {
 
 .slide-student {
     position: absolute!important;
-    top:10%;
     left:0;
     -webkit-transition:all ease 1.5s;
     transition:all ease 1.5s;
     height:300px;
     width:100%;
+    margin-top: 115px;
 }
 
 .slide-student:nth-child(2) {

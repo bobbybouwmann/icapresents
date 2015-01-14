@@ -79,7 +79,16 @@
                     console.log(data);
                     $scope.user = data.user;
                     $scope.projects = data.projects;
-                    $scope.profile = data.profile;
+
+                    $http.get('/api/profiles/' + $scope.user.profileid)
+                        .success (function (data) {
+                            $scope.profile = data;
+
+                            console.log($scope);
+                        })
+                        .error (function (data) {
+                            console.log("error:" + data);
+                        });
                 })
                 .error (function (data) {
                     console.log("error:" + data);
@@ -94,9 +103,9 @@
         .controller('ProfileEditController', ['$http', '$scope', '$routeParams', '$location', '$route', function($http, $scope, $routeParams, $location, $route) {
             $http.get('/api/userData')
                 .success(function(data) {
+                    console.log(data);
                     $scope.user = data.user;
                     $scope.projects = data.projects;
-                    $scope.profile = data.profile;
                 });
 
             $http.get('/api/profiles')
