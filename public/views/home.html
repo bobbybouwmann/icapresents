@@ -21,10 +21,12 @@
     <span class="right carousel-control" data-target="#Carousel" data-slide="next">
        <span class="glyphicon glyphicon-chevron-right"></span>
     </span>
+
+    <a ng-click="gotoElement('homeprojects')"><img class="arrow-down" src="/images/arrow-down.png"></a>
 </div>
 
 <div class="row full-row">
-    <div ng-repeat="project in projects | limitTo:6 track by $index">
+    <div id="homeprojects" ng-repeat="project in projects | limitTo:6 track by $index">
         <div class="col-xs-12 col-md-4" ng-show="$index == 0 || $index > 0">
             <a href="/project/{{project._id}}">
                 <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">

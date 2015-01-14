@@ -420,6 +420,7 @@
                         $http.post('/signup', $scope.formData)
                             .success(function(data) {
                                 $rootScope.loggedin = true;
+                                
                             })
                             .error(function (data) {
                                 console.log('Error: ' + data);

@@ -132,23 +132,26 @@
 
 </div>
 
-<div class="container">
+<div class="project-actions-container">
     
     <div class="project-actions">
-        <a menuside href="#" class="menu-toggle btn btn-default pull-left">Toggle Menu</a>
-
-        <a saveeditproject href="#" id="save-project" class="save-project btn btn-default text-center">Save</a>
+        <a menuside href="#" class="menu-toggle layout-button"><img src="/images/arrow-left.png"> Layout Options</a>
+        
+        <button saveeditproject id="save-project" class="save-project icabutton">Save Project</button>
+        <button id="delete-project" class="delete-project icabutton">Delete Project</button>
 
         <div class="form-group projectsemesterform">
 
-            <select class="form-control" ng-model="project.semesterid" id="projectsemester">                
-                <option value="">Please select a semester or project type</option>
+            <select class="form-control" ng-model="formData.semesterid" id="projectsemester">
+                <option value="">Please select a semester</option>
                 <option value="" disabled>-----------------------------------------------</option>
-                <option value="-1">Private project</option>
                 <option ng-selected="{{ project.semesterid == semester._id }}" ng-repeat="semester in semesters" value="{{ semester._id }}">{{ semester.name }}</option>
             </select>
             
         </div>
+
+        <a class="help pull-right" href="#">Help</a>
+
     </div>
 
 </div>

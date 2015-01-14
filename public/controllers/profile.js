@@ -8,16 +8,62 @@
     angular.module('profile', [])
         
         .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+
+            /**
+             * Check if the current user is logged in.
+             */
+            var checkLoggedinRedirect = function ($q, $timeout, $http, $location, $rootScope) {
+                var deferred = $q.defer();
+
+                $http.get('/loggedin')
+                    .success(function (user) {
+                        if (user !== '0') {
+                            $rootScope.user = user;
+                            $rootScope.loggedin = true;
+                            $timeout(deferred.resolve, 0);
+                        } else {
+                            $timeout(function () {
+                                deferred.reject();
+                            }, 0);
+                            $location.path('/login');
+                        };
+                    });
+
+                return deferred.promise;
+            };
+
+            /**
+             * Check if the current user is logged in. If so set the rootScope
+             */
+            var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
+                var deferred = $q.defer();
+
+                $http.get('/loggedin')
+                    .success(function (user) {
+                        if (user !== '0') {
+                            $rootScope.user = user;
+                            $rootScope.loggedin = true;
+                            $timeout(deferred.resolve, 0);
+                        }
+                    });
+
+                return deferred.promise;
+            };
+
             $routeProvider    
                 .when('/profile', {
                     templateUrl: '/views/profile.html',
                     controller: 'ProfileController',
-                    controllerAs: 'profile'
+                    resolve: {
+                        loggedin: checkLoggedin
+                    }
                 })
                 .when('/editprofile', {
                     templateUrl: '/views/editprofile.html',
                     controller: 'ProfileEditController',
-                    controllerAs: 'editprofile'
+                    resolve: {
+                        loggedin: checkLoggedinRedirect
+                    }
                 });                
 
             $locationProvider.html5Mode({ enabled: true, requireBase: false });

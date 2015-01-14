@@ -18,6 +18,8 @@
                 $http.get('/loggedinadmin')
                     .success(function (user) {
                         if (user !== '0') {
+                            $rootScope.user = user;
+                            $rootScope.loggedin = true;
                             $timeout(deferred.resolve, 0);
                         } else {
                             $timeout(function () {
@@ -73,7 +75,7 @@
          * Fill the $scope with data from the database and provide
          * functions to update that data. 
          */
-        .controller('AdminController', ['$http', '$scope', '$routeParams', '$filter', '$location', '$rootScope', function ($http, $scope, $routeParams, $filter, $location, $rootScope) {
+        .controller('AdminController', ['$http', '$scope', '$routeParams', '$filter', '$location', function ($http, $scope, $routeParams, $filter, $location) {
             var orderBy = $filter('orderBy');
             var tab = 1;
 
