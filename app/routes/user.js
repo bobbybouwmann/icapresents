@@ -35,7 +35,7 @@ module.exports = function(app, passport) {
             if (err) { 
                 return res.json(err);
             }
-            if (user.error) {   
+            if (user.error) {
                 return res.json({ error: user.error });
             }
             req.logIn(user, function(err) {
@@ -43,7 +43,8 @@ module.exports = function(app, passport) {
                     return res.json(err);
                 }
 
-                return res.json({ redirect: '/profile' });
+                // return res.json({ redirect: '/profile' });
+                return res.json({});
             });
         })(req, res);
     });
@@ -70,7 +71,8 @@ module.exports = function(app, passport) {
                     return res.json(err);
                 }
 
-                return res.json({ redirect: '/profile' });
+                // return res.json({ redirect: '/profile' });
+                return res.json({});
             });
         })(req, res);
     });

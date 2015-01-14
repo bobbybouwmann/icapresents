@@ -88,7 +88,7 @@ module.exports = function(passport) {
         process.nextTick(function () {
             if (!req.user) {
                 User.findOne({ 
-                    'local.email':  email 
+                    'email':  email 
                 }, function (err, user) {
                     if (err) {
                         return done(err);
