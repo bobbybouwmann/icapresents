@@ -639,6 +639,7 @@ img {
 .slide-student {
     position: absolute!important;
     left:0;
+    margin-top: 115px;
     -webkit-transition:all ease 1.5s;
     transition:all ease 1.5s;
     height:300px;
@@ -890,6 +891,10 @@ votes
 /**
  * Filters
  */
+#place_pages {
+    height:600px;
+}
+
 #place_pages .menu-side {
     background: #9c9b9a;
     padding: 100px 30px 30px 30px;
