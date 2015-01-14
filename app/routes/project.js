@@ -37,6 +37,7 @@ module.exports = function(app) {
         Project.create({
             user: req.user._id,
             title: req.body.title,
+            description: req.body.description,
             content: req.body.content,
             grade: req.body.grade,
             semesterid: req.body.semesterid,
@@ -96,6 +97,7 @@ module.exports = function(app) {
 
             project.user = project.user;
             project.title = req.body.title;
+            project.description = req.body.description;
             project.content = req.body.content;
             project.semesterid = req.body.semesterid;
             project.banner = req.body.banner;

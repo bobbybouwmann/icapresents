@@ -47,9 +47,13 @@
             <div class="col-xs-12 col-md-4" ng-show="$index >= 0 && $index < 6">
                 <a href="/project/{{project._id}}">
                     <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
-                        <div class="inner-circle page-info" >
-                            <h3 class="visibility-of-title">{{ project.title }}</h3>
-                            <p class="visibility-of-votes"><i class="fa fa-heart"></i> {{ project.votes }}</p>
+                        <div class="page-info">
+                            <div class="visibility-of-title inner-circle">
+                                {{ project.title }}  
+                            </div>
+                            <div class="visibility-of-votes inner-circle">
+                                <i class="fa fa-heart"></i> {{ project.votes }}
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -62,9 +66,15 @@
             <div class="col-xs-12 col-md-4" ng-show="$index >= 6 && $index < 12">
                 <a href="/project/{{project._id}}">
                     <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
-                        <div class="inner-circle page-info" >
-                            <h3 class="visibility-of-title">{{ project.title }}</h3>
-                            <p class="visibility-of-votes"><i class="fa fa-heart"></i> {{ project.votes }}</p>
+                        <div class="page-info" >
+                            <div class="visibility-of-title inner-circle">
+                                {{ project.title }}  
+                            </div>
+                            <div class="visibility-of-votes inner-circle">
+                                <i class="fa fa-heart"></i> {{ project.votes }}
+                            </div>
+                            <!-- <h3 class="visibility-of-title">{{ project.title }}</h3> -->
+                            <!-- <p class="visibility-of-votes"><i class="fa fa-heart"></i> {{ project.votes }}</p> -->
                         </div>
                     </div>
                 </a>

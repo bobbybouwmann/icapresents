@@ -37,11 +37,9 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form ng-submit="signup()" ng-controller="SignupForm">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="registerModalLabel">Register</h4>
-                        </div>
                         <div class="modal-body">
+                            <img src="/images/ICA.png" class="popuplogo">
+
                             <div growl></div>
 
                             <div class="form-group">
@@ -76,9 +74,8 @@
                                 <input type="password" class="form-control" ng-model="formData.password" required>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button registeruser type="submit" id="register-user" class="btn btn-warning">Register</button>
+                        <div class="modal-footer text-center">
+                            <button registeruser type="submit" id="register-user" class="icabutton">Register</button>
                         </div>
                     </form>
                 </div>
@@ -89,11 +86,9 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form ng-submit="login()" ng-controller="LoginForm">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="registerModalLabel">Login</h4>
-                        </div>
                         <div class="modal-body">
+                            <img src="/images/ICA.png" class="popuplogo">
+
                             <div growl></div>
                             
                             <div class="form-group">
@@ -107,8 +102,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button loginuser id="login-user" type="submit" class="btn btn-warning">Login</button>
+                            <button loginuser type="submit" id="login-user" class="icabutton">Login</button>
                         </div>
                     </form>
                 </div>
@@ -133,7 +127,6 @@
                         <li><a href="/projects">Student Work</a></li>
                         <li><a href="/profiles">Profiles</a></li>
                         <li><a href="/about">About</a></li>
-                        <!-- <li><a href="/admin">Admin Panel</a></li> -->
                     </ul>
         
                     <ul class="nav navbar-nav navbar-right">
@@ -142,12 +135,13 @@
                         </form>
 
                         <li ng-hide="$root.loggedin"><a data-toggle="modal" data-target="#registerModal">Register</a></li>
-                        <li ng-hide="$root.loggedin"><a data-toggle="modal" data-target="#loginModal">Login</a></li>
+                        <li ng-hide="$root.loggedin"><a data-toggle="modal" data-target="#loginModal">Login</a></li>                        
 
-                        <li ng-show="$root.loggedin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span style="background-image: url('{{ $root.user.picture }}');"></span></a>
+                        <li ng-show="$root.loggedin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span ng-show="$root.user.picture" style="background-image: url('{{ $root.user.picture }}');"></span><span ng-hide="$root.user.picture" style="background-image: url('/images/silhouette.png');"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/profile">My profile</a></li>
                                 <li><a href="/editprofile">Edit portfolio</a></li>
+                                <li ng-show="$root.user.role == 'admin'"><a href="/admin">Admin panel</a></li>
                                 <li><a logout href="">Logout</a></li>
                             </ul>
                         </li>

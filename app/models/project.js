@@ -11,6 +11,7 @@ var mongoose = require('mongoose');
 var projectSchema = mongoose.Schema({
     user: String,
     title: String,
+    description: String,
     banner: String,
     logo: String,
     content: String,

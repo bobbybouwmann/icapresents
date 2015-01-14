@@ -21,6 +21,9 @@ $(document).on('click', '.add-layout-image', function () {
                     '</div>');
 
     $('#project-layouts').append($newdiv);
+    $("html, body").animate({ 
+        scrollTop: $(document).height() 
+    }, 1000);
     $('body').removeClass('menu-open');
 });
 
@@ -32,6 +35,9 @@ $(document).on('click', '.add-layout-image-image', function () {
                     '</div>');
 
     $('#project-layouts').append($newdiv);
+    $("html, body").animate({ 
+        scrollTop: $(document).height() 
+    }, 1000);
     $('body').removeClass('menu-open');
 });
 
@@ -44,6 +50,9 @@ $(document).on('click', '.add-layout-image-image-image', function () {
                     '</div>');
 
     $('#project-layouts').append($newdiv);
+    $("html, body").animate({ 
+        scrollTop: $(document).height() 
+    }, 1000);
     $('body').removeClass('menu-open');
 });
 
@@ -55,6 +64,9 @@ $(document).on('click', '.add-layout-image-text', function () {
                     '</div>');
 
     $('#project-layouts').append($newdiv);
+    $("html, body").animate({ 
+        scrollTop: $(document).height() 
+    }, 1000);
     $('body').removeClass('menu-open');
 });
 
@@ -66,6 +78,9 @@ $(document).on('click', '.add-layout-text-image', function () {
                     '</div>');
 
     $('#project-layouts').append($newdiv);
+    $("html, body").animate({ 
+        scrollTop: $(document).height() 
+    }, 1000);
     $('body').removeClass('menu-open');
 });
 
@@ -76,6 +91,9 @@ $(document).on('click', '.add-layout-text', function () {
                     '</div>');
 
     $('#project-layouts').append($newdiv);
+    $("html, body").animate({ 
+        scrollTop: $(document).height() 
+    }, 1000);
     $('body').removeClass('menu-open');
 });
 
@@ -86,6 +104,9 @@ $(document).on('click', '.add-layout-video', function () {
                     '</div>');
 
     $('#project-layouts').append($newdiv);
+    $("html, body").animate({ 
+        scrollTop: $(document).height() 
+    }, 1000);
     $('body').removeClass('menu-open');
 });
 
