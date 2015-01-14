@@ -1,9 +1,21 @@
-<div ng-repeat="semester in semesters">
+<div class="row full-row about-page">
 
-    <div>{{ semester._id }}</div>
-    <div>{{ semester.name }}</div>
-    <div>{{ semester.description }}</div>
+    <div class="semestertitle">
+        {{ profile.name }}
+    </div>
 
-    <hr>
+    <div class="col-xs-12 col-sm-4" ng-repeat="semester in semesters">
+        
+        <div class="about-circle">
+            <div class="inner-circle">
+                {{ semester.name }} 
+            </div>  
+        </div>
+
+        <div class="about-content">
+            {{ semester.description }}
+        </div>
+
+    </div>
 
 </div>

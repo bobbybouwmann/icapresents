@@ -1,51 +1,46 @@
-<div class="container">
-    <div class="project-actions">
-        <a onclick="slide_to_first()" menuside href="#" class="menu-toggle btn btn-default pull-left">Toggle Filter</a>
-        <br><br><br><br><br>
-    </div>
+<div class="container" style="position: relative;">
+    <button menuside onclick="slide_to_first()" class="menu-toggle menu-toggle-filter icabutton pull-left">Filter</button>
 </div>
 
 <p id="get-value" value="{{ projects.length }}"></p>
 
 <div id="place_pages" class="row full-row">
     <div class="menu-side">
-        <h2> Filter by:</h2>
+        <div class="menu-side-title">Filter</div>
 
         <div id="projects">
-            <h3> Projects </h3>
+            <div class="menu-side-subtitle">Projects</div>
 
-            <div id="Title">
+            <div class="customfield">
                 <label for="Title-field">Project Title</label>
                 <input id="Title-field" ng-model="search.title">
             </div>
 
-            <label for="Semester">Semesters</label>
-            <select ng-model="search.$">
-                <option id="Semester" ng-repeat="semester in semesters" value=" {{ semester._id }} "> {{ semester.name }}</option>
-            </select>
+            <div class="customfield">
+                <label for="Semester">Semesters</label>
+                <select ng-model="search.$">
+                    <option id="Semester" ng-repeat="semester in semesters" value=" {{ semester._id }} "> {{ semester.name }}</option>
+                </select>
+            </div>
 
-            <br>
-
-            <label for="Semester-Date-field">Semester date</label>
-            <select ng-model="search.$">
-                <option id="date"> 2014, p1</option>
-            </select>
+            <div class="customfield">
+                <label for="Semester-Date-field">Semester date</label>
+                <select ng-model="search.$">
+                    <option id="date">2014, p1</option>
+                </select>
+            </div>
 
         </div>
 
-        <br>
-
         <div id="Students">
-            <h3> Students <h3>
+            <div class="menu-side-subtitle">Students</div>
 
-            <div id="Name">
+            <div class="customfield">
                 <label for="Name-field">Student Name</label>
                 <input id="Name-field" ng-model="search.firstname">
             </div>
         </div>
-
     </div>
-
 
     <div class="slide-student">
         <div ng-repeat="project in projects | filter:search track by $index">

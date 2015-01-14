@@ -1,12 +1,39 @@
-<div ng-repeat="profile in profiles">
+<div class="container">
     
-    <a href="/profiles/{{ profile._id }}" class="btn btn-default">Go to semesters</a>
+    <div class="profiledescription">
 
-    <div><h4>{{ profile.main }} <small>(Dit nummer is het nummer van het hoofdprofiel dat aan te geven is in het adminpanel. Je kan dit nummer gebruiken om bijvoorbeeld een kleur te laten zien of een bepaalde class)</small><h4></div>
-    <div>{{ profile._id }}</div>
-    <div>{{ profile.name }}</div>
-    <div>{{ profile.description }}</div>
+        <div class="profilecolor">
+            <span class="i"></span> Informatics
+        </div>
 
-    <hr>
+        <div class="profilecolor">
+            <span class="cmd"></span> Communication and Multimedia Design
+        </div>
+
+        <div class="profilecolor">
+            <span class="bim"></span> Business IT and Management
+        </div>
+
+        <div class="profilecolor">
+            <span class="ti"></span> Technical Informatics
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="profileslist" ng-repeat="profile in profiles">
+        
+        <a href="/profiles/{{ profile._id }}">
+            <div class="profile-circle profile{{ profile.main }}">
+                <div class="inner-circle">
+                    {{ profile.name }}
+                </div>
+            </div>
+        </a>
+
+    </div>
 
 </div>

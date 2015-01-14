@@ -18,6 +18,12 @@
                 <div class="row">
 
                     <div class="col-xs-12 col-sm-7">
+
+                        <form class="pull-right">
+                            <div class="form-group">
+                                <input type="search" class="form-control" id="search" placeholder="SEARCH" ng-model="search.$">
+                            </div>
+                        </form>
                         
                         <table class="table table-striped">
 
@@ -27,7 +33,7 @@
                                 <th>Actions</th>
                             </tr>
 
-                            <tr ng-repeat="profile in profiles">
+                            <tr ng-repeat="profile in profiles | filter:search">
                                 <td>{{ profile._id }}</td>
                                 <td>{{ profile.name }}</td>
                                 <td><a href="" ng-click="getProfileData(profile._id)">Edit</a> / <a href="" ng-click="removeProfile(profile._id)">Delete</a></td>
@@ -108,6 +114,12 @@
                 <div class="row">
 
                     <div class="col-xs-12 col-sm-7">
+
+                        <form class="pull-right">
+                            <div class="form-group">
+                                <input type="search" class="form-control" id="search" placeholder="SEARCH" ng-model="search.$">
+                            </div>
+                        </form>
                         
                         <table class="table table-striped">
 
@@ -117,7 +129,7 @@
                                 <th>Actions</th>
                             </tr>
 
-                            <tr ng-repeat="semester in semesters">
+                            <tr ng-repeat="semester in semesters | filter:search">
                                 <td>{{ semester._id }}</td>
                                 <td>{{ semester.name }}</td>
                                 <td><a href="" ng-click="getSemesterData(semester._id)">Edit</a> / <a href="" ng-click="removeSemester(semester._id)">Delete</a></td>
@@ -198,6 +210,12 @@
                 <div class="row">
 
                     <div class="col-xs-12 col-sm-12">
+
+                        <form class="pull-right">
+                            <div class="form-group">
+                                <input type="search" class="form-control" id="search" placeholder="SEARCH" ng-model="search.$">
+                            </div>
+                        </form>
                         
                         <table class="table table-striped">
 
@@ -207,7 +225,7 @@
                                 <th>Actions</th>
                             </tr>
 
-                            <tr ng-repeat="project in projects">
+                            <tr ng-repeat="project in projects | filter:search">
                                 <td>{{ project._id }}</td>
                                 <td>{{ project.title }}</td>
                                 <td><a href="" ng-click="editProject(project._id)">Edit</a> / <a href="" ng-click="removeProject(project._id)">Delete</a></td>
@@ -226,6 +244,12 @@
                 <div class="row">
 
                     <div class="col-xs-12 col-sm-7">
+
+                        <form class="pull-right">
+                            <div class="form-group">
+                                <input type="search" class="form-control" id="search" placeholder="SEARCH" ng-model="search.$">
+                            </div>
+                        </form>
                         
                         <table class="table table-striped">
 
@@ -236,7 +260,7 @@
                                 <th>Actions</th>
                             </tr>
 
-                            <tr ng-repeat="user in users">
+                            <tr ng-repeat="user in users | filter:search">
                                 <td>{{ user._id }}</td>
                                 <td>{{ user.firstname }}</td>
                                 <td>{{ user.lastname }}</td>

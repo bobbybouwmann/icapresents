@@ -132,12 +132,13 @@
 
 </div>
 
-<div class="container">
+<div class="project-actions-container">
     
     <div class="project-actions">
-        <a menuside href="#" class="menu-toggle btn btn-default pull-left">Layout options</a>
-
-        <a saveproject href="#" id="save-project" class="save-project btn btn-default text-center">Save Project</a>
+        <a menuside href="#" class="menu-toggle layout-button"><img src="/images/arrow-left.png"> Layout Options</a>
+        
+        <button saveproject id="save-project" class="save-project icabutton">Save Project</button>
+        <button id="delete-project" class="delete-project icabutton">Delete Project</button>
 
         <div class="form-group projectsemesterform">
 
@@ -148,6 +149,8 @@
             </select>
             
         </div>
+
+        <a class="help pull-right" href="#">Help</a>
 
     </div>
 
@@ -170,11 +173,11 @@
     <div class="page-header text-center ng-scope">
         <div class="header-image">
             <!-- <div> -->
-                <div data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="banner-background"><i class="fa fa-picture-o"></i></div></div>
+                <div data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="banner-background"><div class="plus-icon-editor">+</div><i class="fa fa-picture-o"></i></div></div>
             <!-- </div> -->
             <div class="project-logo">
                 <!-- <div>  -->
-                    <div data-toggle="modal" data-target="#logoModal" class="image select-image"><div class="logo-background"><i class="fa fa-picture-o"></i></div></div>
+                    <div data-toggle="modal" data-target="#logoModal" class="image select-image"><div class="logo-background"><div class="plus-icon-editor">+</div><i class="fa fa-picture-o"></i></div>
                 <!-- </div> -->
             </div>
         </div>
