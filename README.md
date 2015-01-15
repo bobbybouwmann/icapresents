@@ -20,6 +20,7 @@ Create a project based on the data provided in the request and save it in the da
 Get a project based on the id provided in the request url
 ###### HTTP REQUEST
 `GET http://localhost:3000/api/projects/id`
+
 Parameters | Description
 --- | ---
 id | The id of the project
@@ -30,6 +31,7 @@ id | The id of the project
 Update a project based on the id provided in the request url and the data provided in the request.Get a project based on the id provided in the request url
 ###### HTTP REQUEST
 `PUT http://localhost:3000/api/projects/id`
+
 Parameters | Description
 --- | ---
 id | The id of the project
@@ -40,6 +42,7 @@ id | The id of the project
 Delete a project based on the id provided in the request.
 ###### HTTP REQUEST
 `DELETE http://localhost:3000/api/projects/id`
+
 Parameters | Description
 --- | ---
 id | The id of the project
@@ -50,6 +53,7 @@ id | The id of the project
 Increase the vote of a project based on the id provided in the request.
 ###### HTTP REQUEST
 `POST http://localhost:3000/api/projects/votes/id`
+
 Parameters | Description
 --- | ---
 id | The id of the project
