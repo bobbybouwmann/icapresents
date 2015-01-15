@@ -499,21 +499,21 @@
                         console.log($('.profileinformation').find('img').attr('src'));
                         console.log($('.profileinformation').find('img:first').attr('src'));
 
-                        // $scope.user.profileid = $('.select-profile option:selected').val();
+                        $scope.user.profileid = $('.select-profile option:selected').val();
                         // $scope.user.picture = $('.profileinformation').find('img:first').attr('src');
-                        // $scope.user.firstname = $("#firstnameedit").editable('getText');
-                        // $scope.user.lastname = $("#lastnameedit").editable('getText');
-                        // $scope.user.bio = $("#bioedit").editable('getHTML', true, true);
+                        $scope.user.firstname = $("#firstnameedit").editable('getText');
+                        $scope.user.lastname = $("#lastnameedit").editable('getText');
+                        $scope.user.bio = $("#bioedit").editable('getHTML', true, true);
 
-                        // $http.put('/api/users/' + $scope.user._id, $scope.user)
-                        //     .success (function (data) {
-                        //         $location.path('/profile');
-                        //     })
-                        //     .error (function (data) {
-                        //         console.log('error: ' + data);
-                        //     })
+                        $http.put('/api/users/' + $scope.user._id, $scope.user)
+                            .success (function (data) {
+                                $location.path('/profile');
+                            })
+                            .error (function (data) {
+                                console.log('error: ' + data);
+                            })
 
-                        // return false;
+                        return false;
                     });
                 }
             };

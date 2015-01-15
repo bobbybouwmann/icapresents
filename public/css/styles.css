@@ -224,9 +224,19 @@ img {
     height: 100%;
 }
 
+.about-wrapper {
+    position: relative;
+    width: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
 .about-grey,
 .about-yellow {
-    height: 100%;
     background: #9c9b9a;
     position: relative;
 }
@@ -504,6 +514,11 @@ img {
     text-align: center;
     margin-top: 20px;
     font-size: 32px;
+}
+
+.project-description-edit {
+    text-align: center;
+    font-size: 16px;
 }
 
 .projectsemesterform {
