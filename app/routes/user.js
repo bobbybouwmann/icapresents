@@ -142,7 +142,7 @@ module.exports = function(app, passport) {
     });
 
     /**
-     * Get a yser based on the id provided in the request url
+     * Get a user based on the id provided in the request url
      */
     app.get('/api/users/:_id', function (req, res) {
         User.findById(req.params._id, function (err, user) {
