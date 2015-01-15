@@ -1,20 +1,69 @@
 # API-Documentation
 
+All api calls return json
+
+## Users
+
+#### Get a list of users
+Get all the users from the database.
+###### HTTP REQUEST
+`GET http://localhost:3000/api/users`
+
+---
+
+#### Get a single user
+Get a user based on the id provided in the request url
+###### HTTP REQUEST
+`GET http://localhost:3000/api/users/id`
+
+Parameters | Description
+--- | ---
+id | The id of the user
+
+---
+
+#### Update a single user
+Update a user based on the id provided in the request url and the data provided in the request.
+###### HTTP REQUEST
+`PUT http://localhost:3000/api/users/id`
+
+Parameters | Description
+--- | ---
+id | The id of the user
+
+---
+
+#### Delete a single user
+Delete a user based on the id provided in the request.
+###### HTTP REQUEST
+`DELETE http://localhost:3000/api/users/id`
+
+Parameters | Description
+--- | ---
+id | The id of the user
+
+---
+
+#### Get the number of users
+Count the number of users in the database.
+###### HTTP REQUEST
+`GET http://localhost:3000/api/countUsers`
+
 ## Projects
 
-#### Get all projects
+#### Get a list of projects
 Get all the projects from the database.
 ###### HTTP REQUEST
 `GET http://localhost:3000/api/projects`
 
-***
+---
 
 #### Create a project
 Create a project based on the data provided in the request and save it in the database.
 ###### HTTP REQUEST
 `POST http://localhost:3000/api/projects`
 
-***
+---
 
 #### Get a single project
 Get a project based on the id provided in the request url
@@ -25,7 +74,7 @@ Parameters | Description
 --- | ---
 id | The id of the project
 
-***
+---
 
 #### Update a single project
 Update a project based on the id provided in the request url and the data provided in the request.Get a project based on the id provided in the request url
@@ -36,7 +85,7 @@ Parameters | Description
 --- | ---
 id | The id of the project
 
-***
+---
 
 #### Delete a single project
 Delete a project based on the id provided in the request.
@@ -47,7 +96,7 @@ Parameters | Description
 --- | ---
 id | The id of the project
 
-***
+---
 
 #### Vote for a project
 Increase the vote of a project based on the id provided in the request.
@@ -58,8 +107,9 @@ Parameters | Description
 --- | ---
 id | The id of the project
 
-***
-
 ## Profiles
 
 ## Semesters
+
+## Images
+
