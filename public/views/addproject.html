@@ -221,6 +221,13 @@
 
         <a href="#" id="vote" data-id="{{ project._id }}" class="vote"><i class="fa fa-heart"></i></a>
 
+        <div class="alert alert-success vote-success text-center" role="alert">
+            <strong>Awesome</strong>, thank you for voting!
+        </div>
+        <div class="alert alert-warning vote-fail text-center" role="alert">
+            <strong>Oops</strong>, you already voted.
+        </div>
+
         <div simpletextform id="simpleedit" class="project-title-edit"></div> 
 
         <div simpledescriptionform id="simpledescription" class="project-description-edit"></div> 

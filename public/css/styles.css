@@ -169,6 +169,13 @@ img {
     transition: 0.3s ease;
 }
 
+.profile-actions-container {
+    background: #9c9b9a;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
 .project-actions {
     margin-top: 15px;
     position: relative;
@@ -214,7 +221,9 @@ img {
 }
 
 .menu-toggle-filter {
-    top: 10px;
+    z-index: 9999;
+    top: 85px;
+    left: 15px;
 }
 
 /**
@@ -254,6 +263,7 @@ img {
     text-transform: uppercase;
     font-size: 22px;
     display: table;
+    box-shadow: 0px 2px 4px #555555;
 }
 
 .about-circle > .inner-circle {
@@ -600,7 +610,9 @@ img {
     height: 200px;
 }
 
-#vote {
+#vote,
+.vote-success,
+.vote-fail {
     display: none;
 }
 
@@ -660,7 +672,13 @@ img {
     display: inline-block;
     line-height: 37px;
     vertical-align: middle;
+    color: #000000;
 }
+
+.edit-icon-editor {
+    right: 25px;
+    padding: 3px;
+}  
 
 .image-background,
 .text-background,
@@ -803,6 +821,7 @@ Student work.
     display: table;
     font-size: 16px;
     word-break: break-word;
+    color: #333333;
 }
 
 .page-info > .inner-circle {
@@ -829,6 +848,9 @@ votes
  */
 
 .visibility-of-votes {
+    position: absolute;
+    left: 0;
+    top: calc(50% - 16px);
     display: none;
     opacity:0;
 }
@@ -912,12 +934,19 @@ votes
 .profile-circle {
     width: 200px;
     height: 200px;
-    border-radius: 50%;
-    border: 3px solid green;
+    border-radius: 50%;    
     font-size: 19px;
     text-align: center;
     color: #474748;
     display: table;
+    border: 3px solid #333;
+    -webkit-transition: box-shadow 0.2s;
+    -moz-transition: box-shadow 0.2s;
+    transition: box-shadow 0.2s;
+}
+
+.profile-circle:hover {
+    box-shadow: 0px 2px 4px #000000;
 }
 
 .profile-circle > .inner-circle {
@@ -1006,7 +1035,7 @@ votes
     position: absolute;
     top: 10px;
     left: 10px;
-    background: #9c9b9a;
+    background: #dfdfdf;
 }
 
 .popuplogo {

@@ -225,7 +225,16 @@
                     $('#simpleedit').editable({
                         inlineMode: true,
                         placeholder: 'Type your awesome project name!',
-                        buttons: ['bold', 'italic', 'underline', 'fontFamily']
+                        buttons: ['bold', 'italic', 'underline', 'fontFamily'],
+                        fontList: {
+                            "'Droid Serif', serif": "Droid Serif",
+                            "'Roboto Slab', serif": "Roboto Slab",
+                            "'Kameron', serif": "Kameron",
+                            "'Roboto', sans-serif": "Roboto",
+                            "'Source Sans Pro', sans-serif": "Source Sans Pro",
+                            "'Raleway', sans-serif": "Raleway",
+                            "'Cabin', sans-serif": "Cabin"
+                        }
                     });
                 }
             };
@@ -237,7 +246,16 @@
                     $('#simpledescription').editable({
                         inlineMode: true,
                         placeholder: 'Type your awesome description!',
-                        buttons: ['bold', 'italic', 'underline', 'fontFamily']
+                        buttons: ['bold', 'italic', 'underline', 'fontFamily'],
+                        fontList: {
+                            "'Droid Serif', serif": "Droid Serif",
+                            "'Roboto Slab', serif": "Roboto Slab",
+                            "'Kameron', serif": "Kameron",
+                            "'Roboto', sans-serif": "Roboto",
+                            "'Source Sans Pro', sans-serif": "Source Sans Pro",
+                            "'Raleway', sans-serif": "Raleway",
+                            "'Cabin', sans-serif": "Cabin"
+                        }
                     });
                 }
             };
@@ -301,7 +319,16 @@
                                 shortcuts: true,
                                 minHeight: 200,
                                 shortcutsAvailable: ['bold', 'italic', 'underline'],
-                                buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'sep', 'fontFamily', 'fontSize', 'sep', 'color', 'blockStyle', 'align', 'sep', 'insertOrderedList', 'insertUnorderedList', 'sep', 'selectAll', 'undo', 'redo', 'removeFormat', 'sep', 'insertHorizontalRule', 'table']
+                                buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'sep', 'fontFamily', 'fontSize', 'sep', 'color', 'blockStyle', 'align', 'sep', 'insertOrderedList', 'insertUnorderedList', 'sep', 'selectAll', 'undo', 'redo', 'removeFormat', 'sep', 'insertHorizontalRule', 'table'],
+                                fontList: {
+                                    "'Droid Serif', serif": "Droid Serif",
+                                    "'Roboto Slab', serif": "Roboto Slab",
+                                    "'Kameron', serif": "Kameron",
+                                    "'Roboto', sans-serif": "Roboto",
+                                    "'Source Sans Pro', sans-serif": "Source Sans Pro",
+                                    "'Raleway', sans-serif": "Raleway",
+                                    "'Cabin', sans-serif": "Cabin"
+                                }
                             });
 
                             $("#bioedit").editable('setHTML', $scope.user.bio, false);
@@ -512,7 +539,7 @@
                             .success(function(data) {
                                 if (jQuery.isEmptyObject(data)) {
                                     $('.modal').hide();
-                                    $location.path('/profile');
+                                    $location.path('/editprofile');
                                 }
                             })
                             .error(function (data) {

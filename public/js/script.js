@@ -155,6 +155,16 @@ $(document).on('click', '#vote', function () {
             dataType: "json",
             data: {}
         });
+
+        $(".vote-success").hide().slideDown();
+        setTimeout(function(){
+            $(".vote-success").hide();        
+        }, 5000);
+    } else {
+        $(".vote-fail").hide().slideDown();
+        setTimeout(function(){
+            $(".vote-fail").hide();        
+        }, 5000);
     }
 })
 
