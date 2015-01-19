@@ -464,7 +464,7 @@ img {
     background-color: #428bca;
 }
 
-.contactpadding {
+.contactrow {
     padding-left: 100px;
 }
 
@@ -472,18 +472,32 @@ img {
     padding-left: 100px;
 }
 
+@media(max-width: 768px) {
+    .contactrow {
+        
+        padding-left: 0;
+        
+    }
+    .footer {
+        text-align: center;
+    }
+    .contactheader > h3 {
+        text-align: center;
+        padding-left: 0px;
+    }
+}
+
+
 .footer {
     color: white;
-    background: #252525;
-    
-    height: 150px;
-    left: 0;
-    bottom: -150px;
+    background: #252525;    
+    height: auto;
+    left: 0;    
     width: 100%;
 }
 
 .footer h3{
-    text-align: center;
+    
 }
 
 .footer a {
