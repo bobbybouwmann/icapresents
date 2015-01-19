@@ -464,14 +464,21 @@ img {
     background-color: #428bca;
 }
 
+.contactpadding {
+    padding-left: 100px;
+}
+
+.contactheader h3 {
+    padding-left: 100px;
+}
 
 .footer {
     color: white;
     background: #252525;
     
-    height: 200px;
+    height: 150px;
     left: 0;
-    bottom: -200px;
+    bottom: -150px;
     width: 100%;
 }
 
