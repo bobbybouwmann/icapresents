@@ -74,6 +74,41 @@
                 }
             };
         }])
+        .directive('uploadbanner', ['$http', function ($http) {
+            return {
+                restrict: 'AEC',
+                link: function ($scope, element, attrs) {
+                    $('.bannerform').submit(function (e) {
+                        e.preventDefault();
+
+                        var formData = new FormData($(this)[0]);
+
+                        $.ajax({
+                            url: "/upload",
+                            type: "POST",
+                            data: formData,
+                            async: false,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (data) {
+                                var div = document.createElement('div');
+                                div.className = 'image select-image project-banner-background';
+                                div.style.backgroundImage = 'url("http://localhost:3000/' + data.path.substring(7) + '")';
+                                div.style.backgroundSize = 'cover';
+                                div.style.backgroundRepeat = 'no-repeat';
+                                div.style.backgroundPosition = '50% 50%';
+                                div.style.width = '100%';
+                                div.style.height = '300px';
+
+                                $('#update-to-picture').html(div);
+                                $('#bannerModal').modal('hide');
+                            }
+                        });
+                    });
+                }
+            };
+        }])
         .directive('uploadlogo', ['$http', function ($http) {
             return {
                 restrict: 'AEC',
@@ -131,12 +166,21 @@
                             data: formData,
                             async: false,
                             success: function (data) {
-                                var img = document.createElement('img');
-                                img.setAttribute('src', 'http://localhost:3000/' + data.path.substring(7));
-                                img.setAttribute('className', "image select-image");
-                                img.setAttribute('style', "max-width: 200px; max-height: 200px;");
+                                var div = document.createElement('div');
+                                div.className = 'image select-image profile-logo-background';
+                                div.style.backgroundImage = 'url("http://localhost:3000/' + data.path.substring(7) + '")';
+                                div.style.backgroundSize = 'cover';
+                                div.style.backgroundRepeat = 'no-repeat';
+                                div.style.backgroundPosition = '50% 50%';
+                                div.style.borderRadius = '50%';
+                                div.style.position = 'absolute';
+                                div.style.margin = 0;
+                                div.style.left = 'calc(50% - 100px)';
+                                div.style.top = '150px';
+                                div.style.width = '200px';
+                                div.style.height = '200px';
 
-                                $('#update-to-picture').html(img);
+                                $('#update-to-picture').html(div);
                                 $('#imageModal').modal('hide');
                             },
                             cache: false,
@@ -160,7 +204,16 @@
                         shortcuts: true,
                         minHeight: 200,
                         shortcutsAvailable: ['bold', 'italic', 'underline'],
-                        buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'sep', 'fontFamily', 'fontSize', 'sep', 'color', 'blockStyle', 'align', 'sep', 'insertOrderedList', 'insertUnorderedList', 'sep', 'selectAll', 'undo', 'redo', 'removeFormat', 'sep', 'insertHorizontalRule', 'table']
+                        buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'sep', 'fontFamily', 'fontSize', 'sep', 'color', 'blockStyle', 'align', 'sep', 'insertOrderedList', 'insertUnorderedList', 'sep', 'selectAll', 'undo', 'redo', 'removeFormat', 'sep', 'insertHorizontalRule', 'table'],
+                        fontList: {
+                            "'Droid Serif', serif": "Droid Serif",
+                            "'Roboto Slab', serif": "Roboto Slab",
+                            "'Kameron', serif": "Kameron",
+                            "'Roboto', sans-serif": "Roboto",
+                            "'Source Sans Pro', sans-serif": "Source Sans Pro",
+                            "'Raleway', sans-serif": "Raleway",
+                            "'Cabin', sans-serif": "Cabin"
+                        }
                     });
                 }
             };
@@ -325,8 +378,11 @@
                             var logo = $('.project-logo .project-logo-background').css('background-image');
                             logo = logo.replace('url(', '').replace(')', '');
 
+                            var banner = $('.project-banner .project-banner-background').css('background-image');
+                            banner = banner.replace('url(', '').replace(')', '');
+
                             $scope.formData.logo = logo;
-                            $scope.formData.banner = $('.header-image .image img').attr('src');
+                            $scope.formData.banner = banner;
                             $scope.formData.title = $('#simpleedit .froala-element p').text();
                             $scope.formData.description = $('#simpledescription .froala-element p').text();
                             $scope.formData.content = $('#project-content').html();
@@ -365,8 +421,11 @@
                             var logo = $('.project-logo-background').css('background-image');
                             logo = logo.replace('url(', '').replace(')', '');
 
+                            var banner = $('.project-banner-background').css('background-image');
+                            banner = banner.replace('url(', '').replace(')', '');
+
                             $scope.project.logo = logo;
-                            $scope.project.banner = $('.header-image .image img').attr('src');
+                            $scope.project.banner = banner;
                             $scope.project.title = $('#simpleedit .froala-element p').text();
                             $scope.project.description = $('#simpledescription .froala-element p').text();
                             $scope.project.semesterid = $('#projectsemester option:selected').val();
@@ -495,12 +554,11 @@
                     $('#save-portfolio').on('click', function (e) {
                         e.preventDefault();
 
-                        console.log($('.profileinformation img:first').attr('src'));
-                        console.log($('.profileinformation').find('img').attr('src'));
-                        console.log($('.profileinformation').find('img:first').attr('src'));
+                        var picture = $('.profile-logo-background').css('background-image');
+                        picture = picture.replace('url(', '').replace(')', '');
 
                         $scope.user.profileid = $('.select-profile option:selected').val();
-                        // $scope.user.picture = $('.profileinformation').find('img:first').attr('src');
+                        $scope.user.picture = picture
                         $scope.user.firstname = $("#firstnameedit").editable('getText');
                         $scope.user.lastname = $("#lastnameedit").editable('getText');
                         $scope.user.bio = $("#bioedit").editable('getHTML', true, true);

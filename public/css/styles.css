@@ -268,7 +268,7 @@ img {
 }
 
 .about-content {
-    padding: 200px 40px 0 40px;
+    padding: 200px 80px 80px 80px;
     font-size: 16px;
 }
 
@@ -403,7 +403,6 @@ img {
  */
 .header-image {
     position: relative;
-    margin-bottom: 100px;
 }
 
 .header-image > img {
@@ -415,6 +414,11 @@ img {
     border-radius: 50%;
     border: 5px solid white;
     position: relative;
+}
+
+.project-banner .select-image {
+    width: 100%;
+    height: 300px;
 }
 
 .project-logo .select-image {
@@ -448,11 +452,6 @@ img {
     border: 1px solid black;
     height: 400px!important;
     background-color: #5cb85c;
-}
-
-.unplaced {
-    height: 200px;  
-    background-color: #d9534f;
 }
 
 .full-row {
@@ -505,11 +504,6 @@ img {
     margin: 70px auto 0 auto;
 }
 
-.header-image {
-    min-height: 250px;
-    margin-bottom: 0;
-}
-
 .project-title-edit {
     text-align: center;
     margin-top: 20px;
@@ -542,6 +536,7 @@ img {
 
 .profileinformation {
     margin-top: 15px;
+    margin-top: 250px;
 }
 
 .profileinformation .form-margin {
@@ -562,8 +557,34 @@ img {
     height: 200px;
 }
 
+.profile-logo-background {
+    position: absolute;
+    left: calc(50% - 100px);
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    top: 150px;
+}
+
+.profile-logo-profile-page {
+    margin: 0 auto;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
 #vote {
     display: none;
+}
+
+#createdcontent {
+    margin-top: -65px;
 }
 
 #createdcontent #vote {
@@ -578,6 +599,7 @@ img {
 }
 
 .banner-background {
+    height: 100%;
     background: #ffd200;
     -webkit-transition: 0.5s ease;
     transition: 0.5s ease;
@@ -647,13 +669,17 @@ img {
     margin-right: 0;
 }
 
+.error-container {
+    margin: 70px auto -70px auto;
+}
+
 .error-title {
-    margin: 20px auto 0 auto;
+    margin: 10px auto;
     display: none;
 }
 
 .error-semester {
-    margin: 20px auto 0 auto;
+    margin: 10px auto;
     display: none;   
 }
 
@@ -741,10 +767,6 @@ Student work.
 .unplaced {
     height:300px;
     margin-bottom: 30px;
-}
-
-.unplaced:hover {
-
 }
 
 .page-info {
@@ -955,6 +977,7 @@ votes
  * User profile
  */
 .header-image-profile {
+    padding-top: 20px;
     position: relative;
 }
 
@@ -976,4 +999,5 @@ votes
     padding: 0 20px 20px 20px;
     font-size: 16px;
 }
+
 

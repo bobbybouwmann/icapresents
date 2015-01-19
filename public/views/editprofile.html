@@ -14,8 +14,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button uploadimageform type="submit" class="btn btn-primary">Use image</button>
+                    <button uploadimageprofileform type="submit" class="btn btn-primary">Use image</button>
                 </div>
             </form>
         </div>
@@ -30,7 +29,7 @@
 
 <div class="profileinformation clearfix text-center">
 
-    <div ng-show="user.picture" data-toggle="modal" data-target="#imageModal" class="image select-image"><img ng-src="{{ user.picture }}"></div>
+    <div ng-show="user.picture" data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="profile-logo-background" style="background-image: url('{{ user.picture }}');"></div></div>
  
     <div ng-hide="user.picture" data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="profile-background"><i class="fa fa-picture-o"></i></div></div>
 

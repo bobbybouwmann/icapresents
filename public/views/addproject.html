@@ -38,6 +38,29 @@
     </div>
 </div>
 
+<div class="modal fade" id="bannerModal" tabindex="-1" role="dialog" aria-labelledby="bannerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="bannerform" class="bannerform" enctype="multipart/form-data"> 
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="bannerModalLabel">Banner</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <input id="inputImage" type="file" accept="image/*" name="image">
+
+                        <img ng-show="image" ng-src="{{ image.url }}" type="{{ image.file.type }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button uploadbanner type="submit" class="icabutton">Use banner</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="logoModal" tabindex="-1" role="dialog" aria-labelledby="logoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -185,13 +208,11 @@
 
     <div class="page-header text-center ng-scope">
         <div class="header-image">
-            <!-- <div> -->
-                <div data-toggle="modal" data-target="#imageModal" class="image select-image"><div class="banner-background"><div class="plus-icon-editor">+</div><i class="fa fa-picture-o"></i></div></div>
-            <!-- </div> -->
+            <div class="project-banner">
+                <div data-toggle="modal" data-target="#bannerModal" class="image select-image"><div class="banner-background"><div class="plus-icon-editor">+</div><i class="fa fa-picture-o"></i></div></div>
+            </div>
             <div class="project-logo">
-                <!-- <div>  -->
-                    <div data-toggle="modal" data-target="#logoModal" class="image select-image"><div class="logo-background"><i class="fa fa-picture-o"></i></div></div>
-                <!-- </div> -->
+                <div data-toggle="modal" data-target="#logoModal" class="image select-image"><div class="logo-background"><i class="fa fa-picture-o"></i></div></div>
             </div>
         </div>
     </div>

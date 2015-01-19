@@ -1,7 +1,7 @@
 <div class="header-image-profile text-center">
     <form action="/editprofile"><button type="submit" class="icabutton editprofilebutton">Edit</button></form>
 
-    <img ng-src="{{ user.picture }}">
+    <div class="profile-logo-profile-page" style="background-image: url('{{ user.picture }}');"></div>
 
     <h2>{{ user.firstname }} {{ user.lastname }}</h2>
     <p><i>{{ profile.name }}</i></p>
