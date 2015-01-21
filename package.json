@@ -1,10 +1,16 @@
 {
-  "name": "userapp",
-  "version": "0.0.1",
-  "description": "User app",
+  "name": "icaportfolios",
+  "version": "1.0.0",
+  "description": "ICA Portfolios website for the HAN (Hogeschool Arnhem Nijmegen)",
+  "main": "server.js",
+  "engines": {
+    "node": "0.10.x"
+  },
   "scripts": {
     "start": "node server.js"
   },
+  "author": "Bobby Bouwmann",
+  "license": "MIT",
   "dependencies": {
     "express": "~4.3.1",
     "mongoose": "~3.8.11",

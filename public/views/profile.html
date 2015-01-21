@@ -1,5 +1,7 @@
 <div class="header-image-profile text-center">
-    <img ng-src="{{ user.picture }}">
+    <form action="/editprofile"><button type="submit" class="icabutton editprofilebutton">Edit</button></form>
+
+    <div class="profile-logo-profile-page" style="background-image: url('{{ user.picture }}');"></div>
 
     <h2>{{ user.firstname }} {{ user.lastname }}</h2>
     <p><i>{{ profile.name }}</i></p>
@@ -12,11 +14,21 @@
 
 <hr>
 
-<h3>Projecten (Pjotr needs to put them in here)</h3>
-
-<div class="row">
-    <div class="col-xs-2" ng-repeat="project in projects">
-        <a href="" ng-click="editProject(project._id)">Edit</a>
-        <a href="" ng-click="removeProject(project._id)">Delete</a>
-    </div> 
+<div class="row full-row">
+    <div ng-repeat="project in projects | limitTo:6 track by $index">
+        <div class="col-xs-12 col-md-4" ng-show="$index == 0 || $index > 0">
+            <a href="/project/{{project._id}}">
+                <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
+                    <div class="page-info" >
+                        <div class="visibility-of-title inner-circle">
+                            {{ project.title }}  
+                        </div>
+                        <div class="visibility-of-votes inner-circle">
+                            <i class="fa fa-heart"></i> {{ project.votes }}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>

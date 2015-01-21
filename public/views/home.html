@@ -1,14 +1,14 @@
 <div id="Carousel" class="carousel slide">
     <ol class="carousel-indicators">
-        <li ng-repeat="project in projects | limitTo:4  track by $index" data-target="Carousel" data-slide-to="{{ $index }}" ng-class="{active : $first}"></li>
-    </ol>
+        <li ng-repeat="project in projects | limitTo:3  track by $index" data-target="Carousel" data-slide-to="{{ $index }}" ng-class="{active : $first}"></li>
+    </ol>    
 
     <div id="carousel-style" class="carousel-inner">
-        <div class="item" ng-repeat="project in projects | limitTo:4 track by $index" ng-class="{active : $first}">
+        <div class="item" ng-repeat="project in projects | limitTo:3 track by $index" ng-class="{active : $first}">
             <div class="page-info-carousel">
                 <div class="fix-center">
                     <h3 class="hope-page-title">{{ project.title }}</h3> 
-                    <p id="clamp">{{ project.content }}</p>
+                    <p id="clamp">{{ project.description }}</p>
                 </div>
             </div>
             <img class="img-responsive" alt="Responsive image" ng-src="{{ project.banner }}">
@@ -21,17 +21,22 @@
     <span class="right carousel-control" data-target="#Carousel" data-slide="next">
        <span class="glyphicon glyphicon-chevron-right"></span>
     </span>
+
+    <a ng-click="gotoElement('homeprojects')"><img class="arrow-down" src="/images/arrow-down.png"></a>
 </div>
 
 <div class="row full-row">
-    <div ng-repeat="project in projects | limitTo:6 track by $index">
+    <div id="homeprojects" ng-repeat="project in projects | limitTo:6 track by $index">
         <div class="col-xs-12 col-md-4" ng-show="$index == 0 || $index > 0">
             <a href="/project/{{project._id}}">
                 <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
-<!--                <img src=" {{ project.banner }} " alt="banner"> -->
                     <div class="page-info" >
-                        <h3>{{ project.title }}</h3>
-                        <p class="visibility-of-votes">{{ project.votes }}</p>
+                        <div class="visibility-of-title inner-circle">
+                            {{ project.title }}  
+                        </div>
+                        <div class="visibility-of-votes inner-circle">
+                            <i class="fa fa-heart"></i> {{ project.votes }}
+                        </div>
                     </div>
                 </div>
             </a>
@@ -40,8 +45,8 @@
 </div>
 
 <div class="view-more">
-    <a href="/projects">
-        <button type="button" class="btn btn-default btn-lg">VIEW MORE</button>
-    </a>
+    <form action="/projects">
+        <button type="submit" class="icabutton">VIEW MORE</button>
+    </form>
 </div>
 

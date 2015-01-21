@@ -116,6 +116,9 @@ module.exports = function (app) {
         });
     });
 
+    /**
+     * Get the semesters connected to the profile based on the profile id provided in the request url.
+     */
     app.get('/api/profilesemesters/:_id', function (req, res) {
         Semester.find({
             profileid: req.params._id

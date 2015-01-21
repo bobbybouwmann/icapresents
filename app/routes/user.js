@@ -5,6 +5,7 @@
  */
 var User = require('./../models/user');
 var Project = require('./../models/project');
+var Profile = require('./../models/profile');
 
 /**
  * Expose user routes
@@ -34,7 +35,7 @@ module.exports = function(app, passport) {
             if (err) { 
                 return res.json(err);
             }
-            if (user.error) {   
+            if (user.error) {
                 return res.json({ error: user.error });
             }
             req.logIn(user, function(err) {
@@ -42,7 +43,8 @@ module.exports = function(app, passport) {
                     return res.json(err);
                 }
 
-                return res.json({ redirect: '/profile' });
+                // return res.json({ redirect: '/profile' });
+                return res.json({});
             });
         })(req, res);
     });
@@ -69,7 +71,8 @@ module.exports = function(app, passport) {
                     return res.json(err);
                 }
 
-                return res.json({ redirect: '/profile' });
+                // return res.json({ redirect: '/profile' });
+                return res.json({});
             });
         })(req, res);
     });
@@ -139,7 +142,7 @@ module.exports = function(app, passport) {
     });
 
     /**
-     * Get a yser based on the id provided in the request url
+     * Get a user based on the id provided in the request url
      */
     app.get('/api/users/:_id', function (req, res) {
         User.findById(req.params._id, function (err, user) {

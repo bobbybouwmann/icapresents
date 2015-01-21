@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro|Cabin|Kameron|Droid+Serif|Roboto|Roboto+Slab|Raleway" type="text/css">
         <link rel="stylesheet" href="../css/froala_editor.min.css">
         <link rel="stylesheet" href="../css/froala_style.min.css">
         <link rel="stylesheet" href="../css/froala_content.min.css">
@@ -18,6 +19,7 @@
         <script src="/modules/core.js"></script>    
         <script src="/modules/growl.js"></script>
         <script src="/factories/httpInterceptor.js"></script>
+        <script src="/services/smoothscroll.js"></script>
         <script src="/controllers/admin.js"></script>
         <script src="/controllers/footer.js"></script>
         <script src="/controllers/home.js"></script>
@@ -31,7 +33,83 @@
 
     <body class="menu">
 
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form ng-submit="signup()" ng-controller="SignupForm">
+                        <div class="modal-body">
+                            <img src="/images/ICA.png" class="popuplogo">
+
+                            <div growl></div>
+
+                            <div class="form-group">
+                                <label for="firstname">Firstname</label>
+                                <input type="text" id="firstname" class="form-control" ng-model="formData.firstname" required placeholder="John">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastname">Lastname</label>
+                                <input type="text" id="lastname" class="form-control" ng-model="formData.lastname" required placeholder="Doe">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profile">Profile</label>
+                                <select class="form-control" ng-model="formData.profileid" id="profile" required>
+                                    <option ng-repeat="profile in profiles" value="{{ profile._id }}">{{ profile.name }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="studentnumber">Studentnumber</label>
+                                <input type="text" id="studentnumber" class="form-control" ng-model="formData.studentnumber" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" ng-model="formData.email" required placeholder="johndoe@student.han.nl">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" ng-model="formData.password" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button registeruser type="submit" id="register-user" class="icabutton">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form ng-submit="login()" ng-controller="LoginForm">
+                        <div class="modal-body">
+                            <img src="/images/ICA.png" class="popuplogo">
+
+                            <div growl></div>
+                            
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" ng-model="formData.email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" ng-model="formData.password" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button loginuser type="submit" id="login-user" class="icabutton">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-fixed-top" role="navigation">
             <div class="container-fluid">          
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -47,23 +125,23 @@
                     <ul class="nav navbar-nav">
                         <li><a href="/">Home <span class="sr-only">(current)</span></a></li>
                         <li><a href="/projects">Student Work</a></li>
-                        <li><a href="/profiles">Profiles</a></li>
+                        <li><a href="/profiles">Courses</a></li>
                         <li><a href="/about">About</a></li>
-                        <!-- <li><a href="/admin">Admin Panel</a></li> -->
                     </ul>
         
                     <ul class="nav navbar-nav navbar-right">
                         <form action="/addproject" class="navbar-form navbar-left" role="search">
-                            <button type="submit" class="btn btn-default">Add Project</button>
+                            <button class="icabutton" type="submit">Add Project</button>
                         </form>
 
-                        <li ng-hide="$root.loggedin"><a href="/login">Login</a></li>
+                        <li ng-hide="$root.loggedin"><a data-toggle="modal" data-target="#registerModal">Register</a></li>
+                        <li ng-hide="$root.loggedin"><a data-toggle="modal" data-target="#loginModal">Login</a></li>                        
 
-                        <li ng-show="$root.loggedin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <li ng-show="$root.loggedin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span ng-show="$root.user.picture" style="background-image: url('{{ $root.user.picture }}');"></span><span ng-hide="$root.user.picture" style="background-image: url('/images/silhouette.png');"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/profile">My profile</a></li>
-                                <li><a href="/editprofile">Edit portfolio</a></li>
-                                <li class="divider"></li>
+                                <li><a href="/profile">My Portfolio</a></li>
+                                <li><a href="/editprofile">Edit Portfolio</a></li>
+                                <li ng-show="$root.user.role == 'admin'"><a href="/admin">Admin panel</a></li>
                                 <li><a logout href="">Logout</a></li>
                             </ul>
                         </li>
@@ -72,31 +150,34 @@
             </div><!-- /.container-fluid -->
         </nav>
 
+    <div class="wrap">
         <div class="margin-view" ng-view>
-
+    </div>
         </div>
 
-        <footer class="footer" ng-controller="FooterController">
-            <div class="container">
-                <div class="col-sm-4">                    
-                    <div class="row">
-                        <div class="col-sm-8 col-sm-offset-4">
-                            <h3 style="text-align: left;">Contact</h3>
-                            <p>Adress: Ruitenberglaan 26<br>
-                                6826 CC Arnhem<br></p>
-                            Telephone: (026) 365 82 82<br>
-                            E-mail: info@han.nl</p>
-                        </div>
+         <footer class="footer container" ng-controller="FooterController">
+                <div class="col-sm-12 col-md-4 contactheader">
+                    <h3 >Contact</h3>
+                        <div class="row contactrow" >
+                            <div class="col-sm-6 ">
+                                <p>Adress: Ruitenberglaan 26<br>
+                                    6826 CC Arnhem<br></p>
+                            </div>
+                            <div class="col-sm-6">
+                                    <p>Telephone: (026) 365 82 82<br>
+                                    E-mail: info@han.nl</p>
+                            </div>
+                        </div>    
                     </div>
+                
+                <div class="col-sm-6 col-md-4">
+                    <h3><span class="fa fa-copyright"></span> Han University 2015</h3>
                 </div>
-                <div class="col-sm-4">
-                    <h3>Terms of Service   <span class="fa fa-copyright"></span>    2014</h3>
-                </div>
-                <div class="col-sm-4">
+                <div class="col-sm-6 col-md-4">
                     <h3><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><span class="fa fa-facebook"></span></a></h3>
                 </div>              
             </div>
-        </footer>
+        </footer> 
 
         <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>

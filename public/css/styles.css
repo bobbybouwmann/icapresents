@@ -1,6 +1,6 @@
 body {
-    margin-bottom: 200px;
     position: relative;
+    font-family: 'Roboto', sans-serif;
 }
 /**
  * Basic styles
@@ -10,14 +10,96 @@ img {
     height: auto;
 }
 
+.icabutton {
+    border: none;
+    background: #ffd200;
+    padding: 8px 15px;
+    font-size: 14px;
+    box-shadow: 0px 2px 4px #000000;
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+}
+
+.icabutton:hover,
+.icabutton:focus,
+.icabutton:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    text-decoration: none;
+    color: #000000;
+    box-shadow: 0px 1px 2px #000000;
+}
+
+.modal-footer .icabutton,
+.modal-footer .icabutton {
+    margin: 0 auto;
+    display: block;
+}
+
 /**
  * Navigation
  */
+.navbar {
+    background: #474748;
+    border-bottom: none;
+}
+
+.navbar-nav > li > a {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    color: #ffffff;
+}
+
+.nav > li > a:hover, 
+.nav > li > a:focus {
+    color: #ffd200;
+    background: none;
+}
+
+.navbar-form {
+    margin-top: 18px;
+}
 
 .navbar-brand img {
     height: 40px;
-    margin-top: -15px;
-    margin-bottom: -15px;
+}
+
+.nav .open > a, 
+.nav .open > a:hover, 
+.nav .open > a:focus {
+    background: #dfdfdf;
+}
+
+.navbar-nav > li > .dropdown-menu {
+    background: #dfdfdf;
+    border: none;
+    width: 200px;
+}
+
+.dropdown-menu > li {
+    text-align: center;
+}
+
+.dropdown > a > span {
+    width: 52px;
+    height: 52px;
+    display: inline-block;
+    margin-top: -16px;
+    margin-bottom: -16px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border: 2px solid #9c9b9a;
+}
+
+.dropdown-menu > li > a:hover, 
+.dropdown-menu > li > a:focus {
+    color: #333333;
+    background: #ffd200;
 }
 
 /**
@@ -35,9 +117,20 @@ img {
     left: 380px;
 }
 
+.menu-open .project-actions-container {
+    left: 380px;
+}
+
+.menu-open .banner-background .plus-icon-editor {
+    right: 400px;
+}
+ 
 .menu-open .menu-side {
+    background: #e1e1e1;
+    color: #333333;
     left: 0;
-    padding-top: 60px;
+    padding-top: 90px;
+    z-index: 2;
 }
 
 .menu-side, .menu {
@@ -57,17 +150,136 @@ img {
     width: 380px;
     padding: 10px;
     height: 100%;
+    z-index: 2000;
+}
+
+.project-actions-container {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: #9c9b9a;
+    text-align: center;
+    z-index: 1020;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+
+.profile-actions-container {
+    background: #9c9b9a;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 .project-actions {
+    margin-top: 15px;
     position: relative;
-    text-align: center;
+    text-align: center
+}
+
+.project-actions img {
+    max-height: 40px;
+}
+
+.project-actions .layout-button,
+.project-actions > .help {
+    color: #ffffff;
+    font-size: 19px;
+    line-height: 35px;
+}
+
+.project-actions > .help {
+    margin-right: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.project-actions > button {
+    margin: 0 5px;
+}
+
+.project-actions .layout-button:hover,
+.project-actions .layout-button:focus,
+.project-actions .layout-button:active,
+.project-actions > .help:hover,
+.project-actions > .help:focus,
+.project-actions > .help:active {
+    text-decoration: none;
+    color: #ffd200;
 }
 
 .menu-toggle{
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.menu-toggle-filter {
+    z-index: 9999;
+    top: 85px;
+    left: 15px;
+}
+
+/**
+ * About page
+ */
+.about-page {
+    height: 100%;
+}
+
+.about-wrapper {
+    position: relative;
+    width: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.about-grey,
+.about-yellow {
+    background: #9c9b9a;
+    position: relative;
+}
+
+.about-circle {
+    position: absolute;
+    top: -100px;
+    left: calc(50% - 100px);
+    width: 190px;
+    height: 190px;
+    text-align: center;
+    background: rgba(255,255,255, 0.8);
+    border: 5px solid #ffffff;
+    border-radius: 50%;
+    text-transform: uppercase;
+    font-size: 22px;
+    display: table;
+    box-shadow: 0px 2px 4px #555555;
+}
+
+.about-circle > .inner-circle {
+    width: 100%;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.about-yellow {
+    background: #ffd200;
+}
+
+.about-content {
+    padding: 200px 80px 80px 80px;
+    font-size: 16px;
 }
 
 /**
@@ -89,13 +301,18 @@ img {
 
 .layout {
     position: relative;
+    text-align: center;
+}
+
+.layout .plus-icon-editor {
+    right: 25px;
 }
 
 .remove-layout {
     display: none;
     position: absolute;
-    top: 0;
-    right: 10px;
+    top: 20px;
+    right: -20px;
     font-size: 24px;
     width: 24px;
     height: 24px;
@@ -105,18 +322,20 @@ img {
     display: block;
 }
 
-.layout-image {
-    padding: 20px 0;
-    text-align: center;
-}
-
 .layout-image img {
     max-width: 100%;
     height: auto;
 }
 
-.layout-image-text {
+.layout-image,
+.layout-image-image,
+.layout-image-image-image,
+.layout-image-text,
+.layout-text-image,
+.layout-text,
+.layout-video {
     padding: 20px 0;
+    text-align: center;
 }
 
 .layout-image-text .image {
@@ -128,21 +347,9 @@ img {
     height: auto;
 }
 
-.layout-text-image {
-    padding: 20px 0;
-}
-
-.layout-text-image .image {
-    text-align: center;
-}
-
 .layout-text-image .image img {
     max-width: 100%;
     height: auto;
-}
-
-.layout-video {
-    padding: 20px 0;
 }
 
 .layout-video .embed-container { 
@@ -163,6 +370,12 @@ img {
     width: 100%; 
     height: 100%; 
 }
+
+.layout .fr-tag {
+    text-align: left;
+}
+
+.layout:hover 
 
 .embed-container .actions {
     z-index: 999;
@@ -200,7 +413,6 @@ img {
  */
 .header-image {
     position: relative;
-    margin-bottom: 100px;
 }
 
 .header-image > img {
@@ -212,6 +424,11 @@ img {
     border-radius: 50%;
     border: 5px solid white;
     position: relative;
+}
+
+.project-banner .select-image {
+    width: 100%;
+    height: 300px;
 }
 
 .project-logo .select-image {
@@ -226,46 +443,13 @@ img {
     left: calc(50% - 105px);
 }
 
-/*About page
-*/
-.round-logo-background {
-    position: absolute;
-    left: calc(50% - 100px);
-    margin-top: -120px;
-    background-image: url(http://lorempixel.com/500/300);
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
-}
-
-.title {
-    margin-top:60px; 
-}
-
-.inner-image img {
-    margin-top: 145px; 
-    left: calc(50% - 100px);
-    top: calc(100% - 135px);
-}
-
-.inner-text  {
-    margin-top: 50px;
-    padding-right: 125px;
-    padding-left: 125px;
-}
-
-.about-container {
-    margin-top:150px; 
-    border: 1px solid #e7e7e7;
-}
 /**
  * Other stuff
  */
 
 .margin-view {
-    margin-top: 70px;
+    height: 100%;
+    padding-top: 70px;
 }
 
 .firstPlace {
@@ -280,12 +464,6 @@ img {
     background-color: #5cb85c;
 }
 
-.unplaced {
-    border: 1px solid black;
-    height: 200px;  
-    background-color: #d9534f;
-}
-
 .full-row {
     margin: 0 auto; 
 }
@@ -296,19 +474,40 @@ img {
     background-color: #428bca;
 }
 
+.contactrow {
+    padding-left: 100px;
+}
+
+.contactheader h3 {
+    padding-left: 100px;
+}
+
+@media(max-width: 768px) {
+    .contactrow {
+        
+        padding-left: 0;
+        
+    }
+    .footer {
+        text-align: center;
+    }
+    .contactheader > h3 {
+        text-align: center;
+        padding-left: 0px;
+    }
+}
+
 
 .footer {
     color: white;
-    background: #252525;
-    
-    height: 200px;
-    left: 0;
-    bottom: -200px;
+    background: #252525;    
+    height: auto;
+    left: 0;    
     width: 100%;
 }
 
 .footer h3{
-    text-align: center;
+    
 }
 
 .footer a {
@@ -333,23 +532,24 @@ img {
 
 .page-header {
     border: none;
-    margin: 20px auto 0 auto;
-}
-
-.header-image {
-    min-height: 250px;
-    margin-bottom: 0;
+    margin: 70px auto 0 auto;
 }
 
 .project-title-edit {
     text-align: center;
+    margin-top: 20px;
     font-size: 32px;
+}
+
+.project-description-edit {
+    text-align: center;
+    font-size: 16px;
 }
 
 .projectsemesterform {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 100px;
 }
 
 #createdcontent .remove-layout,
@@ -365,9 +565,9 @@ img {
     border-right: 1px solid #ddd;
 }
 
-
 .profileinformation {
     margin-top: 15px;
+    margin-top: 250px;
 }
 
 .profileinformation .form-margin {
@@ -388,8 +588,36 @@ img {
     height: 200px;
 }
 
-#vote {
+.profile-logo-background {
+    position: absolute;
+    left: calc(50% - 100px);
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    top: 150px;
+}
+
+.profile-logo-profile-page {
+    margin: 0 auto;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+#vote,
+.vote-success,
+.vote-fail {
     display: none;
+}
+
+#createdcontent {
+    margin-top: -65px;
 }
 
 #createdcontent #vote {
@@ -404,8 +632,11 @@ img {
 }
 
 .banner-background {
-    background: #eee;
-    padding: 50px 0 110px 0;
+    height: 100%;
+    background: #ffd200;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    padding: 40px 0 120px 0;
 }
 
 .profile-background,
@@ -416,17 +647,58 @@ img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
+    position: relative;
 }
 
 .logo-background {
     margin: -70px auto 0 auto;
+    background: #ffffff;
+    box-shadow: 0px 1px 2px #000000;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
 }
+
+.plus-icon-editor {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    background: #ffd200;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    text-align: center;
+    display: inline-block;
+    line-height: 37px;
+    vertical-align: middle;
+    color: #000000;
+}
+
+.edit-icon-editor {
+    right: 25px;
+    padding: 3px;
+}  
 
 .image-background,
 .text-background,
 .youtube-background {
     padding: 40px;
-    background: #eee;
+    position: relative;
+    background: #e1e1e1;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+}
+
+.image-background:hover,
+.text-background:hover,
+.youtube-background:hover,
+.logo-background:hover {
+    background: #9c9b9a;
+}
+
+.banner-background:hover {
+    background: #e1e1e1;
 }
 
 .select-text i, 
@@ -436,24 +708,29 @@ img {
     margin-right: 0;
 }
 
+.error-container {
+    margin: 70px auto -70px auto;
+}
+
 .error-title {
-    margin: 20px auto 0 auto;
+    margin: 10px auto;
     display: none;
 }
 
 .error-semester {
-    margin: 20px auto 0 auto;
+    margin: 10px auto;
     display: none;   
 }
 
 .slide-student {
     position: absolute!important;
-    top:10%;
     left:0;
+    margin-top: 115px;
     -webkit-transition:all ease 1.5s;
     transition:all ease 1.5s;
     height:300px;
     width:100%;
+    margin-top: 115px;
 }
 
 .slide-student:nth-child(2) {
@@ -487,13 +764,20 @@ img {
 }
 
 .carousel-indicators {
-    background: -moz-linear-gradient(left,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0)), color-stop(50%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 50%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 50%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 50%,rgba(0,0,0,0) 100%); /* IE10+ */
-    background: linear-gradient(to right,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 50%,rgba(0,0,0,0) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+    /*background: -moz-linear-gradient(left,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+    /*background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0)), color-stop(50%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    /*background: -webkit-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 50%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+    /*background: -o-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 50%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+    /*background: -ms-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 50%,rgba(0,0,0,0) 100%); /* IE10+ */
+    /*background: linear-gradient(to right,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 50%,rgba(0,0,0,0) 100%); /* W3C */
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+    bottom: 60px;
+}
+
+.arrow-down {
+    position: absolute;
+    bottom: 5px;
+    left: calc(50% - 24px);
 }
 
 .page-info-carousel {
@@ -524,33 +808,34 @@ Student work.
     margin-bottom: 30px;
 }
 
-.unplaced:hover {
-
-}
-
-.page-info{
+.page-info {
     position: absolute;
-    height:200px;
-    width:200px;
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
     background-color: rgba(255,255,255,0.8);
     border: 5px solid white;
-    left:calc(50% - 100px);
-    top:calc(50% - 110px);
-    padding-top: 80px;
-    word-wrap: break-word;
+    left: calc(50% - 110px);
+    top: calc(50% - 110px);
     text-align: center;
+    display: table;
+    font-size: 16px;
+    word-break: break-word;
+    color: #333333;
 }
 
-.page-info > h3 {
-    color:#252525;
-    text-align: center;
+.page-info > .inner-circle {
+    width: 100%;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .view-more {
     display: table;
     margin: 0 auto;
     margin-top: 50px;
+    margin-bottom: 30px;
 }
 
 #slider1_container, #slides {
@@ -563,14 +848,206 @@ votes
  */
 
 .visibility-of-votes {
-    visibility:hidden;
+    position: absolute;
+    left: 0;
+    top: calc(50% - 16px);
+    display: none;
     opacity:0;
-    transition:visibility 0s linear 0.5s,opacity 0.5s linear;
-    font-size: 2em;
 }
 
-.unplaced:hover .visibility-of-votes{
-    visibility:visible;
-    opacity:1;
-    transition-delay:0s;
+.unplaced:hover .visibility-of-votes {
+    font-size: 32px;
+    opacity: 1;
 }
+
+.unplaced:hover .visibility-of-title {
+    font-size: 16px;
+    word-break: break-word;
+    display: none;
+}
+
+.visibility-of-votes > i {
+    color:red;
+}
+
+/**
+ * Admin
+ */
+.search-button {
+    margin-left: -23px;
+    padding-left: 17px;
+}
+
+/**
+ * Profiles and semesters
+ */
+.profilecolor {
+    margin: 10px 0 10px 10px;
+    width: 20%;
+    padding-left: 20px;
+    float: left;
+    font-size: 19px;
+    position: relative;
+}
+
+.profilecolor span {
+    position: absolute;
+    top: 8px;
+    left: -10px;
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.profilecolor .i {
+    background: #cf2a27;
+}
+
+.profilecolor .cmd {
+    background: #ff9900;
+}
+
+.profilecolor .bim {
+    background: #009e0f;
+}
+
+.profilecolor .ti {
+    background: #2b78e4;
+}
+
+.profileslist a {
+    display: block;
+    width: 20%;
+    float: left;
+    margin: 80px auto;
+}
+
+.profileslist a:hover,
+.profileslist a:active, 
+.profileslist a:focus {
+    text-decoration: none;
+}
+
+.profile-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;    
+    font-size: 19px;
+    text-align: center;
+    color: #474748;
+    display: table;
+    border: 3px solid #333;
+    -webkit-transition: box-shadow 0.2s;
+    -moz-transition: box-shadow 0.2s;
+    transition: box-shadow 0.2s;
+}
+
+.profile-circle:hover {
+    box-shadow: 0px 2px 4px #000000;
+}
+
+.profile-circle > .inner-circle {
+    width: 100%;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.profile1 {
+    border-color: #009e0f;
+}
+
+.profile2 {
+    border-color: #ff9900;
+}
+
+.profile3 {
+    border-color: #cf2a27;
+}
+
+.profile4 {
+    border-color: #2b78e4;
+}
+
+.semestertitle {
+    background: #ffd200;
+    text-transform: uppercase;
+    padding: 100px 0 150px 0;
+    font-size: 35px;
+    text-align: center;
+}
+
+/**
+ * Filters
+ */
+#place_pages {
+    height:600px;
+}
+
+#place_pages .menu-side {
+    background: #9c9b9a;
+    padding: 100px 30px 30px 30px;
+    font-size: 16px;
+}
+
+#place_pages .menu-side-title {
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+#place_pages .menu-side-subtitle {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#place_pages .menu-side #projects {
+    margin-bottom: 30px;
+}
+
+#place_pages .menu-side .customfield {
+    width: 100%;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#place_pages .menu-side .customfield label {
+    width: 125px;
+}
+
+#place_pages .menu-side .customfield input,
+#place_pages .menu-side .customfield select {
+    width: 190px;
+}
+
+/**
+ * User profile
+ */
+.header-image-profile {
+    padding-top: 20px;
+    position: relative;
+}
+
+.header-image-profile .editprofilebutton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #dfdfdf;
+}
+
+.popuplogo {
+    margin: 0 auto 20px auto;
+    width: 100px;
+    height: auto;
+    display: block;
+}
+
+.help-info {
+    padding: 0 20px 20px 20px;
+    font-size: 16px;
+}
+
+

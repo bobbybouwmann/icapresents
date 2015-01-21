@@ -1,37 +1,60 @@
-<div class="container">
-    <div class="project-actions">
-        <a menuside href="#" class="menu-toggle btn btn-default pull-left">Toggle Filter</a>
-        <br><br><br><br><br>
-    </div>
-</div>
+
+<button menuside onclick="slide_to_first()" class="menu-toggle menu-toggle-filter icabutton pull-left">Filter</button>
 
 <p id="get-value" value="{{ projects.length }}"></p>
 
-<div class="row full-row">
+<div id="place_pages" class="row full-row">
     <div class="menu-side">
-        <h3> Filter </h3>
+        <div class="menu-side-title">Filter</div>
 
-        <div id="Title">
-            <label for="Title-field">Project Title</label>
-            <input id="Title-field" ng-model="search.title">
+        <div id="projects">
+            <div class="menu-side-subtitle">Projects</div>
+
+            <div class="customfield">
+                <label for="Title-field">Project Title</label>
+                <input id="Title-field" ng-model="search.title">
+            </div>
+
+            <div class="customfield">
+                <label for="Semester">Semesters</label>
+                <select ng-model="search.$">
+                    <option value="">-- Select semester</option>
+                    <option ng-repeat="semester in semesters" value=" {{ semester._id }} "> {{ semester.name }}</option>
+                </select>
+            </div>
+
+            <div class="customfield">
+                <label for="Semester-Date-field">Semester date</label>
+                <select ng-model="search.$">
+                    <option value="">-- Select date</option>
+                    <option id="date">2014, p1</option>
+                </select>
+            </div>
+
         </div>
 
-        <label for="Semester-Date-field">Semester Dates</label>
-        <select ng-model="search.$">
-            <option id="Semester-Date-field" ng-repeat="project in projects track by $index" value="{{project.date}}">{{project.date}}</option>
-        </select>
+        <div id="Students">
+            <div class="menu-side-subtitle">Students</div>
 
+            <div class="customfield">
+                <label for="Name-field">Student Name</label>
+                <input id="Name-field" ng-model="search.firstname">
+            </div>
+        </div>
     </div>
 
-
-    <div class="slide-student">
+    <div id="setheight" class="slide-student">
         <div ng-repeat="project in projects | filter:search track by $index">
             <div class="col-xs-12 col-md-4" ng-show="$index >= 0 && $index < 6">
                 <a href="/project/{{project._id}}">
                     <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
-                        <div class="page-info" >
-                            <h3>{{ project.title }}</h3>
-                            <p class="visibility-of-votes">{{ project.votes }}</p>
+                        <div class="page-info">
+                            <div class="visibility-of-title inner-circle">
+                                {{ project.title }}  
+                            </div>
+                            <div class="visibility-of-votes inner-circle">
+                                <i class="fa fa-heart"></i> {{ project.votes }}
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -39,14 +62,20 @@
         </div>
     </div>
 
-    <div class="slide-student">
+    <div id="setheight" class="slide-student">
         <div ng-repeat="project in projects | filter:search track by $index">
             <div class="col-xs-12 col-md-4" ng-show="$index >= 6 && $index < 12">
                 <a href="/project/{{project._id}}">
                     <div class="unplaced" style="background: url({{ project.banner }}) center center no-repeat; background-size:cover;">
                         <div class="page-info" >
-                            <h3>{{ project.title }}</h3>
-                            <p class="visibility-of-votes">{{ project.votes }}</p>
+                            <div class="visibility-of-title inner-circle">
+                                {{ project.title }}  
+                            </div>
+                            <div class="visibility-of-votes inner-circle">
+                                <i class="fa fa-heart"></i> {{ project.votes }}
+                            </div>
+                            <!-- <h3 class="visibility-of-title">{{ project.title }}</h3> -->
+                            <!-- <p class="visibility-of-votes"><i class="fa fa-heart"></i> {{ project.votes }}</p> -->
                         </div>
                     </div>
                 </a>
@@ -62,9 +91,9 @@
         <div id="left-student-slide" class="left carousel-control" onclick="clicked('left')">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </div>
-        <span id="right-student-slide" class="right carousel-control" onclick="clicked('right')">
-           <span class="glyphicon glyphicon-chevron-right"></span>
-        </span>
+        <div id="right-student-slide" class="right carousel-control" onclick="clicked('right')">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </div>
 
     </div>
 

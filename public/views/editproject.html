@@ -14,8 +14,30 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button uploadimageform type="submit" class="btn btn-primary">Use image</button>
+                    <button uploadimageform type="submit" class="icabutton">Use image</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="bannerModal" tabindex="-1" role="dialog" aria-labelledby="bannerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="bannerform" class="bannerform" enctype="multipart/form-data"> 
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="bannerModalLabel">Banner</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <input id="inputImage" type="file" accept="image/*" name="image">
+
+                        <img ng-show="image" ng-src="{{ image.url }}" type="{{ image.file.type }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button uploadbanner type="submit" class="icabutton">Use banner</button>
                 </div>
             </form>
         </div>
@@ -25,7 +47,7 @@
 <div class="modal fade" id="logoModal" tabindex="-1" role="dialog" aria-labelledby="logoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="logoform" enctype="multipart/form-data"> 
+            <form id="logoform" class="logoform" enctype="multipart/form-data"> 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title" id="logoModalLabel">Logo</h4>
@@ -38,8 +60,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button uploadlogoform type="submit" class="btn btn-primary">Use logo</button>
+                    <button uploadlogo type="submit" class="icabutton">Use logo</button>
                 </div>
             </form>
         </div>
@@ -57,8 +78,7 @@
                 <textarea textform name="content" id="edit"></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button uploadtextform id="submittextform" type="button" class="btn btn-primary">Use text</button>
+                <button uploadtextform id="submittextform" type="button" class="icabutton">Use text</button>
             </div>
         </div>
     </div>
@@ -76,8 +96,7 @@
                 <input class="form-control" type="url" id="youtubeinput">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button uploadyoutubeform id="submityoutubeform" type="button" class="btn btn-primary">Use YouTube link</button>
+                <button uploadyoutubeform id="submityoutubeform" type="button" class="icabutton">Use YouTube link</button>
             </div>
         </div>
     </div>
@@ -86,6 +105,21 @@
 <div class="menu-side">
     
     <div class="layout-item add-layout-image">
+        <i class="fa fa-picture-o"></i>
+    </div>
+
+    <hr>
+
+    <div class="layout-item add-layout-image-image">
+        <i class="fa fa-picture-o"></i>
+        <i class="fa fa-picture-o"></i>
+    </div>
+
+    <hr>
+
+    <div class="layout-item add-layout-image-image-image">
+        <i class="fa fa-picture-o"></i>
+        <i class="fa fa-picture-o"></i>
         <i class="fa fa-picture-o"></i>
     </div>
 
@@ -105,34 +139,41 @@
 
     <hr>
 
+    <div class="layout-item add-layout-text">
+        <i class="fa fa-align-left"></i>
+    </div>
+
+    <hr>
+
     <div class="layout-item add-layout-video">
         <i class="fa fa-video-camera"></i>
     </div>
 
 </div>
 
-<div class="container">
+<div class="project-actions-container">
     
     <div class="project-actions">
-        <a menuside href="#" class="menu-toggle btn btn-default pull-left">Toggle Menu</a>
-
-        <a saveeditproject href="#" id="save-project" class="save-project btn btn-default text-center">Save</a>
+        <a menuside href="#" class="menu-toggle layout-button"><img src="/images/arrow-left.png"> Layout Options</a>
+        
+        <button saveeditproject id="save-project" class="save-project icabutton">Save Project</button>
+        <button deleteeditproject id="delete-project" class="delete-project icabutton">Delete Project</button>
 
         <div class="form-group projectsemesterform">
 
-            <select class="form-control" ng-model="project.semesterid" id="projectsemester">                
-                <option value="">Please select a semester or project type</option>
-                <option value="" disabled>-----------------------------------------------</option>
-                <option value="-1">Private project</option>
-                <option ng-selected="{{ project.semesterid == semester._id }}" ng-repeat="semester in semesters" value="{{ semester._id }}">{{ semester.name }}</option>
+            <select class="form-control" ng-model="project.semesterid" id="projectsemester">
+                <option ng-selected="{{ project.semesterid == semester._id }}" ng-repeat="semester in semesters" value="{{ semester._id }}">{{ semester._id }} {{ semester.name }}</option>
             </select>
             
         </div>
+
+        <a class="help pull-right" href="#">Help</a>
+
     </div>
 
 </div>
 
-<div class="container">
+<div class="container error-container">
     <div class="alert alert-danger error-title alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
         <strong>Oeps!</strong> You need to have an awesome project name!

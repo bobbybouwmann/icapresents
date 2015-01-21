@@ -12,12 +12,13 @@
             /**
              * Check if the current user is logged in.
              */
-            var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
+            var checkLoggedinRedirect = function ($q, $timeout, $http, $location, $rootScope) {
                 var deferred = $q.defer();
 
                 $http.get('/loggedin')
                     .success(function (user) {
                         if (user !== '0') {
+                            $rootScope.user = user;
                             $rootScope.loggedin = true;
                             $timeout(deferred.resolve, 0);
                         } else {
@@ -31,28 +32,53 @@
                 return deferred.promise;
             };
 
+            /**
+             * Check if the current user is logged in. If so set the rootScope
+             */
+            var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
+                var deferred = $q.defer();
+
+                $http.get('/loggedin')
+                    .success(function (user) {
+                        if (user !== '0') {
+                            $rootScope.user = user;
+                            $rootScope.loggedin = true;
+                        }
+
+                        $timeout(deferred.resolve, 0);
+                    });
+
+                return deferred.promise;
+            };
+
             $routeProvider
                 .when('/addproject', {
                     templateUrl: '/views/addproject.html',
                     controller: 'ProjectAddController',
                     resolve: {
-                        loggedin: checkLoggedin
+                        loggedin: checkLoggedinRedirect
                     }
                 })
                 .when('/projects', {
                     templateUrl: '/views/projects.html',
-                    controller: 'ProjectsViewController'
+                    controller: 'ProjectsViewController',
+                    resolve: {
+                        loggedin: checkLoggedin
+                    }
                 })
                 .when('/editproject/:_id', {
                     templateUrl: '/views/editproject.html',
                     controller: 'ProjectEditController',
                     resolve: {
-                        loggedin: checkLoggedin
+                        loggedin: checkLoggedinRedirect
                     }
                 })
                 .when('/project/:_id', {
                     templateUrl: '/views/project.html',
-                    controller: 'ProjectViewController'
+                    controller: 'ProjectViewController',
+                    resolve: {
+                        loggedin: checkLoggedin
+                    }
                 });
                 
             $locationProvider.html5Mode({ enabled: true, requireBase: false });
@@ -87,6 +113,7 @@
                 .error (function (data){
                     console.log("error: " + data);
                 });
+                
             $http.get('/api/semesters')
                 .success (function (data) {
                     $scope.semesters = data;
